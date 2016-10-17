@@ -15,7 +15,4 @@
     <string name="nav_resources">Resources</string>
     <string name="nav_usage">Usage</string>
     <string name="nav_exit">Exit</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
