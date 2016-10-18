@@ -25,8 +25,7 @@ import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.R;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     private Toolbar toolbar;//test
     private FloatingActionButton fab;
@@ -95,11 +94,11 @@ public class MainActivity extends AppCompatActivity
                 Log.i("info",to.toString());
                 if (!to.isAdded())
                 {// 先判断是否被add过
-                    transaction.hide(from).add(R.id.fragment, to).commit();
+                    transaction.hide(from).show(to).commit();
                     // 隐藏当前的fragment，add下一个到Activity中
                 } else
                 {
-                    transaction.hide(from).show(to).commit();
+                    transaction.hide(from).add(R.id.fragment,fragment).commit();
                     // 隐藏当前的fragment，显示下一个
                 }
             }
