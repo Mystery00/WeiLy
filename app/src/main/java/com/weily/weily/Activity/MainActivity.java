@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
-        showFragment(null,new IntroduceFragment());
+        showFragment(null, new IntroduceFragment());
     }
 
     private void monitor()
@@ -83,16 +84,27 @@ public class MainActivity extends AppCompatActivity
         if (fragment != to)
         {
             fragment = to;
-            FragmentTransaction transaction
-                    = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
             if(from==null)
             {
-                transaction.show(to).commit();
+                transaction.add(R.id.fragment,to).commit();
+                Log.i("info",to.toString());
             }else
             {
-                transaction.hide(from).show(to).commit();
+                Log.i("info",from.toString());
+                Log.i("info",to.toString());
+                if (!to.isAdded())
+                {// 先判断是否被add过
+                    transaction.hide(from).add(R.id.fragment, to).commit();
+                    // 隐藏当前的fragment，add下一个到Activity中
+                } else
+                {
+                    transaction.hide(from).show(to).commit();
+                    // 隐藏当前的fragment，显示下一个
+                }
             }
         }
+        Log.i("info",fragment.toString());
     }
 
     @Override
@@ -128,19 +140,19 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.nav_introduce:
-                showFragment(fragment,new IntroduceFragment());
+                showFragment(fragment, new IntroduceFragment());
                 break;
             case R.id.nav_honor:
-                showFragment(fragment,new HonorFragment());
+                showFragment(fragment, new HonorFragment());
                 break;
             case R.id.nav_resources:
-                showFragment(fragment,new ResourcesFragment());
+                showFragment(fragment, new ResourcesFragment());
                 break;
             case R.id.nav_member:
-                showFragment(fragment,new MemberFragment());
+                showFragment(fragment, new MemberFragment());
                 break;
             case R.id.nav_usage:
-                showFragment(fragment,new UsageFragment());
+                showFragment(fragment, new UsageFragment());
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
