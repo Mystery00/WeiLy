@@ -17,7 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
+import com.weily.weily.Fragment.MemberFragment;
+import com.weily.weily.Fragment.ResourcesFragment;
+import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.R;
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,8 +47,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initialization()
     {
-        fragmentManager=getSupportFragmentManager();
-        IntroduceFragment introduceFragment = new IntroduceFragment();
+        fragmentManager = getSupportFragmentManager();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
-        openFragment(introduceFragment);
+        showFragment(null,new IntroduceFragment());
     }
 
     private void monitor()
@@ -74,12 +78,21 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void openFragment(Fragment fragment)
+    public void showFragment(Fragment from, Fragment to)
     {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment, "test");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        if (fragment != to)
+        {
+            fragment = to;
+            FragmentTransaction transaction
+                    = fragmentManager.beginTransaction();
+            if(from==null)
+            {
+                transaction.show(to).commit();
+            }else
+            {
+                transaction.hide(from).show(to).commit();
+            }
+        }
     }
 
     @Override
@@ -114,7 +127,20 @@ public class MainActivity extends AppCompatActivity
     {
         switch (item.getItemId())
         {
+            case R.id.nav_introduce:
+                showFragment(fragment,new IntroduceFragment());
+                break;
             case R.id.nav_honor:
+                showFragment(fragment,new HonorFragment());
+                break;
+            case R.id.nav_resources:
+                showFragment(fragment,new ResourcesFragment());
+                break;
+            case R.id.nav_member:
+                showFragment(fragment,new MemberFragment());
+                break;
+            case R.id.nav_usage:
+                showFragment(fragment,new UsageFragment());
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

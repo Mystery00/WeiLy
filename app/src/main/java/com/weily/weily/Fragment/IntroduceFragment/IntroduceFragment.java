@@ -25,7 +25,7 @@ public class IntroduceFragment extends Fragment
                 = new IntroducePagerAdapter(getActivity().getSupportFragmentManager(),getActivity().getApplicationContext());
         content.setAdapter(introducePagerAdapter);
         tabLayout.setupWithViewPager(content);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         return view;
     }
 }
