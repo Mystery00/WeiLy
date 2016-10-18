@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_honor"/>
         <item
             android:title="@string/nav_resources"
-            android:id="@+id/resources"
+            android:id="@+id/nav_resources"
             android:icon="@drawable/ic_resources"/>
         <item
             android:title="@string/nav_member"
@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_member"/>
         <item
             android:title="@string/nav_usage"
-            android:id="@+id/usage"
+            android:id="@+id/nav_usage"
             android:icon="@drawable/ic_usage"/>
     </group>
 
