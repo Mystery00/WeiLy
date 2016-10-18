@@ -28,7 +28,7 @@ import com.weily.weily.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-    private Toolbar toolbar;
+    private Toolbar toolbar;//test
     private FloatingActionButton fab;
     private NavigationView navigationView;
     private DrawerLayout drawer;
