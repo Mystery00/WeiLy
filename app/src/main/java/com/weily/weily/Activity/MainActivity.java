@@ -2,12 +2,8 @@ package com.weily.weily.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,7 +24,6 @@ import com.weily.weily.R;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     private Toolbar toolbar;
-    private FloatingActionButton fab;
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
@@ -52,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ExitApplication.getInstance().addActivity(this);
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
@@ -75,15 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void monitor()
     {
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         //noinspection deprecation
@@ -205,7 +190,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.nav_share:
-                Log.i("info",null);
                 break;
             case R.id.nav_send:
                 break;
