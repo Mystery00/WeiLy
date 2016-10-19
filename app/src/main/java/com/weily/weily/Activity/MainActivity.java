@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         initialization();
         monitor();
-
     }
 
     private void initialization()
@@ -54,6 +54,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
+
+        /**
+         * 默认显示introduce
+         */
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        hideFragments(fragmentTransaction);
+        if (introduceFragment == null)
+        {
+            introduceFragment = new IntroduceFragment();
+            fragmentTransaction.add(R.id.fragment, introduceFragment);
+        } else
+        {
+            fragmentTransaction.show(introduceFragment);
+        }
+        fragmentTransaction.commit();
     }
 
     private void monitor()
