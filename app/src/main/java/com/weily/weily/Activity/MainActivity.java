@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
     }
+
     private void monitor()
     {
         fab.setOnClickListener(new View.OnClickListener()
@@ -73,25 +75,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-   public void hideFragments(FragmentTransaction fragmentTransaction){
-       if (introduceFragment!=null){
-           fragmentTransaction.hide(introduceFragment);
-       }
-       if (honorFragment !=null){
-           fragmentTransaction.hide(honorFragment);
-       }
-       if (memberFragment!=null){
-           fragmentTransaction.hide(memberFragment);
-       }
-       if (resourcesFragment!=null){
-           fragmentTransaction.hide(resourcesFragment);
-       }
-       if (usageFragment!=null){
-           fragmentTransaction.hide(usageFragment);
-       }
-   }
-
+    public void hideFragments(FragmentTransaction fragmentTransaction)
+    {
+        if (introduceFragment != null)
+        {
+            fragmentTransaction.hide(introduceFragment);
+        }
+        if (honorFragment != null)
+        {
+            fragmentTransaction.hide(honorFragment);
+        }
+        if (memberFragment != null)
+        {
+            fragmentTransaction.hide(memberFragment);
+        }
+        if (resourcesFragment != null)
+        {
+            fragmentTransaction.hide(resourcesFragment);
+        }
+        if (usageFragment != null)
+        {
+            fragmentTransaction.hide(usageFragment);
+        }
+    }
 
     @Override
     public void onBackPressed()
@@ -123,51 +129,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
-         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (item.getItemId())
         {
             case R.id.nav_introduce:
                 hideFragments(fragmentTransaction);
-                if (introduceFragment==null){
-                    introduceFragment=new IntroduceFragment();
-                    fragmentTransaction.add(R.id.fragment,introduceFragment);
-                }else {
+                if (introduceFragment == null)
+                {
+                    introduceFragment = new IntroduceFragment();
+                    fragmentTransaction.add(R.id.fragment, introduceFragment);
+                } else
+                {
                     fragmentTransaction.show(introduceFragment);
                 }
                 break;
             case R.id.nav_honor:
                 hideFragments(fragmentTransaction);
-                if (honorFragment ==null){
-                    honorFragment=new HonorFragment();
-                    fragmentTransaction.add(R.id.fragment,honorFragment);
-                }else {
+                if (honorFragment == null)
+                {
+                    honorFragment = new HonorFragment();
+                    fragmentTransaction.add(R.id.fragment, honorFragment);
+                } else
+                {
                     fragmentTransaction.show(honorFragment);
                 }
                 break;
             case R.id.nav_resources:
                 hideFragments(fragmentTransaction);
-                if (resourcesFragment==null){
-                    resourcesFragment=new ResourcesFragment();
-                    fragmentTransaction.add(R.id.fragment,resourcesFragment);
-                }else {
+                if (resourcesFragment == null)
+                {
+                    resourcesFragment = new ResourcesFragment();
+                    fragmentTransaction.add(R.id.fragment, resourcesFragment);
+                } else
+                {
                     fragmentTransaction.show(resourcesFragment);
                 }
                 break;
             case R.id.nav_member:
                 hideFragments(fragmentTransaction);
-                if (memberFragment==null){
-                    memberFragment=new MemberFragment();
-                    fragmentTransaction.add(R.id.fragment,memberFragment);
-                }else {
+                if (memberFragment == null)
+                {
+                    memberFragment = new MemberFragment();
+                    fragmentTransaction.add(R.id.fragment, memberFragment);
+                } else
+                {
                     fragmentTransaction.show(memberFragment);
                 }
                 break;
             case R.id.nav_usage:
                 hideFragments(fragmentTransaction);
-                if (usageFragment==null){
-                    usageFragment=new UsageFragment();
-                    fragmentTransaction.add(R.id.fragment,usageFragment);
-                }else {
+                if (usageFragment == null)
+                {
+                    usageFragment = new UsageFragment();
+                    fragmentTransaction.add(R.id.fragment, usageFragment);
+                } else
+                {
                     fragmentTransaction.show(usageFragment);
                 }
                 break;
