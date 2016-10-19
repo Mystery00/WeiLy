@@ -33,15 +33,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    private IntroduceFragment introduceFragment;
+    private HonorFragment honorFragment;
+    private ResourcesFragment resourcesFragment;
+    private MemberFragment memberFragment;
+    private UsageFragment usageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initialization();
-
         monitor();
     }
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
-        showFragment(null, new IntroduceFragment());
+
     }
 
     private void monitor()
@@ -78,33 +81,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void showFragment(Fragment from, Fragment to)
-    {
-        if (fragment != to)
-        {
-            fragment = to;
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            if(from==null)
-            {
-                transaction.add(R.id.fragment,to).commit();
-                Log.i("info",to.toString());
-            }else
-            {
-                Log.i("info",from.toString());
-                Log.i("info",to.toString());
-                if (!to.isAdded())
-                {// 先判断是否被add过
-                    transaction.hide(from).show(to).commit();
-                    // 隐藏当前的fragment，add下一个到Activity中
-                } else
-                {
-                    transaction.hide(from).add(R.id.fragment,fragment).commit();
-                    // 隐藏当前的fragment，显示下一个
-                }
-            }
-        }
-        Log.i("info",fragment.toString());
-    }
+
+   public void hideFragments(FragmentTransaction fragmentTransaction){
+       if (introduceFragment!=null){
+           fragmentTransaction.hide(introduceFragment);
+       }
+       if (honorFragment !=null){
+           fragmentTransaction.hide(honorFragment);
+       }
+       if (memberFragment!=null){
+           fragmentTransaction.hide(memberFragment);
+       }
+       if (resourcesFragment!=null){
+           fragmentTransaction.hide(resourcesFragment);
+       }
+       if (usageFragment!=null){
+           fragmentTransaction.hide(usageFragment);
+       }
+   }
+
+
+
 
     @Override
     public void onBackPressed()
@@ -136,25 +133,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
+         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         switch (item.getItemId())
         {
             case R.id.nav_introduce:
-                showFragment(fragment, new IntroduceFragment());
+                hideFragments(fragmentTransaction);
+                if (introduceFragment==null){
+                    introduceFragment=new IntroduceFragment();
+                    fragmentTransaction.add(R.id.fragment,introduceFragment);
+                }else {
+                    fragmentTransaction.show(introduceFragment);
+                }
                 break;
             case R.id.nav_honor:
-                showFragment(fragment, new HonorFragment());
+                hideFragments(fragmentTransaction);
+                if (honorFragment ==null){
+                    honorFragment=new HonorFragment();
+                    fragmentTransaction.add(R.id.fragment,honorFragment);
+                }else {
+                    fragmentTransaction.show(honorFragment);
+                }
                 break;
             case R.id.nav_resources:
-                showFragment(fragment, new ResourcesFragment());
+                hideFragments(fragmentTransaction);
+                if (resourcesFragment==null){
+                    resourcesFragment=new ResourcesFragment();
+                    fragmentTransaction.add(R.id.fragment,resourcesFragment);
+                }else {
+                    fragmentTransaction.show(resourcesFragment);
+                }
                 break;
             case R.id.nav_member:
-                showFragment(fragment, new MemberFragment());
+                hideFragments(fragmentTransaction);
+                if (memberFragment==null){
+                    memberFragment=new MemberFragment();
+                    fragmentTransaction.add(R.id.fragment,memberFragment);
+                }else {
+                    fragmentTransaction.show(memberFragment);
+                }
                 break;
             case R.id.nav_usage:
-                showFragment(fragment, new UsageFragment());
+                hideFragments(fragmentTransaction);
+                if (usageFragment==null){
+                    usageFragment=new UsageFragment();
+                    fragmentTransaction.add(R.id.fragment,usageFragment);
+                }else {
+                    fragmentTransaction.show(usageFragment);
+                }
                 break;
         }
+        fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }

@@ -23,7 +23,6 @@ public class IntroduceFragment extends Fragment {
     TabLayout tabLayout;
     @Bind(R.id.content)
     ViewPager content;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_introduce, container, false);
@@ -39,13 +38,7 @@ public class IntroduceFragment extends Fragment {
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        if (hidden){
-            }else {
-            initView();
-        }
-    }
+
 
     @Override
     public void onDestroyView() {
