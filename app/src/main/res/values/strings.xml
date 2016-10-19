@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_done">Done</string>
 
     <string name="nav_introduction">Introduction</string>
     <string name="nav_communicate">Communicate</string>
