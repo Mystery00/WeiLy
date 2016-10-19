@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_name"
+            android:src="@drawable/ic_name"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_name"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_name"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_college"
+            android:src="@drawable/ic_collage"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_collage"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_college"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_class_number"
+            android:src="@drawable/ic_class_number"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_class"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_class_number"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_phone_number"
+            android:src="@drawable/ic_phone_number"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_phone"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_phone_number"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_profession"
+            android:src="@drawable/ic_profession"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_profession"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_profession"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/dialog_icon_size"
+            android:id="@+id/show_occupation"
+            android:src="@drawable/ic_occupation"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:contentDescription="@string/app_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/text_occupation"
+            android:textSize="@dimen/dialog_text_size"
+            android:layout_marginStart="@dimen/dialog_name_start_margin"
+            android:layout_toEndOf="@id/show_occupation"
+            android:layout_height="@dimen/dialog_icon_size"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
