@@ -21,6 +21,7 @@ import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
+import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initialization()
     {
+        ExitApplication.getInstance().addActivity(this);
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -200,6 +202,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 {
                     fragmentTransaction.show(usageFragment);
                 }
+                break;
+            case R.id.nav_exit:
+                ExitApplication.getInstance().exit();
                 break;
         }
         fragmentTransaction.commit();
