@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceDirectionFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceMainFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceOccupationFragment;
@@ -12,6 +11,7 @@ import com.weily.weily.R;
 
 public class IntroducePagerAdapter extends FragmentPagerAdapter
 {
+    final int PAGE_COUNT=3;
     private Context context;
     public IntroducePagerAdapter(FragmentManager fm,Context context)
     {
@@ -22,13 +22,13 @@ public class IntroducePagerAdapter extends FragmentPagerAdapter
     @Override
     public Fragment getItem(int position)
     {
-        switch (position)
+        switch (position+1)
         {
-            case 0:
-                return new IntroduceMainFragment();
             case 1:
-                return new IntroduceDirectionFragment();
+                return new IntroduceMainFragment();
             case 2:
+                return new IntroduceDirectionFragment();
+            case 3:
                 return new IntroduceOccupationFragment();
             default:
                 return null;
@@ -38,7 +38,7 @@ public class IntroducePagerAdapter extends FragmentPagerAdapter
     @Override
     public int getCount()
     {
-        return 3;
+        return PAGE_COUNT;
     }
 
     @Override
@@ -48,3 +48,4 @@ public class IntroducePagerAdapter extends FragmentPagerAdapter
         return titles[position];
     }
 }
+
