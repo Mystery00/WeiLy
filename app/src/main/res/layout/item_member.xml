@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/item_photo_size"
+        android:id="@+id/item_photo"
+        android:layout_margin="10dp"
+        android:layout_height="@dimen/item_photo_size"
+        android:contentDescription="@string/app_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/item_name"
+        android:layout_marginStart="@dimen/item_name_photo_margin"
+        android:textSize="@dimen/item_text_name_size"
+        android:gravity="center_vertical"
+        android:layout_toEndOf="@id/item_photo"
+        android:layout_height="@dimen/item_member_height"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@id/item_name"
+        android:id="@+id/item_occupation"
+        android:maxLines="1"
+        android:gravity="end"
+        android:layout_marginTop="@dimen/item_occupation_top_margin"
+        android:textSize="@dimen/item_text_occupation_size"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@id/item_name"
+        android:layout_alignBottom="@id/item_name"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/item_profession"
+        android:maxLines="2"
+        android:gravity="end"
+        android:layout_marginBottom="@dimen/item_profession_bottom_margin"
+        android:textSize="@dimen/item_text_profession_size"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
