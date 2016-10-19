@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
@@ -46,21 +44,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         initialization();
         monitor();
+
     }
 
     private void initialization()
     {
         fragmentManager = getSupportFragmentManager();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-
         setSupportActionBar(toolbar);
-
     }
-
     private void monitor()
     {
         fab.setOnClickListener(new View.OnClickListener()
@@ -72,10 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //noinspection deprecation
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -99,8 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            fragmentTransaction.hide(usageFragment);
        }
    }
-
-
 
 
     @Override
@@ -184,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
     }
 }
