@@ -1,4 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.nillith.autoversion'
+
+autoVersion {
+    major 1
+    minor 0
+    patch 0
+    }
 
 android {
     compileSdkVersion 24
@@ -7,8 +14,8 @@ android {
         applicationId "com.weily.weily"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode autoVersion.code
+        versionName autoVersion.name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

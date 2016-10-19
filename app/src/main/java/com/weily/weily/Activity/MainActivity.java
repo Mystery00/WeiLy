@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,16 +16,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
+import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    private Toolbar toolbar;//test
+    private Toolbar toolbar;
     private FloatingActionButton fab;
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -42,18 +45,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         initialization();
         monitor();
-
     }
 
     private void initialization()
     {
+        ExitApplication.getInstance().addActivity(this);
         fragmentManager = getSupportFragmentManager();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
+
+        /**
+         * 默认显示introduce
+         */
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        hideFragments(fragmentTransaction);
+        if (introduceFragment == null)
+        {
+            introduceFragment = new IntroduceFragment();
+            fragmentTransaction.add(R.id.fragment, introduceFragment);
+        } else
+        {
+            fragmentTransaction.show(introduceFragment);
+        }
+        fragmentTransaction.commit();
     }
+
     private void monitor()
     {
         fab.setOnClickListener(new View.OnClickListener()
@@ -73,25 +92,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-   public void hideFragments(FragmentTransaction fragmentTransaction){
-       if (introduceFragment!=null){
-           fragmentTransaction.hide(introduceFragment);
-       }
-       if (honorFragment !=null){
-           fragmentTransaction.hide(honorFragment);
-       }
-       if (memberFragment!=null){
-           fragmentTransaction.hide(memberFragment);
-       }
-       if (resourcesFragment!=null){
-           fragmentTransaction.hide(resourcesFragment);
-       }
-       if (usageFragment!=null){
-           fragmentTransaction.hide(usageFragment);
-       }
-   }
-
+    public void hideFragments(FragmentTransaction fragmentTransaction)
+    {
+        if (introduceFragment != null)
+        {
+            fragmentTransaction.hide(introduceFragment);
+        }
+        if (honorFragment != null)
+        {
+            fragmentTransaction.hide(honorFragment);
+        }
+        if (memberFragment != null)
+        {
+            fragmentTransaction.hide(memberFragment);
+        }
+        if (resourcesFragment != null)
+        {
+            fragmentTransaction.hide(resourcesFragment);
+        }
+        if (usageFragment != null)
+        {
+            fragmentTransaction.hide(usageFragment);
+        }
+    }
 
     @Override
     public void onBackPressed()
@@ -123,53 +146,71 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
-         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (item.getItemId())
         {
             case R.id.nav_introduce:
                 hideFragments(fragmentTransaction);
-                if (introduceFragment==null){
-                    introduceFragment=new IntroduceFragment();
-                    fragmentTransaction.add(R.id.fragment,introduceFragment);
-                }else {
+                if (introduceFragment == null)
+                {
+                    introduceFragment = new IntroduceFragment();
+                    fragmentTransaction.add(R.id.fragment, introduceFragment);
+                } else
+                {
                     fragmentTransaction.show(introduceFragment);
                 }
                 break;
             case R.id.nav_honor:
                 hideFragments(fragmentTransaction);
-                if (honorFragment ==null){
-                    honorFragment=new HonorFragment();
-                    fragmentTransaction.add(R.id.fragment,honorFragment);
-                }else {
+                if (honorFragment == null)
+                {
+                    honorFragment = new HonorFragment();
+                    fragmentTransaction.add(R.id.fragment, honorFragment);
+                } else
+                {
                     fragmentTransaction.show(honorFragment);
                 }
                 break;
             case R.id.nav_resources:
                 hideFragments(fragmentTransaction);
-                if (resourcesFragment==null){
-                    resourcesFragment=new ResourcesFragment();
-                    fragmentTransaction.add(R.id.fragment,resourcesFragment);
-                }else {
+                if (resourcesFragment == null)
+                {
+                    resourcesFragment = new ResourcesFragment();
+                    fragmentTransaction.add(R.id.fragment, resourcesFragment);
+                } else
+                {
                     fragmentTransaction.show(resourcesFragment);
                 }
                 break;
             case R.id.nav_member:
                 hideFragments(fragmentTransaction);
-                if (memberFragment==null){
-                    memberFragment=new MemberFragment();
-                    fragmentTransaction.add(R.id.fragment,memberFragment);
-                }else {
+                if (memberFragment == null)
+                {
+                    memberFragment = new MemberFragment();
+                    fragmentTransaction.add(R.id.fragment, memberFragment);
+                } else
+                {
                     fragmentTransaction.show(memberFragment);
                 }
                 break;
             case R.id.nav_usage:
                 hideFragments(fragmentTransaction);
-                if (usageFragment==null){
-                    usageFragment=new UsageFragment();
-                    fragmentTransaction.add(R.id.fragment,usageFragment);
-                }else {
+                if (usageFragment == null)
+                {
+                    usageFragment = new UsageFragment();
+                    fragmentTransaction.add(R.id.fragment, usageFragment);
+                } else
+                {
                     fragmentTransaction.show(usageFragment);
                 }
+                break;
+            case R.id.nav_share:
+                Log.i("info",null);
+                break;
+            case R.id.nav_send:
+                break;
+            case R.id.nav_exit:
+                ExitApplication.getInstance().exit();
                 break;
         }
         fragmentTransaction.commit();

@@ -11,7 +11,6 @@ import com.weily.weily.R;
 
 public class IntroducePagerAdapter extends FragmentPagerAdapter
 {
-    final int PAGE_COUNT=3;
     private Context context;
     public IntroducePagerAdapter(FragmentManager fm,Context context)
     {
@@ -38,14 +37,13 @@ public class IntroducePagerAdapter extends FragmentPagerAdapter
     @Override
     public int getCount()
     {
-        return PAGE_COUNT;
+        return 3;
     }
 
     @Override
     public CharSequence getPageTitle(int position)
     {
         String[] titles=context.getResources().getStringArray(R.array.introduce_titles);
-        return titles[position];
-    }
+        return titles[position];    }
 }
 
