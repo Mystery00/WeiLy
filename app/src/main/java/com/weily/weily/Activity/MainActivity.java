@@ -203,6 +203,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     fragmentTransaction.show(usageFragment);
                 }
                 break;
+            case R.id.nav_share:
+                break;
+            case R.id.nav_send:
+                break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
                 break;

@@ -22,11 +22,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler
     private static final String TAG = "CrashHandler";
     private static final boolean DEBUG = true;
 
-    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/ryg_test/log/";
+    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/log/";
     private static final String FILE_NAME = "crash";
 
     //log文件的后缀名
-    private static final String FILE_NAME_SUFFIX = ".trace";
+    private static final String FILE_NAME_SUFFIX = ".txt";
 
     private static CrashHandler sInstance = new CrashHandler();
 
