@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.weily.weily.Member;
+import com.weily.weily.Class.Member;
 import com.weily.weily.R;
 
 import java.util.List;

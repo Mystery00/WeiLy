@@ -1,4 +1,4 @@
-package com.weily.weily;
+package com.weily.weily.Class;
 
 public class Member
 {

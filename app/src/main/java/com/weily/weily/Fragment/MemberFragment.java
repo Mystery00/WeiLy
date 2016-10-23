@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.weily.weily.Adapter.MemberAdapter;
-import com.weily.weily.Member;
+import com.weily.weily.Class.Member;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
