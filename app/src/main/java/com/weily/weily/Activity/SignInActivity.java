@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import com.weily.weily.R;
 
 public class SignInActivity extends AppCompatActivity
 {
+    final private static String pattern_username = "[A-Za-z0-9]+";
+    final private static String pattern_password = "[A-Za-z0-9.]+";
     private Toolbar toolbar;
     private FloatingActionButton fab;
     private TextInputLayout username_layout;
@@ -62,19 +65,23 @@ public class SignInActivity extends AppCompatActivity
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-
             }
 
             @Override
             public void afterTextChanged(Editable s)
             {
-
+                if(s.toString().length()<4||s.toString().length()>16)
+                {
+                    username_layout.setError("超出位数");
+                }else
+                {
+                    username_layout.setError(null);
+                }
             }
         });
         password_layout.getEditText().addTextChangedListener(new TextWatcher()
