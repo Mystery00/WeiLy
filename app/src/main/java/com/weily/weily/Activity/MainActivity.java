@@ -1,5 +1,6 @@
 package com.weily.weily.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -12,19 +13,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
+import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener
 {
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private CircleImageView head;
+    private TextView username;
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
     private IntroduceFragment introduceFragment;
@@ -49,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerLayout = navigationView.getHeaderView(0);
+        head=(CircleImageView)headerLayout.findViewById(R.id.nav_head);
+        username=(TextView)headerLayout.findViewById(R.id.nav_username);
         setSupportActionBar(toolbar);
 
         /**
@@ -75,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        head.setOnClickListener(this);
+        username.setOnClickListener(this);
+
     }
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
@@ -200,5 +213,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        //判断跳转
+        startActivity(new Intent(MainActivity.this,SignInActivity.class));
     }
 }
