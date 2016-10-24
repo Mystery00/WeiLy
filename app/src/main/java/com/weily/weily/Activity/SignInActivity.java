@@ -1,5 +1,6 @@
 package com.weily.weily.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -122,7 +123,7 @@ public class SignInActivity extends AppCompatActivity
             {
                 if(!isWrong())
                 {
-                    User user=new User();
+                    final User user=new User();
                     user.setUsername(username_layout.getEditText().getText().toString());
                     user.setPassword(password_layout.getEditText().getText().toString());
                     user.login(new SignInListener()
@@ -131,6 +132,11 @@ public class SignInActivity extends AppCompatActivity
                         public void Success()
                         {
                             //登陆成功保存登录信息
+                            SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+                            sharedPreferences.edit()
+                                    .putString("username",username_layout.getEditText().getText().toString())
+                                    .putString("password",password_layout.getEditText().getText().toString())
+                                    .apply();
                             finish();
                         }
 

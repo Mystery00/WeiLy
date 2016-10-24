@@ -12,26 +12,26 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.weily.weily.Adapter.MemberAdapter;
-import com.weily.weily.Class.Member;
+import com.weily.weily.Adapter.UserAdapter;
+import com.weily.weily.Class.User;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberFragment extends Fragment
+public class UserFragment extends Fragment
 {
-    private List<Member> list=new ArrayList<>();
+    private List<User> list=new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view=inflater.inflate(R.layout.fragment_member,container,false);
         ListView listView = (ListView) view.findViewById(R.id.listView);
-        list.add(new Member("","name","occupation","profession","college","111","classNumber"));
-        list.add(new Member("","name1","occupation","profession","college","222","classNumber"));
-        list.add(new Member("","name2","occupation","profession","college","333","classNumber"));
-        MemberAdapter adapter=new MemberAdapter(getActivity(),list);
+        list.add(new User("","name","occupation","profession","college","111","classNumber"));
+        list.add(new User("","name1","occupation","profession","college","222","classNumber"));
+        list.add(new User("","name2","occupation","profession","college","333","classNumber"));
+        UserAdapter adapter=new UserAdapter(getActivity(),list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -39,7 +39,7 @@ public class MemberFragment extends Fragment
             public void onItemClick(AdapterView<?> parent, final View view1, int position, long id)
             {
                 final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-                final Member member=list.get(position);
+                final User member=list.get(position);
                 View view=LayoutInflater.from(getActivity()).inflate(R.layout.dialog_show_member,null);
                 TextView name=(TextView)view.findViewById(R.id.text_name);
                 TextView collage=(TextView)view.findViewById(R.id.text_collage);

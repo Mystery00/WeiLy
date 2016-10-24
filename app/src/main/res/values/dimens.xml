@@ -26,4 +26,6 @@
     <dimen name="fab_margin_login">35dp</dimen>
     <dimen name="margin_last">20dp</dimen>
     <dimen name="margin_top">100dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
