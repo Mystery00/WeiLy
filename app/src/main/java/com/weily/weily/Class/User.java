@@ -6,6 +6,28 @@ public class User
 {
     private String username;
     private String password;
+    private String photoUrl;
+    private String name;
+    private String occupation;
+    private String profession;
+    private String college;
+    private String phoneNumber;
+    private String classNumber;
+
+    public User()
+    {
+    }
+
+    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber)
+    {
+        this.photoUrl = photoUrl;
+        this.name = name;
+        this.occupation = occupation;
+        this.profession = profession;
+        this.college = college;
+        this.phoneNumber = phoneNumber;
+        this.classNumber = classNumber;
+    }
 
     public String getUsername()
     {
@@ -17,14 +39,79 @@ public class User
         this.username = username;
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
-
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public String getPhotoUrl()
+    {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl)
+    {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getOccupation()
+    {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation)
+    {
+        this.occupation = occupation;
+    }
+
+    public String getProfession()
+    {
+        return profession;
+    }
+
+    public void setProfession(String profession)
+    {
+        this.profession = profession;
+    }
+
+    public String getCollege()
+    {
+        return college;
+    }
+
+    public void setCollege(String college)
+    {
+        this.college = college;
+    }
+
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getClassNumber()
+    {
+        return classNumber;
+    }
+
+    public void setClassNumber(String classNumber)
+    {
+        this.classNumber = classNumber;
     }
 
     public void login(SignInListener signInListener)

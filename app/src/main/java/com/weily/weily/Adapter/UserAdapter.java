@@ -8,21 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.weily.weily.Class.Member;
+import com.weily.weily.Class.User;
 import com.weily.weily.R;
 
 import java.util.List;
 
-public class MemberAdapter extends BaseAdapter
+public class UserAdapter extends BaseAdapter
 {
     private Context context;
-    private List<Member> memberList;
+    private List<User> memberList;
     private ImageView photo;
     private TextView name;
     private TextView occupation;
     private TextView profession;
 
-    public MemberAdapter(Context context,List<Member> memberList)
+    public UserAdapter(Context context, List<User> memberList)
     {
         this.context=context;
         this.memberList=memberList;
@@ -49,7 +49,7 @@ public class MemberAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        Member member=memberList.get(position);
+        User member=memberList.get(position);
         if (convertView == null)
         {
             convertView= LayoutInflater.from(context).inflate(R.layout.item_member,null);
