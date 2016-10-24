@@ -8,14 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
+import com.weily.weily.Callback.SignInListener;
+import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.ExitApplication;
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity
@@ -76,7 +76,7 @@ public class SignInActivity extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s)
             {
-                if(!Pattern.compile("[A-Za-z0-9]+").matcher(s.toString()).matches())
+                if(!Pattern.compile(pattern_username).matcher(s.toString()).matches())
                 {
                     username_layout.setError(getString(R.string.error_wrong_format));
                 }else if(s.toString().length()<4||s.toString().length()>20)
@@ -103,7 +103,7 @@ public class SignInActivity extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s)
             {
-                if(!Pattern.compile("[A-Za-z0-9.]+").matcher(s.toString()).matches())
+                if(!Pattern.compile(pattern_password).matcher(s.toString()).matches())
                 {
                     password_layout.setError(getString(R.string.error_wrong_format));
                 }else if(s.toString().length()<6||s.toString().length()>16)
@@ -120,13 +120,30 @@ public class SignInActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if(isWrong())
+                if(!isWrong())
                 {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    User user=new User();
+                    user.setUsername(username_layout.getEditText().getText().toString());
+                    user.setPassword(password_layout.getEditText().getText().toString());
+                    user.login(new SignInListener()
+                    {
+                        @Override
+                        public void Success()
+                        {
+                            //登陆成功保存登录信息
+                            finish();
+                        }
+
+                        @Override
+                        public void Failure(int code, String message)
+                        {
+                            Logs.loge(code,message);//打印错误信息
+                        }
+                    });
                 }else
                 {
-                    Snackbar.make(view,"test",Snackbar.LENGTH_SHORT)
+                    Logs.loge(getString(R.string.error_wrong_format));
+                    Snackbar.make(view,getString(R.string.error_wrong_format),Snackbar.LENGTH_SHORT)
                             .show();
                 }
             }
@@ -135,8 +152,8 @@ public class SignInActivity extends AppCompatActivity
     @SuppressWarnings("ConstantConditions")
     private boolean isWrong()
     {
-        return !Pattern.compile("[A-Za-z0-9]+").matcher(username_layout.getEditText().getText().toString()).matches()
-                ||!Pattern.compile("[A-Za-z0-9.]+").matcher(password_layout.getEditText().getText().toString()).matches()
+        return !Pattern.compile(pattern_username).matcher(username_layout.getEditText().getText().toString()).matches()
+                ||!Pattern.compile(pattern_password).matcher(password_layout.getEditText().getText().toString()).matches()
                 ||username_layout.getEditText().getText().length()<4
                 ||username_layout.getEditText().getText().length()>20
                 ||password_layout.getEditText().getText().length()<6
