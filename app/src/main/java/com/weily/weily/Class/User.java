@@ -20,13 +20,13 @@ public class User
 
     public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber)
     {
-        this.photoUrl = photoUrl;
-        this.name = name;
-        this.occupation = occupation;
-        this.profession = profession;
-        this.college = college;
-        this.phoneNumber = phoneNumber;
-        this.classNumber = classNumber;
+        this.photoUrl = photoUrl;//头像
+        this.name = name;//姓名
+        this.occupation = occupation;//方向
+        this.profession = profession;//专业
+        this.college = college;//学院
+        this.phoneNumber = phoneNumber;//电话
+        this.classNumber = classNumber;//班级
     }
 
     public String getUsername()
