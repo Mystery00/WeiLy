@@ -3,8 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="navigationBarColor">#E8EAF6</color>
-    <color name="navigationView_Username">#E8EAF6</color>
+    <color name="icon_color">#FFFFFF</color>
+    <color name="navigationBarColor">#FFFFFF</color>
+    <color name="navigationView_Username">#FFFFFF</color>
     <color name="menu_background">#FFFFFF</color>
     
     <color name="Indigo50">#E8EAF6</color>

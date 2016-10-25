@@ -24,7 +24,6 @@ import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.util.Objects;
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -227,11 +226,9 @@ public class MainActivity extends AppCompatActivity
         if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
         {
             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
         }else
         {
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
         }
     }
 }
