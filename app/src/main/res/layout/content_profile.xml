@@ -52,7 +52,7 @@
                 android:layout_height="@dimen/dialog_icon_size"
                 android:contentDescription="@string/app_name"/>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/text_collage"
                 android:textSize="@dimen/dialog_text_size"
@@ -76,13 +76,13 @@
                 android:layout_height="@dimen/dialog_icon_size"
                 android:contentDescription="@string/app_name"/>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/text_class"
                 android:textSize="@dimen/dialog_text_size"
-                android:layout_marginStart="@dimen/dialog_name_start_margin"
-                android:layout_toEndOf="@id/show_class_number"
-                android:layout_height="@dimen/dialog_icon_size"/>
+                android:layout_height="@dimen/dialog_icon_size"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
 
@@ -100,7 +100,7 @@
                 android:layout_height="@dimen/dialog_icon_size"
                 android:contentDescription="@string/app_name"/>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/text_phone"
                 android:textSize="@dimen/dialog_text_size"
@@ -124,7 +124,7 @@
                 android:layout_height="@dimen/dialog_icon_size"
                 android:contentDescription="@string/app_name"/>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/text_profession"
                 android:textSize="@dimen/dialog_text_size"
@@ -148,13 +148,13 @@
                 android:layout_height="@dimen/dialog_icon_size"
                 android:contentDescription="@string/app_name"/>
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/text_occupation"
                 android:textSize="@dimen/dialog_text_size"
-                android:layout_marginStart="@dimen/dialog_name_start_margin"
-                android:layout_toEndOf="@id/show_occupation"
-                android:layout_height="@dimen/dialog_icon_size"/>
+                android:layout_height="@dimen/dialog_icon_size"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
 

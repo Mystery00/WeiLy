@@ -3,6 +3,8 @@ package com.weily.weily.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.weily.weily.PublicMethod.ExitApplication;
@@ -42,6 +44,25 @@ public class ProfileActivity extends AppCompatActivity
                 finish();
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_edit:
+                break;
+            case R.id.action_logout:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
