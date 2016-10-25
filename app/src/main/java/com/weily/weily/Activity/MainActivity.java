@@ -1,6 +1,7 @@
 package com.weily.weily.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -23,7 +24,10 @@ import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.ExitApplication;
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener
@@ -219,6 +223,15 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v)
     {
         //判断跳转
-        startActivity(new Intent(MainActivity.this,SignInActivity.class));
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
+        {
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
+        }else
+        {
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
+        }
     }
 }
