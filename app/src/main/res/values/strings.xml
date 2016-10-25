@@ -20,6 +20,7 @@
     <string name="error_out_of_size_username">Please enter 4 to 20 characters!</string>
     <string name="error_out_of_size_password">Please enter 6 to 16 characters!</string>
     <string name="error_wrong_format">Wrong format!</string>
+    <string name="error_permission_faild">Authorization exception! </string>
 
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
