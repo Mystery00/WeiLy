@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v)
     {
-        //判断跳转
+
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
         {
