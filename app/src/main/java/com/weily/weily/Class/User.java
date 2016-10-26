@@ -2,7 +2,9 @@ package com.weily.weily.Class;
 
 import com.weily.weily.Callback.SignInListener;
 
-public class User
+import java.io.Serializable;
+
+public class User implements Serializable
 {
     private String username;
     private String password;
