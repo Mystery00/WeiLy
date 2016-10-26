@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.weily.weily.Class.User;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.UserFragment;
@@ -221,11 +222,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v)
     {
-
+        //判断跳转
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
         {
-            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
+            Bundle bundle=new Bundle();
+            User user=new User("","哈哈哈","test","sfdasd","dasd","das是","打");
+            bundle.putSerializable("user",user);
+            intent.putExtra("user",bundle);
+            startActivity(intent);
         }else
         {
             startActivity(new Intent(MainActivity.this, SignInActivity.class));

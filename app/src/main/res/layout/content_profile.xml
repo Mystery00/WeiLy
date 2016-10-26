@@ -56,9 +56,12 @@
                 android:layout_width="match_parent"
                 android:id="@+id/text_collage"
                 android:textSize="@dimen/dialog_text_size"
+                android:background="@null"
                 android:layout_marginStart="@dimen/dialog_name_start_margin"
                 android:layout_toEndOf="@id/show_college"
-                android:layout_height="@dimen/dialog_icon_size"/>
+                android:layout_height="@dimen/dialog_icon_size"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
 
         </RelativeLayout>
 
@@ -78,11 +81,14 @@
 
             <EditText
                 android:layout_width="match_parent"
+                android:background="@null"
                 android:id="@+id/text_class"
+                tools:ignore="LabelFor"
                 android:textSize="@dimen/dialog_text_size"
+                android:layout_marginStart="@dimen/dialog_name_start_margin"
+                android:layout_toEndOf="@id/show_class_number"
                 android:layout_height="@dimen/dialog_icon_size"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
+                android:inputType="text"/>
 
         </RelativeLayout>
 
@@ -104,6 +110,9 @@
                 android:layout_width="match_parent"
                 android:id="@+id/text_phone"
                 android:textSize="@dimen/dialog_text_size"
+                tools:ignore="LabelFor"
+                android:background="@null"
+                android:inputType="phone"
                 android:layout_marginStart="@dimen/dialog_name_start_margin"
                 android:layout_toEndOf="@id/show_phone_number"
                 android:layout_height="@dimen/dialog_icon_size"/>
@@ -128,7 +137,10 @@
                 android:layout_width="match_parent"
                 android:id="@+id/text_profession"
                 android:textSize="@dimen/dialog_text_size"
+                android:background="@null"
+                tools:ignore="LabelFor"
                 android:layout_marginStart="@dimen/dialog_name_start_margin"
+                android:inputType="text"
                 android:layout_toEndOf="@id/show_profession"
                 android:layout_height="@dimen/dialog_icon_size"/>
 
@@ -152,9 +164,12 @@
                 android:layout_width="match_parent"
                 android:id="@+id/text_occupation"
                 android:textSize="@dimen/dialog_text_size"
-                android:layout_height="@dimen/dialog_icon_size"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
+                android:background="@null"
+                android:layout_marginStart="@dimen/dialog_name_start_margin"
+                android:layout_toEndOf="@id/show_occupation"
+                android:inputType="text"
+                tools:ignore="LabelFor"
+                android:layout_height="@dimen/dialog_icon_size"/>
 
         </RelativeLayout>
 
