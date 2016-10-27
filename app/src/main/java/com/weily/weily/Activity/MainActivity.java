@@ -212,8 +212,14 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.nav_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.text_share));
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.nav_send:
+                //意见反馈
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
