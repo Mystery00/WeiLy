@@ -28,6 +28,8 @@
     <string name="hint_password">Password</string>
     <string name="hint_click">Click here to login</string>
 
+    <string name="text_share">WeiLy, not just a lab! </string>
+
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
 </resources>
