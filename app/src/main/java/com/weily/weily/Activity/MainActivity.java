@@ -1,5 +1,7 @@
 package com.weily.weily.Activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -12,25 +14,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
-import com.weily.weily.Fragment.MemberFragment;
+import com.weily.weily.Fragment.UserFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
+import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener
 {
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private CircleImageView head;
+    private TextView username;
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
     private IntroduceFragment introduceFragment;
     private HonorFragment honorFragment;
     private ResourcesFragment resourcesFragment;
-    private MemberFragment memberFragment;
+    private UserFragment memberFragment;
     private UsageFragment usageFragment;
 
     @Override
@@ -49,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerLayout = navigationView.getHeaderView(0);
+        head=(CircleImageView)headerLayout.findViewById(R.id.nav_head);
+        username=(TextView)headerLayout.findViewById(R.id.nav_username);
         setSupportActionBar(toolbar);
 
         /**
@@ -75,6 +88,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        head.setOnClickListener(this);
+        username.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //执行更新用户信息操作
     }
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
@@ -117,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -171,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 hideFragments(fragmentTransaction);
                 if (memberFragment == null)
                 {
-                    memberFragment = new MemberFragment();
+                    memberFragment = new UserFragment();
                     fragmentTransaction.add(R.id.fragment, memberFragment);
                 } else
                 {
@@ -190,8 +212,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.nav_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.text_share));
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.nav_send:
+                //意见反馈
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
@@ -200,5 +228,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
+        {
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+        }else
+        {
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        }
     }
 }

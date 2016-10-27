@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.weily.weily.Activity.ProfileActivity">
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/action_edit"
+        android:visible="false"
+        android:icon="@drawable/ic_edit"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_done"
+        android:title="@string/action_done"
+        android:visible="false"
+        android:icon="@drawable/ic_done"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/action_logout"
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="ifRoom"/>
+</menu>
