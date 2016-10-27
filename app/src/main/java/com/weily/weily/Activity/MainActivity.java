@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.weily.weily.Class.User;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.UserFragment;
@@ -91,7 +90,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         head.setOnClickListener(this);
         username.setOnClickListener(this);
+    }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //执行更新用户信息操作
     }
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
@@ -222,16 +227,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v)
     {
-        //判断跳转
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
         {
-            Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
-            Bundle bundle=new Bundle();
-            User user=new User("","哈哈哈","test","sfdasd","dasd","das是","打");
-            bundle.putSerializable("user",user);
-            intent.putExtra("user",bundle);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
         }else
         {
             startActivity(new Intent(MainActivity.this, SignInActivity.class));

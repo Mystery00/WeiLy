@@ -21,12 +21,16 @@
     <dimen name="dialog_icon_size">40dp</dimen>
     <dimen name="dialog_text_size">24sp</dimen>
     <dimen name="dialog_name_start_margin">16dp</dimen>
-    <dimen name="dialog_head_height">160dp</dimen>
+    <dimen name="dialog_head_height">320dp</dimen>
     <!--Navigation View-->
     <dimen name="navigation_view_head_size">80dp</dimen>
+    <dimen name="navigation_view_hint_text">24sp</dimen>
     <!-- Login and Register Activity. -->
     <dimen name="fab_margin_login">35dp</dimen>
     <dimen name="margin_last">20dp</dimen>
     <dimen name="margin_top">100dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <!--usage item-->
+    <dimen name="item_usage_text_size">16sp</dimen>
+    <dimen name="item_usage_height">40dp</dimen>
 </resources>

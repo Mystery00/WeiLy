@@ -9,35 +9,40 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weily.weily.Class.User;
+import com.weily.weily.PublicMethod.ImageLoader;
 import com.weily.weily.R;
 
 import java.util.List;
 
 public class UserAdapter extends BaseAdapter
 {
-    private Context context;
-    private List<User> memberList;
-    private ImageView photo;
-    private TextView name;
-    private TextView occupation;
-    private TextView profession;
-
-    public UserAdapter(Context context, List<User> memberList)
+    private class ViewHolder
     {
-        this.context=context;
-        this.memberList=memberList;
+        ImageView photo;
+        TextView name;
+        TextView occupation;
+        TextView profession;
+    }
+
+    private Context context;
+    private List<User> userList;
+
+    public UserAdapter(Context context, List<User> userList)
+    {
+        this.context = context;
+        this.userList = userList;
     }
 
     @Override
     public int getCount()
     {
-        return memberList.size();
+        return userList.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return memberList.get(position);
+        return userList.get(position);
     }
 
     @Override
@@ -47,20 +52,30 @@ public class UserAdapter extends BaseAdapter
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
-        User member=memberList.get(position);
+        User member = userList.get(position);
+        ViewHolder viewHolder;
         if (convertView == null)
         {
-            convertView= LayoutInflater.from(context).inflate(R.layout.item_member,null);
-            photo=(ImageView)convertView.findViewById(R.id.item_photo);
-            name=(TextView)convertView.findViewById(R.id.item_name);
-            occupation=(TextView)convertView.findViewById(R.id.item_occupation);
-            profession=(TextView)convertView.findViewById(R.id.item_profession);
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_member, null);
+            viewHolder.photo = (ImageView) convertView.findViewById(R.id.item_photo);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.item_name);
+            viewHolder.occupation = (TextView) convertView.findViewById(R.id.item_occupation);
+            viewHolder.profession = (TextView) convertView.findViewById(R.id.item_profession);
+            convertView.setTag(viewHolder);
+        } else
+        {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        name.setText(member.getName());
-        occupation.setText(member.getOccupation());
-        profession.setText(member.getProfession());
+        //给当前的ImageView设置Tag
+        viewHolder.photo.setTag(userList.get(position).getPhotoUrl());
+        ImageLoader imageLoader=new ImageLoader();
+        imageLoader.showImageByAsyncTask(viewHolder.photo,userList.get(position).getPhotoUrl());
+        viewHolder.name.setText(member.getName());
+        viewHolder.occupation.setText(member.getOccupation());
+        viewHolder.profession.setText(member.getProfession());
         return convertView;
     }
 }
