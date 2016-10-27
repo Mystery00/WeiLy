@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private ResourcesFragment resourcesFragment;
     private UserFragment memberFragment;
     private UsageFragment usageFragment;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         View headerLayout = navigationView.getHeaderView(0);
         head=(CircleImageView)headerLayout.findViewById(R.id.nav_head);
         username=(TextView)headerLayout.findViewById(R.id.nav_username);
+        view=findViewById(R.id.coordinatorLayout);
         setSupportActionBar(toolbar);
 
         /**
@@ -146,6 +149,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -219,7 +228,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.nav_send:
+                Snackbar.make(view,"意见反馈",Snackbar.LENGTH_SHORT)
+                        .show();
                 //意见反馈
+                break;
+            case R.id.nav_settings:
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
