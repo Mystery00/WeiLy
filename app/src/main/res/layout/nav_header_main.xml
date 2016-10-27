@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="username"
+        android:text="@string/hint_click"
+        android:textSize="@dimen/navigation_view_hint_text"
         android:textColor="@color/navigationView_Username"
         android:id="@+id/nav_username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
