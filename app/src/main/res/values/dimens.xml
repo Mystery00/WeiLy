@@ -34,4 +34,17 @@
     <!--usage item-->
     <dimen name="item_usage_text_size">16sp</dimen>
     <dimen name="item_usage_height">40dp</dimen>
+    <!--Introduce Main-->
+    <dimen name="introduce_title_margin_top">120dp</dimen>
+    <dimen name="introduce_logo_size">100dp</dimen>
+    <dimen name="introduce_text_margin_top">16dp</dimen>
+    <dimen name="introduce_title_size">28sp</dimen>
+    <dimen name="introduce_text_size">18sp</dimen>
+    <dimen name="introduce_text_padding">25dp</dimen>
+    <dimen name="introduce_button_padding">8dp</dimen>
+    <!--Introduce Direction-->
+    <dimen name="introduce_direction_item_height">240dp</dimen>
+    <dimen name="introduce_direction_img_size">200dp</dimen>
+    <dimen name="introduce_direction_item_padding">20dp</dimen>
+    <dimen name="introduce_direction_text_size">18sp</dimen>
 </resources>
