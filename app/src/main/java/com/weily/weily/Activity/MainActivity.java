@@ -1,8 +1,10 @@
 package com.weily.weily.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
@@ -28,9 +31,11 @@ import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
 {
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private UserFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
+    private static boolean isBackKeyPressed = false;//记录是否有首次按键
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,15 +68,15 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerLayout = navigationView.getHeaderView(0);
-        head=(CircleImageView)headerLayout.findViewById(R.id.nav_head);
-        username=(TextView)headerLayout.findViewById(R.id.nav_username);
-        view=findViewById(R.id.coordinatorLayout);
+        head = (CircleImageView) headerLayout.findViewById(R.id.nav_head);
+        username = (TextView) headerLayout.findViewById(R.id.nav_username);
+        view = findViewById(R.id.coordinatorLayout);
         setSupportActionBar(toolbar);
 
         /**
          * 默认显示introduce
          */
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         hideFragments(fragmentTransaction);
         if (introduceFragment == null)
         {
@@ -129,13 +135,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START))
+        Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(100);
+        if (!isBackKeyPressed)
         {
-            drawer.closeDrawer(GravityCompat.START);
+            Toast.makeText(this,getString(R.string.hint_double_click),Toast.LENGTH_SHORT).show();
+            isBackKeyPressed = true;
+            new Timer().schedule(new TimerTask()
+            {
+                //延时0.5秒，如果超出则擦错第一次按键记录
+                @Override
+                public void run()
+                {
+                    isBackKeyPressed = false;
+                }
+            }, 500);
         } else
         {
-            super.onBackPressed();
+            //退出程序
+            ExitApplication.getInstance().exit();
         }
     }
 
@@ -152,7 +170,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.action_settings:
-                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -228,12 +246,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.nav_send:
-                Snackbar.make(view,"意见反馈",Snackbar.LENGTH_SHORT)
+                Snackbar.make(view, "意见反馈", Snackbar.LENGTH_SHORT)
                         .show();
                 //意见反馈
                 break;
             case R.id.nav_settings:
-                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
@@ -247,11 +265,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v)
     {
-        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
-        if(!Objects.equals(sharedPreferences.getString("username", ""), ""))
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        if (!Objects.equals(sharedPreferences.getString("username", ""), ""))
         {
-            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-        }else
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        } else
         {
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
         }

@@ -27,6 +27,7 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_click">Click here to login</string>
+    <string name="hint_double_click">Press twice to exit.</string>
 
     <string name="text_share">WeiLy, not just a lab! </string>
     <string name="text_title_introduce">WeiLy Technology Laboratory</string>
