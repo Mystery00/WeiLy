@@ -15,6 +15,7 @@
     <com.weily.weily.PublicMethod.CircleImageView
         android:layout_width="@dimen/navigation_view_head_size"
         android:id="@+id/nav_head"
+        android:layout_marginStart="@dimen/head_icon_margin_start"
         android:src="@mipmap/ic_launcher"
         android:layout_height="@dimen/navigation_view_head_size"/>
 
