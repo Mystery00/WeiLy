@@ -9,4 +9,64 @@
         android:background="@mipmap/introduce_background"
         android:contentDescription="@string/app_name"/>
 
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/introduce_logo_size"
+                android:layout_height="@dimen/introduce_logo_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/introduce_title_margin_top"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/introduce_text_margin_top"
+                android:gravity="center"
+                android:text="@string/text_title_introduce"
+                android:textColor="@color/introduce_text_color"
+                android:textSize="@dimen/introduce_title_size"/>
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginTop="@dimen/introduce_text_margin_top"
+                android:gravity="center"
+                android:padding="@dimen/introduce_text_padding"
+                android:text="@string/text_text_introduce"
+                android:textColor="@color/introduce_text_color"
+                android:textSize="@dimen/introduce_text_size"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/text_button_more"
+                android:layout_below="@id/text"
+                android:id="@+id/button"
+                android:padding="@dimen/introduce_button_padding"
+                android:textColor="@color/introduce_text_color"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/introduce_text_margin_top"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
 </RelativeLayout>

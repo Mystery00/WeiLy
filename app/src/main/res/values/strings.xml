@@ -29,6 +29,13 @@
     <string name="hint_click">Click here to login</string>
 
     <string name="text_share">WeiLy, not just a lab! </string>
+    <string name="text_title_introduce">WeiLy Technology Laboratory</string>
+    <string name="text_button_more">Go to know more! </string>
+    <string name="text_text_introduce">Web development, Android development, Unity3D development, art design. WeiLy development so far, has not only a laboratory, more of a platform, providing a programming development, learning exchange, technology sharing, the formation of the team, innovation and entrepreneurship platform! </string>
+    <string name="text_android_title">Android Develop</string>
+    <string name="text_web_title">Web Develop</string>
+    <string name="text_unity_title">Unity 3D Develop</string>
+    <string name="text_art_title">Art Develop</string>
 
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
