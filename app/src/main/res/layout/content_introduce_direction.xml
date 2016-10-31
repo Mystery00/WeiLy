@@ -12,6 +12,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:padding="@dimen/introduce_direction_item_padding"
+            android:id="@+id/android_layout"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -37,6 +38,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:padding="@dimen/introduce_direction_item_padding"
+            android:id="@+id/unity_layout"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -62,6 +64,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:padding="@dimen/introduce_direction_item_padding"
+            android:id="@+id/web_layout"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -87,6 +90,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:padding="@dimen/introduce_direction_item_padding"
+            android:id="@+id/art_layout"
             android:layout_height="wrap_content">
 
             <ImageView
