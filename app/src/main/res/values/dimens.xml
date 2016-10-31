@@ -16,7 +16,7 @@
     <dimen name="item_occupation_top_margin">2dp</dimen>
     <dimen name="item_profession_bottom_margin">2dp</dimen>
     <!--Profile Activity-->
-    <dimen name="app_bar_height">400dp</dimen>
+    <dimen name="app_bar_height_profile">400dp</dimen>
     <!--dialog member info-->
     <dimen name="dialog_icon_size">40dp</dimen>
     <dimen name="dialog_text_size">24sp</dimen>
@@ -47,4 +47,5 @@
     <dimen name="introduce_direction_img_size">200dp</dimen>
     <dimen name="introduce_direction_item_padding">20dp</dimen>
     <dimen name="introduce_direction_text_size">14sp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
 </resources>
