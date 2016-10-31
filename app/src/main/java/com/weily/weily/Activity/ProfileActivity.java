@@ -3,14 +3,18 @@ package com.weily.weily.Activity;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,14 +26,14 @@ import com.weily.weily.R;
 
 public class ProfileActivity extends AppCompatActivity
 {
-    final private static String HEADURL="head_url";
-    final private static String NAME="name";
-    final private static String COLLAGE="collage";
-    final private static String CLASS_NUMBER="class_number";
-    final private static String PHONE_NUMBER="phone_number";
-    final private static String PROFESSION="profession";
-    final private static String OCCUPATION="occupation";
-    final private static int DOWNLOAD=233;
+    final private static String HEADURL = "head_url";
+    final private static String NAME = "name";
+    final private static String COLLAGE = "collage";
+    final private static String CLASS_NUMBER = "class_number";
+    final private static String PHONE_NUMBER = "phone_number";
+    final private static String PROFESSION = "profession";
+    final private static String OCCUPATION = "occupation";
+    final private static int DOWNLOAD = 233;
     private Toolbar toolbar;
     private TextView show_name;
     private EditText show_collage;
@@ -43,14 +47,14 @@ public class ProfileActivity extends AppCompatActivity
      * 解决子线程加载试图问题
      */
     @SuppressLint("HandlerLeak")
-    private Handler handler=new Handler()
+    private Handler handler = new Handler()
     {
         @Override
         public void handleMessage(Message msg)
         {
-            if(msg.what==DOWNLOAD)
+            if (msg.what == DOWNLOAD)
             {
-                    profile_background.setImageBitmap((Bitmap) msg.obj);
+                profile_background.setImageBitmap((Bitmap) msg.obj);
             }
         }
     };
@@ -59,6 +63,10 @@ public class ProfileActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
         setContentView(R.layout.activity_profile);
 
         initialization();
@@ -68,6 +76,12 @@ public class ProfileActivity extends AppCompatActivity
 
     private void initialization()
     {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+            Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
         ExitApplication.getInstance().addActivity(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         show_name = (TextView) findViewById(R.id.text_name);
@@ -100,13 +114,13 @@ public class ProfileActivity extends AppCompatActivity
     {
         super.onResume();
 
-        final SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
-        show_name.setText(sharedPreferences.getString(NAME,""));
-        show_collage.setText(sharedPreferences.getString(COLLAGE,""));
-        show_class_number.setText(sharedPreferences.getString(CLASS_NUMBER,""));
-        show_phone_number.setText(sharedPreferences.getString(PHONE_NUMBER,""));
-        show_profession.setText(sharedPreferences.getString(PROFESSION,""));
-        show_occupation.setText(sharedPreferences.getString(OCCUPATION,""));
+        final SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        show_name.setText(sharedPreferences.getString(NAME, ""));
+        show_collage.setText(sharedPreferences.getString(COLLAGE, ""));
+        show_class_number.setText(sharedPreferences.getString(CLASS_NUMBER, ""));
+        show_phone_number.setText(sharedPreferences.getString(PHONE_NUMBER, ""));
+        show_profession.setText(sharedPreferences.getString(PROFESSION, ""));
+        show_occupation.setText(sharedPreferences.getString(OCCUPATION, ""));
 
         new Thread(new Runnable()
         {
@@ -115,10 +129,10 @@ public class ProfileActivity extends AppCompatActivity
             {
                 try
                 {
-                    Bitmap bitmap=DownloadHeadFile.getImage(sharedPreferences.getString(HEADURL,"http://git-sublime.github.io/test/weily/picture/logo.png"));
-                    Message message=new Message();
-                    message.what=DOWNLOAD;
-                    message.obj=bitmap;
+                    Bitmap bitmap = DownloadHeadFile.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
+                    Message message = new Message();
+                    message.what = DOWNLOAD;
+                    message.obj = bitmap;
                     handler.sendMessage(message);
                 } catch (Exception e)
                 {
