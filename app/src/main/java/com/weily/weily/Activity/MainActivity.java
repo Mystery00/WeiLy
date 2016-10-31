@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     private UserFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
-    private static boolean isBackKeyPressed = false;//记录是否有首次按键
+    private static boolean isBackKeyPressed = false;// 记录是否有首次按键
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
