@@ -8,10 +8,6 @@ public class Usage
     private String over;//余额
     private String person;//经手人
 
-    public Usage()
-    {
-    }
-
     public Usage(String date, String income, String outcome, String over, String person)
     {
         this.date = date;

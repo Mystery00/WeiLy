@@ -1,8 +1,11 @@
 package com.weily.weily.Activity;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -170,7 +173,13 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.action_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                }else
+                {
+                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -251,7 +260,13 @@ public class MainActivity extends AppCompatActivity
                 //意见反馈
                 break;
             case R.id.nav_settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                }else
+                {
+                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                }
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
@@ -262,6 +277,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onClick(View v)
     {

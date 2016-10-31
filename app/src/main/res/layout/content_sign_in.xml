@@ -27,7 +27,7 @@
             android:layout_marginTop="@dimen/margin_top"
             app:errorEnabled="true">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_username"
@@ -44,7 +44,7 @@
             android:layout_below="@id/usernameLayout"
             app:errorEnabled="true">
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_last"

@@ -76,6 +76,7 @@ public class UserFragment extends Fragment
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
+            @SuppressLint("NewApi")
             @Override
             public void onItemClick(AdapterView<?> parent, final View view1, int position, long id)
             {
