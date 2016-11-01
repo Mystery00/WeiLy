@@ -52,7 +52,8 @@
         <activity
             android:name=".Activity.IntroduceAndroidActivity"
             android:label="@string/title_activity_introduce_android"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator">
         </activity>
     </application>
 
