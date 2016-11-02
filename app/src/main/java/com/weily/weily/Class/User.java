@@ -1,7 +1,13 @@
-package com.weily.weily;
+package com.weily.weily.Class;
 
-public class Member
+import com.weily.weily.Callback.SignInListener;
+
+import java.io.Serializable;
+
+public class User
 {
+    private String username;
+    private String password;
     private String photoUrl;
     private String name;
     private String occupation;
@@ -10,15 +16,34 @@ public class Member
     private String phoneNumber;
     private String classNumber;
 
-    public Member(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber)
+    public User()
     {
-        this.photoUrl=photoUrl;
-        this.name = name;
-        this.occupation = occupation;
-        this.profession = profession;
-        this.college = college;
-        this.phoneNumber = phoneNumber;
-        this.classNumber = classNumber;
+    }
+
+    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber)
+    {
+        this.photoUrl = photoUrl;//头像
+        this.name = name;//姓名
+        this.occupation = occupation;//方向
+        this.profession = profession;//专业
+        this.college = college;//学院
+        this.phoneNumber = phoneNumber;//电话
+        this.classNumber = classNumber;//班级
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 
     public String getPhotoUrl()
@@ -89,5 +114,11 @@ public class Member
     public void setClassNumber(String classNumber)
     {
         this.classNumber = classNumber;
+    }
+
+    public void login(SignInListener signInListener)
+    {
+        //执行登录操作
+        signInListener.Success();
     }
 }
