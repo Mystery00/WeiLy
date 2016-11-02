@@ -36,17 +36,20 @@
         <activity
             android:name=".Activity.SignInActivity"
             android:label="@string/title_activity_sign_in"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.ProfileActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.SettingsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
@@ -54,23 +57,27 @@
         <activity
             android:name=".Activity.IntroduceAndroidActivity"
             android:label="@string/title_activity_introduce_android"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.IntroduceUnityActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_unity"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.IntroduceWebActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_web"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.IntroduceArtActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_art"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
