@@ -1,7 +1,15 @@
 package com.weily.weily.Activity;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -12,26 +20,39 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
-import com.weily.weily.Fragment.MemberFragment;
+import com.weily.weily.Fragment.UserFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
+import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
 {
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private CircleImageView head;
+    private TextView username;
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
     private IntroduceFragment introduceFragment;
     private HonorFragment honorFragment;
     private ResourcesFragment resourcesFragment;
-    private MemberFragment memberFragment;
+    private UserFragment memberFragment;
     private UsageFragment usageFragment;
+    private View view;
+    private static boolean isBackKeyPressed = false;// 记录是否有首次按键
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,12 +70,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerLayout = navigationView.getHeaderView(0);
+        head = (CircleImageView) headerLayout.findViewById(R.id.nav_head);
+        username = (TextView) headerLayout.findViewById(R.id.nav_username);
+        view = findViewById(R.id.coordinatorLayout);
         setSupportActionBar(toolbar);
 
         /**
          * 默认显示introduce
          */
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         hideFragments(fragmentTransaction);
         if (introduceFragment == null)
         {
@@ -75,6 +100,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        head.setOnClickListener(this);
+        username.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //执行更新用户信息操作
     }
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
@@ -104,26 +138,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START))
+        Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(100);
+        if (!isBackKeyPressed)
         {
-            drawer.closeDrawer(GravityCompat.START);
+            Toast.makeText(this,getString(R.string.hint_double_click),Toast.LENGTH_SHORT).show();
+            isBackKeyPressed = true;
+            new Timer().schedule(new TimerTask()
+            {
+                //延时0.5秒，如果超出则擦错第一次按键记录
+                @Override
+                public void run()
+                {
+                    isBackKeyPressed = false;
+                }
+            }, 500);
         } else
         {
-            super.onBackPressed();
+            //退出程序
+            ExitApplication.getInstance().exit();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                }else
+                {
+                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                }
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -171,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 hideFragments(fragmentTransaction);
                 if (memberFragment == null)
                 {
-                    memberFragment = new MemberFragment();
+                    memberFragment = new UserFragment();
                     fragmentTransaction.add(R.id.fragment, memberFragment);
                 } else
                 {
@@ -190,8 +248,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
             case R.id.nav_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.text_share));
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "分享到"));
                 break;
             case R.id.nav_send:
+                Snackbar.make(view, "意见反馈", Snackbar.LENGTH_SHORT)
+                        .show();
+                //意见反馈
+                break;
+            case R.id.nav_settings:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                }else
+                {
+                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                }
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
@@ -200,5 +275,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void onClick(View v)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        if (!Objects.equals(sharedPreferences.getString("username", ""), ""))
+        {
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        } else
+        {
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        }
     }
 }

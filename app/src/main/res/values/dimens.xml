@@ -1,22 +1,51 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
-    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <!--member item-->
-    <dimen name="item_photo_size">40dp</dimen>
-    <dimen name="item_text_occupation_size">12sp</dimen>
-    <dimen name="item_text_profession_size">9sp</dimen>
+    <dimen name="item_photo_size">50dp</dimen>
+    <dimen name="item_text_occupation_size">16sp</dimen>
+    <dimen name="item_text_profession_size">12sp</dimen>
     <dimen name="item_text_name_size">24sp</dimen>
-    <dimen name="item_member_height">40dp</dimen>
+    <dimen name="item_member_height">50dp</dimen>
     <dimen name="item_name_photo_margin">5dp</dimen>
-    <dimen name="item_occupation_top_margin">4dp</dimen>
-    <dimen name="item_profession_bottom_margin">4dp</dimen>
+    <dimen name="item_occupation_top_margin">2dp</dimen>
+    <dimen name="item_profession_bottom_margin">2dp</dimen>
+    <!--Profile Activity-->
+    <dimen name="app_bar_height_profile">400dp</dimen>
     <!--dialog member info-->
     <dimen name="dialog_icon_size">40dp</dimen>
-    <dimen name="dialog_text_size">28sp</dimen>
+    <dimen name="dialog_text_size">24sp</dimen>
     <dimen name="dialog_name_start_margin">16dp</dimen>
+    <dimen name="dialog_head_height">320dp</dimen>
+    <!--Navigation View-->
+    <dimen name="navigation_view_head_size">80dp</dimen>
+    <dimen name="head_icon_margin_start">40dp</dimen>
+    <dimen name="navigation_view_hint_text">24sp</dimen>
+    <!-- Login and Register Activity. -->
+    <dimen name="fab_margin_login">35dp</dimen>
+    <dimen name="margin_last">20dp</dimen>
+    <dimen name="margin_top">100dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <!--usage item-->
+    <dimen name="item_usage_text_size">16sp</dimen>
+    <dimen name="item_usage_height">40dp</dimen>
+    <!--Introduce Main-->
+    <dimen name="introduce_title_margin_top">120dp</dimen>
+    <dimen name="introduce_logo_size">100dp</dimen>
+    <dimen name="introduce_text_margin_top">16dp</dimen>
+    <dimen name="introduce_title_size">28sp</dimen>
+    <dimen name="introduce_text_size">18sp</dimen>
+    <dimen name="introduce_text_padding">25dp</dimen>
+    <dimen name="introduce_button_padding">8dp</dimen>
+    <!--Introduce Direction-->
+    <dimen name="introduce_direction_item_height">240dp</dimen>
+    <dimen name="introduce_direction_img_size">200dp</dimen>
+    <dimen name="introduce_direction_item_padding">20dp</dimen>
+    <dimen name="introduce_direction_text_size">14sp</dimen>
+    <dimen name="app_bar_height_introduce">360dp</dimen>
 </resources>

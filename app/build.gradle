@@ -12,7 +12,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.weily.weily"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode autoVersion.code
         versionName autoVersion.name
