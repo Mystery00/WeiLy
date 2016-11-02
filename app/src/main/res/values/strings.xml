@@ -38,13 +38,29 @@
     <string name="text_web_title">Web Develop</string>
     <string name="text_unity_title">Unity 3D Develop</string>
     <string name="text_art_title">Art Develop</string>
-    <string name="text_introduce_android_1">\tAndroid is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. Android's user interface is mainly based on direct manipulation, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a virtual keyboard for text input. In addition to touchscreen devices, Google has further developed Android TV for televisions, Android Auto for cars, and Android Wear for wrist watches, each with a specialized user interface. Variants of Android are also used on notebooks, game consoles, digital cameras, and other electronics.</string>
-    <string name="text_introduce_android_2">\tAndroid has the largest installed base of all operating systems (OS) of any kind. Android has been the best selling OS on tablets since 2013, and on smartphones it is dominant by any metric.</string>
-    <string name="text_introduce_android_3">\tInitially developed by Android, Inc., which Google bought in 2005, Android was unveiled in 2007 along with the founding of the Open Handset Alliance – a consortium of hardware, software, and telecommunication companies devoted to advancing open standards for mobile devices. As of July 2013, the Google Play store has had over one million Android applications ("apps") published – including many "business-class apps"[19] that rival competing mobile platforms – and over 50 billion applications downloaded. An April–May 2013 survey of mobile application developers found that 71% of developers create applications for Android, and a 2015 survey found that 40% of full-time professional developers see Android as their priority target platform, which is comparable to Apple's iOS on 37% with both platforms far above others. In September 2015, Android had 1.4 billion monthly active devices.</string>
-    <string name="text_introduce_android_4">\tAndroid's source code is released by Google under open source licenses, although most Android devices ultimately ship with a combination of open source and proprietary software, including proprietary software required for accessing Google services. Android is popular with technology companies that require a ready-made, low-cost and customizable operating system for high-tech devices. Its open nature has encouraged a large community of developers and enthusiasts to use the open-source code as a foundation for community-driven projects, which deliver updates to older devices, add new features for advanced users or bring Android to devices originally shipped with other operating systems. The success of Android has made it a target for patent (and copyright) litigation as part of the so-called "smartphone wars" between technology companies.</string>
 
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_introduce_android">Android</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="text_introduce_android">
+        "Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. "
+        "Android's user interface is mainly based on direct manipulation, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a virtual keyboard for text input. "
+        "In addition to touchscreen devices, Google has further developed Android TV for televisions, Android Auto for cars, and Android Wear for wrist watches, each with a specialized user interface. "
+        "Variants of Android are also used on notebooks, game consoles, digital cameras, and other electronics.\n\n"
+
+        "Android has the largest installed base of all operating systems (OS) of any kind."
+        "Android has been the best selling OS on tablets since 2013, and on smartphones it is dominant by any metric.\n\n"
+
+        "Initially developed by Android, Inc., which Google bought in 2005, Android was unveiled in 2007 along with the founding of the Open Handset Alliance – a consortium of hardware, software, and telecommunication companies devoted to advancing open standards for mobile devices."
+        "As of July 2013, the Google Play store has had over one million Android applications ("apps") published – including many "business-class apps" that rival competing mobile platforms – and over 50 billion applications downloaded."
+        "An April–May 2013 survey of mobile application developers found that 71% of developers create applications for Android, and a 2015 survey found that 40% of full-time professional developers see Android as their priority target platform, which is comparable to Apple's iOS on 37% with both platforms far above others."
+        "In September 2015, Android had 1.4 billion monthly active devices.\n\n"
+
+        "Android's source code is released by Google under open source licenses, although most Android devices ultimately ship with a combination of open source and proprietary software, including proprietary software required for accessing Google services."
+        "Android is popular with technology companies that require a ready-made, low-cost and customizable operating system for high-tech devices."
+        "Its open nature has encouraged a large community of developers and enthusiasts to use the open-source code as a foundation for community-driven projects, which deliver updates to older devices, add new features for advanced users or bring Android to devices originally shipped with other operating systems."
+        "The success of Android has made it a target for patent (and copyright) litigation as part of the so-called "smartphone wars" between technology companies.\n\n"
+    </string>
 </resources>
