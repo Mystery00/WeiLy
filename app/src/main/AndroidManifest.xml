@@ -55,6 +55,22 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
+        <activity
+            android:name=".Activity.IntroduceUnityActivity"
+            android:label="@string/title_activity_introduce_unity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator">
+        </activity>
+        <activity
+            android:name=".Activity.IntroduceWebActivity"
+            android:label="@string/title_activity_introduce_web"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".Activity.IntroduceArtActivity"
+            android:label="@string/title_activity_introduce_art"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
