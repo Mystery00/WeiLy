@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
-import com.weily.weily.Fragment.UserFragment;
+import com.weily.weily.Fragment.MemberFragment;
 import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     private IntroduceFragment introduceFragment;
     private HonorFragment honorFragment;
     private ResourcesFragment resourcesFragment;
-    private UserFragment memberFragment;
+    private MemberFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
     private static boolean isBackKeyPressed = false;// 记录是否有首次按键
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity
                 hideFragments(fragmentTransaction);
                 if (memberFragment == null)
                 {
-                    memberFragment = new UserFragment();
+                    memberFragment = new MemberFragment();
                     fragmentTransaction.add(R.id.fragment, memberFragment);
                 } else
                 {

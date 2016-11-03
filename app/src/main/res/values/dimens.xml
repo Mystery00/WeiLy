@@ -48,4 +48,8 @@
     <dimen name="introduce_direction_item_padding">20dp</dimen>
     <dimen name="introduce_direction_text_size">14sp</dimen>
     <dimen name="app_bar_height_introduce">360dp</dimen>
+    <!--Honor Fragment-->
+    <dimen name="item_honor_img_size">50dp</dimen>
+    <dimen name="item_honor_text_margin_start">10dp</dimen>
+    <dimen name="item_honor_text_size">20sp</dimen>
 </resources>

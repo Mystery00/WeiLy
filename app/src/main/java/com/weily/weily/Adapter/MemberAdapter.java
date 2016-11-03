@@ -14,7 +14,7 @@ import com.weily.weily.R;
 
 import java.util.List;
 
-public class UserAdapter extends BaseAdapter
+public class MemberAdapter extends BaseAdapter
 {
     private class ViewHolder
     {
@@ -27,7 +27,7 @@ public class UserAdapter extends BaseAdapter
     private Context context;
     private List<User> userList;
 
-    public UserAdapter(Context context, List<User> userList)
+    public MemberAdapter(Context context, List<User> userList)
     {
         this.context = context;
         this.userList = userList;
