@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.weily.weily.Adapter.UserAdapter;
+import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.DownloadHeadFile;
 import com.weily.weily.R;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class UserFragment extends Fragment
+public class MemberFragment extends Fragment
 {
     private List<User> list=new ArrayList<>();
     private ImageView head;
@@ -72,7 +72,7 @@ public class UserFragment extends Fragment
         list.add(new User("http://git-sublime.github.io/test/weily/picture/logo.png", "name2", "occupation", "profession", "college", "333", "classNumber"));
         list.add(new User("http://git-sublime.github.io/test/weily/picture/logo.png", "name2", "occupation", "profession", "college", "333", "classNumber"));
         list.add(new User("http://git-sublime.github.io/test/weily/picture/logo.png", "name2", "occupation", "profession", "college", "333", "classNumber"));
-        UserAdapter adapter=new UserAdapter(getActivity(),list);
+        MemberAdapter adapter=new MemberAdapter(getActivity(),list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
