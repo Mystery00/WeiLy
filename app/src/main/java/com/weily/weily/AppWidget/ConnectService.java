@@ -13,17 +13,21 @@ import java.net.URL;
 
 /**
  * Created by yangchao on 2016/11/9.
+ *
  */
 
-public class MyService extends Service{
+public class ConnectService extends Service
+{
     @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
+    public IBinder onBind(Intent intent)
+    {
         return null;
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
     }
 
@@ -31,18 +35,25 @@ public class MyService extends Service{
      *
      */
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
         get();
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private void get() {
-        new Thread(new Runnable() {
+    private void get()
+    {
+        new Thread(new Runnable()
+        {
             @Override
-            public void run() {
-                try {
+            public void run()
+            {
+                try
+                {
                     URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
-                    while (true){
+                    //noinspection InfiniteLoopStatement
+                    while (true)
+                    {
                         HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
                         httpurlconnection.connect();
                         InputStream inputstream = httpurlconnection.getInputStream();
@@ -50,20 +61,20 @@ public class MyService extends Service{
                         BufferedReader br = new BufferedReader(in);
                         StringBuilder str = new StringBuilder();
                         String reader;
-                        while ((reader = br.readLine()) != null){
+                        while ((reader = br.readLine()) != null)
+                        {
                             str.append(reader);
                         }
 
                         Intent intent = new Intent();
-                        intent.putExtra("text",str.toString());
+                        intent.putExtra("text", str.toString());
                         intent.setAction("com.text");
                         sendBroadcast(intent);
 
-                        Thread.sleep(5000);
+                        Thread.sleep(5000);//线程睡眠时间，即间隔时间
                     }
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
+                } catch (java.io.IOException | InterruptedException e)
+                {
                     e.printStackTrace();
                 }
             }

@@ -13,9 +13,10 @@ import com.weily.weily.R;
 
 /**
  * Created by yangchao on 2016/11/10.
+ *
  */
 
-public class setService extends Service{
+public class ChangeTextService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -33,7 +34,7 @@ public class setService extends Service{
         Log.i("TAG","更新视图");
         RemoteViews remoteview = new RemoteViews(getPackageName(), R.layout.new_app_widget);
         remoteview.setTextViewText(R.id.widget_tv,text);
-        ComponentName componentname = new ComponentName(getApplicationContext(),NewAppWidget.class);
+        ComponentName componentname = new ComponentName(getApplicationContext(),HitokotoAppWidget.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(getApplicationContext());
         manager.updateAppWidget(componentname,remoteview);
     }
