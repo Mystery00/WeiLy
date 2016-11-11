@@ -10,9 +10,10 @@ import com.weily.weily.R;
 
 /**
  * Created by yangchao on 2016/11/9.
+ *
  */
 
-public class NewAppWidget extends AppWidgetProvider{
+public class HitokotoAppWidget extends AppWidgetProvider{
 
     Intent intent;
     @Override
@@ -33,7 +34,7 @@ public class NewAppWidget extends AppWidgetProvider{
 
     @Override
     public void onEnabled(Context context) {
-        intent = new Intent(context,MyService.class);
+        intent = new Intent(context,ConnectService.class);
         context.startService(intent);
         super.onEnabled(context);
     }
