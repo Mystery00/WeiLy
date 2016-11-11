@@ -82,6 +82,37 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
+
+        <receiver
+            android:name=".AppWidget.NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info"/>
+        </receiver>
+
+        <service
+            android:name=".AppWidget.MyService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <service
+            android:name=".AppWidget.setService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <receiver
+            android:name=".AppWidget.MyonReceive"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.text"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
