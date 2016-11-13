@@ -6,7 +6,7 @@ import android.content.Intent;
 
 /**
  * Created by yangchao on 2016/11/9.
- *
+ *消息接收器
  */
 
 public class HitokotoReceiver extends BroadcastReceiver{
