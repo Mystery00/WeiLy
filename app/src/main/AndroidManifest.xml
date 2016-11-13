@@ -17,8 +17,8 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.SplashActivity"
-            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,15 +42,15 @@
         </activity>
         <activity
             android:name=".Activity.ProfileActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.SettingsActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
@@ -63,22 +63,27 @@
         </activity>
         <activity
             android:name=".Activity.IntroduceUnityActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_unity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.IntroduceWebActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_web"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
             android:name=".Activity.IntroduceArtActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_art"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator">
+        </activity>
+        <activity
+            android:name=".Activity.PageActivity"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
@@ -90,7 +95,8 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
-            <meta-data android:name="android.appwidget.provider"
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info"/>
         </receiver>
 
@@ -100,7 +106,6 @@
             android:exported="true"
             tools:ignore="ExportedService,InnerclassSeparator">
         </service>
-
         <service
             android:name=".AppWidget.ChangeTextService"
             android:enabled="true"
