@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -90,7 +91,15 @@ public class MemberFragment extends Fragment
                 TextView phone=(TextView)view.findViewById(R.id.text_phone);
                 TextView profession=(TextView)view.findViewById(R.id.text_profession);
                 TextView occupation=(TextView)view.findViewById(R.id.text_occupation);
-                if (!Objects.equals(user.getPhotoUrl(), ""))
+                boolean b;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+                {
+                    b=Objects.equals(user.getPhotoUrl(), "");
+                }else
+                {
+                    b=user.getPhotoUrl()=="";
+                }
+                if (b)
                 {
                     new Thread(new Runnable()
                     {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_page"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.weily.weily.Activity.PageActivity">
+
+    <ImageView
+        android:id="@+id/layout_logo"
+        android:layout_width="match_parent"
+        android:background="@color/page_background_color"
+        android:layout_height="@dimen/show_logo_height"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/page_logo"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/show_img"
+        android:layout_above="@id/layout_logo"
+        android:layout_height="match_parent"
+        android:src="@mipmap/unity"
+        android:contentDescription="@string/app_name"/>
+
+</RelativeLayout>
+

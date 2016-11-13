@@ -16,7 +16,6 @@
     <string name="nav_send">Send</string>
     <string name="nav_member">Member</string>
     <string name="nav_honor">Honor</string>
-    <string name="nav_resources">Resources</string>
     <string name="nav_usage">Usage</string>
     <string name="nav_exit">Exit</string>
 
@@ -251,4 +250,8 @@
     <string name="title_activity_introduce_unity">Unity</string>
     <string name="title_activity_introduce_web">Web</string>
     <string name="title_activity_introduce_art">Art</string>
+
+    <string name="title_activity_page">PageActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
