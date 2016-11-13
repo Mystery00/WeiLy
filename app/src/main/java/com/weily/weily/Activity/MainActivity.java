@@ -28,10 +28,10 @@ import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
+import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -131,11 +131,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(100);
         if (!isBackKeyPressed)
         {
-            Toast.makeText(this,getString(R.string.hint_double_click),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.hint_double_click), Toast.LENGTH_SHORT).show();
             isBackKeyPressed = true;
             new Timer().schedule(new TimerTask()
             {
@@ -169,9 +169,9 @@ public class MainActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
                     startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-                }else
+                } else
                 {
-                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 }
                 break;
         }
@@ -245,9 +245,9 @@ public class MainActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
                     startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-                }else
+                } else
                 {
-                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 }
                 break;
             case R.id.nav_exit:
@@ -263,21 +263,13 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v)
     {
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        boolean b;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+        if (!Equal.equals(sharedPreferences.getString("username", ""), ""))
         {
-            b=!Objects.equals(sharedPreferences.getString("username", ""), "");
-        }else
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        } else
         {
-            b=sharedPreferences.getString("username","")!="";
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
         }
-            if (b)
-            {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            } else
-            {
-                startActivity(new Intent(MainActivity.this, SignInActivity.class));
-            }
 
     }
 }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.DownloadHeadFile;
+import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
@@ -91,15 +92,7 @@ public class MemberFragment extends Fragment
                 TextView phone=(TextView)view.findViewById(R.id.text_phone);
                 TextView profession=(TextView)view.findViewById(R.id.text_profession);
                 TextView occupation=(TextView)view.findViewById(R.id.text_occupation);
-                boolean b;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                {
-                    b=Objects.equals(user.getPhotoUrl(), "");
-                }else
-                {
-                    b=user.getPhotoUrl()=="";
-                }
-                if (b)
+                if (!Equal.equals(user.getPhotoUrl(), ""))
                 {
                     new Thread(new Runnable()
                     {
