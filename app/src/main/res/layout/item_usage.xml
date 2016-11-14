@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:divider="@color/colorAccent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/item_usage_text_size"
+        android:id="@+id/date"
+        android:layout_height="@dimen/item_usage_height"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:maxLines="1"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/item_usage_text_size"
+        android:id="@+id/income"
+        android:layout_weight="1"
+        android:layout_height="@dimen/item_usage_height"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:maxLines="1"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/item_usage_text_size"
+        android:id="@+id/outcome"
+        android:layout_weight="1"
+        android:layout_height="@dimen/item_usage_height"/>
+
+    <TextView
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:background="@drawable/border"
+        android:id="@+id/over"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/item_usage_text_size"
+        android:layout_weight="1"
+        android:layout_height="@dimen/item_usage_height"/>
+
+    <TextView
+        android:maxLines="1"
+        android:background="@drawable/border"
+        android:layout_width="0dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/item_usage_text_size"
+        android:id="@+id/person"
+        android:layout_weight="1"
+        android:layout_height="@dimen/item_usage_height"/>
+
+</LinearLayout>
