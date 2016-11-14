@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:padding="@dimen/activity_horizontal_margin"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/text"
+        android:drawableStart="@drawable/ic_honor_icon"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textSize="@dimen/item_honor_text_size"
+        android:layout_marginStart="@dimen/item_honor_text_margin_start"
+        android:layout_height="@dimen/item_honor_img_size"/>
+
+</LinearLayout>
