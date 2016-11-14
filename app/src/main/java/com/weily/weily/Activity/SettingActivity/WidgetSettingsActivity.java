@@ -15,6 +15,7 @@ import com.weily.weily.R;
 
 /**
  * Created by Administrator on 2016/11/6.
+ * 小部件设置
  */
 
 public class WidgetSettingsActivity extends AppCompatActivity
@@ -22,7 +23,8 @@ public class WidgetSettingsActivity extends AppCompatActivity
     private Toolbar toolbar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)

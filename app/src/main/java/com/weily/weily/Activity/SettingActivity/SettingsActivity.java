@@ -51,46 +51,43 @@ public class SettingsActivity extends AppCompatActivity
         }
         ExitApplication.getInstance().addActivity(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        sButton = (Switch) findViewById(R.id.switch1);
+        sButton = (Switch) findViewById(R.id.switch_auto);
         setSupportActionBar(toolbar);
 
         click();
     }
 
 
-    public void click(){
-        RelativeLayout rl1=(RelativeLayout)findViewById(R.id.content_settings_relativeLayoutOne);
-        RelativeLayout rl2=(RelativeLayout)findViewById(R.id.content_settings_relativeLayoutTwo);
-        RelativeLayout rl3=(RelativeLayout)findViewById(R.id.content_settings_relativeLayoutThree);
-     /*   rl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(SettingsActivity.this,AutomaticLoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
+    public void click()
+    {
+        RelativeLayout rl2 = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutTwo);
+        RelativeLayout rl3 = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutThree);
 
-        rl2.setOnClickListener(new View.OnClickListener() {
+        rl2.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(SettingsActivity.this,WidgetSettingsActivity.class);
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(SettingsActivity.this, WidgetSettingsActivity.class);
                 startActivity(intent);
             }
         });
 
-        rl3.setOnClickListener(new View.OnClickListener() {
+        rl3.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                //Intent intent=new Intent(SettingsActivity.this,AboutUsActivity.class);
-                //startActivity(intent);
-                AlertDialog.Builder builder=new AlertDialog.Builder(SettingsActivity.this);
+            public void onClick(View view)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setIcon(R.mipmap.huaji);
                 builder.setTitle("关于我们");
-                final String[] information={"作者：邓易林","时间：2016.12.12","版本号：1.1.1"};
-                builder.setItems(information, new DialogInterface.OnClickListener() {
+                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
+                builder.setItems(information, new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(SettingsActivity.this,"关于："+information[i],Toast.LENGTH_LONG).show();
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        Toast.makeText(SettingsActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
                     }
                 });
                 builder.show();
@@ -110,12 +107,16 @@ public class SettingsActivity extends AppCompatActivity
                 finish();
             }
         });
-        CompoundButton.OnCheckedChangeListener listener=new CompoundButton.OnCheckedChangeListener() {
+        CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener()
+        {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            {
+                if (b)
+                {
 
-                }else {
+                } else
+                {
 
                 }
             }
