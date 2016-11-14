@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.weily.weily.Activity.SettingActivity.SettingsActivity">
+    tools:context="com.weily.weily.Activity.SettingActivity.AutomaticLoginActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,6 +22,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_settings"/>
+    <include layout="@layout/content_settings_automaticlogin"/>
 
 </android.support.design.widget.CoordinatorLayout>

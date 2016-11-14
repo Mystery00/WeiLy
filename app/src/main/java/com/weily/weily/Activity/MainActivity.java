@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.weily.weily.Activity.SettingActivity.SettingsActivity;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
