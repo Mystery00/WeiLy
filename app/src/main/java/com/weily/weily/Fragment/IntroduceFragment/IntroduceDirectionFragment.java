@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.weily.weily.Activity.IntroduceAndroidActivity;
-import com.weily.weily.Activity.IntroduceArtActivity;
-import com.weily.weily.Activity.IntroduceUnityActivity;
-import com.weily.weily.Activity.IntroduceWebActivity;
+import com.weily.weily.Activity.IntroduceActivity.IntroduceAndroidActivity;
+import com.weily.weily.Activity.IntroduceActivity.IntroduceArtActivity;
+import com.weily.weily.Activity.IntroduceActivity.IntroduceUnityActivity;
+import com.weily.weily.Activity.IntroduceActivity.IntroduceWebActivity;
 import com.weily.weily.R;
 
 public class IntroduceDirectionFragment extends Fragment

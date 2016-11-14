@@ -1,4 +1,4 @@
-package com.weily.weily.Activity;
+package com.weily.weily.Activity.IntroduceActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,7 +16,7 @@ import android.view.Window;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class IntroduceArtActivity extends AppCompatActivity
+public class IntroduceWebActivity extends AppCompatActivity
 {
     private Toolbar toolbar;
     @Override
@@ -27,7 +27,7 @@ public class IntroduceArtActivity extends AppCompatActivity
         {
             getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
-        setContentView(R.layout.activity_introduce_art);
+        setContentView(R.layout.activity_introduce_web);
 
         initialization();
 
@@ -65,7 +65,7 @@ public class IntroduceArtActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_introduce_art, menu);
+        getMenuInflater().inflate(R.menu.menu_introduce_web, menu);
         return true;
     }
 
