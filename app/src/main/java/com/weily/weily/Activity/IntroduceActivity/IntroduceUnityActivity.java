@@ -1,4 +1,4 @@
-package com.weily.weily.Activity;
+package com.weily.weily.Activity.IntroduceActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,7 +16,7 @@ import android.view.Window;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class IntroduceAndroidActivity extends AppCompatActivity
+public class IntroduceUnityActivity extends AppCompatActivity
 {
     private Toolbar toolbar;
     @Override
@@ -27,7 +27,7 @@ public class IntroduceAndroidActivity extends AppCompatActivity
         {
             getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
-        setContentView(R.layout.activity_introduce_android);
+        setContentView(R.layout.activity_introduce_unity);
 
         initialization();
 
@@ -65,7 +65,7 @@ public class IntroduceAndroidActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_introduce_android, menu);
+        getMenuInflater().inflate(R.menu.menu_introduce_unity, menu);
         return true;
     }
 
@@ -77,7 +77,7 @@ public class IntroduceAndroidActivity extends AppCompatActivity
             case R.id.action_open:
                 Intent intent= new Intent();
                 intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse("https://www.android.com/");
+                Uri content_url = Uri.parse("https://unity3d.com/cn/");
                 intent.setData(content_url);
                 startActivity(intent);
                 break;

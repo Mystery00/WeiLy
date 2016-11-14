@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="icon_color">#FFFFFF</color>
+    <color name="button_logOut">#FFFFFF</color>
     <color name="navigationBarColor">#FFFFFF</color>
     <color name="navigationView_Username">#FFFFFF</color>
     <color name="menu_background">#FFFFFF</color>
@@ -18,4 +19,6 @@
     <color name="Indigo700">#303F9F</color>
     <color name="Indigo800">#283593</color>
     <color name="Indigo900">#1A237E</color>
+
+    <color name="settings">#F4F4F4</color>
 </resources>
