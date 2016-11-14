@@ -6,36 +6,37 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.weily.weily.R;
 
 /**
  * Created by yangchao on 2016/11/10.
- *
+ * 更改小部件视图
  */
 
-public class ChangeTextService extends Service{
+public class ChangeTextService extends Service
+{
     @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
+    public IBinder onBind(Intent intent)
+    {
         return null;
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("TAG",intent.getStringExtra("text"));
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
         set(intent.getStringExtra("text"));
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private void set(String text) {
-        Log.i("TAG","更新视图");
+    private void set(String text)
+    {
         RemoteViews remoteview = new RemoteViews(getPackageName(), R.layout.new_app_widget);
-        remoteview.setTextViewText(R.id.widget_tv,text);
-        ComponentName componentname = new ComponentName(getApplicationContext(),HitokotoAppWidget.class);
+        remoteview.setTextViewText(R.id.widget_tv, text);
+        ComponentName componentname = new ComponentName(getApplicationContext(), HitokotoAppWidget.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(getApplicationContext());
-        manager.updateAppWidget(componentname,remoteview);
+        manager.updateAppWidget(componentname, remoteview);
     }
 }

@@ -1,6 +1,5 @@
 package com.weily.weily.Activity;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -28,13 +27,12 @@ import com.weily.weily.Activity.SettingActivity.SettingsActivity;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
-import com.weily.weily.Fragment.ResourcesFragment;
 import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
+import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,7 +47,6 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private IntroduceFragment introduceFragment;
     private HonorFragment honorFragment;
-    private ResourcesFragment resourcesFragment;
     private MemberFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
@@ -126,10 +123,6 @@ public class MainActivity extends AppCompatActivity
         {
             fragmentTransaction.hide(memberFragment);
         }
-        if (resourcesFragment != null)
-        {
-            fragmentTransaction.hide(resourcesFragment);
-        }
         if (usageFragment != null)
         {
             fragmentTransaction.hide(usageFragment);
@@ -139,11 +132,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        Vibrator vibrator=(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(100);
         if (!isBackKeyPressed)
         {
-            Toast.makeText(this,getString(R.string.hint_double_click),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.hint_double_click), Toast.LENGTH_SHORT).show();
             isBackKeyPressed = true;
             new Timer().schedule(new TimerTask()
             {
@@ -177,9 +170,9 @@ public class MainActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
                     startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-                }else
+                } else
                 {
-                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 }
                 break;
         }
@@ -213,17 +206,6 @@ public class MainActivity extends AppCompatActivity
                 } else
                 {
                     fragmentTransaction.show(honorFragment);
-                }
-                break;
-            case R.id.nav_resources:
-                hideFragments(fragmentTransaction);
-                if (resourcesFragment == null)
-                {
-                    resourcesFragment = new ResourcesFragment();
-                    fragmentTransaction.add(R.id.fragment, resourcesFragment);
-                } else
-                {
-                    fragmentTransaction.show(resourcesFragment);
                 }
                 break;
             case R.id.nav_member:
@@ -264,9 +246,9 @@ public class MainActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
                     startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-                }else
+                } else
                 {
-                    startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 }
                 break;
             case R.id.nav_exit:
@@ -278,17 +260,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @SuppressLint("NewApi")
     @Override
     public void onClick(View v)
     {
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        if (!Objects.equals(sharedPreferences.getString("username", ""), ""))
+        if (!Equal.equals(sharedPreferences.getString("username", ""), ""))
         {
             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         } else
         {
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
         }
+
     }
 }

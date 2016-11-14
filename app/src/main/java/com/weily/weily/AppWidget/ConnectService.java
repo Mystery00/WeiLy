@@ -13,7 +13,7 @@ import java.net.URL;
 
 /**
  * Created by yangchao on 2016/11/9.
- *
+ *打开连接获取数据
  */
 
 public class ConnectService extends Service
@@ -71,7 +71,7 @@ public class ConnectService extends Service
                         intent.setAction("com.text");
                         sendBroadcast(intent);
 
-                        Thread.sleep(5000);//线程睡眠时间，即间隔时间
+                        Thread.sleep(300000);//线程睡眠时间，即间隔时间
                     }
                 } catch (java.io.IOException | InterruptedException e)
                 {
