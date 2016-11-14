@@ -15,6 +15,7 @@ import com.weily.weily.R;
 
 /**
  * Created by Administrator on 2016/11/6.
+ * 自动登录
  */
 
 public class AutomaticLoginActivity extends AppCompatActivity
@@ -22,7 +23,8 @@ public class AutomaticLoginActivity extends AppCompatActivity
     private Toolbar toolbar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -42,7 +44,6 @@ public class AutomaticLoginActivity extends AppCompatActivity
             Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
-            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         ExitApplication.getInstance().addActivity(this);
