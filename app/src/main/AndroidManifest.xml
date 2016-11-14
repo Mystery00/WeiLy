@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.weily.weily">
+<manifest package="com.weily.weily"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".App"
@@ -17,13 +17,13 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.SplashActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -31,67 +31,58 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
             android:name=".Activity.SignInActivity"
             android:label="@string/title_activity_sign_in"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
             android:name=".Activity.ProfileActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_profile"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
-            android:name=".Activity.SettingActivity.SettingsActivity"
+            android:name=".Activity.SettingsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceAndroidActivity"
+            android:name=".Activity.IntroduceAndroidActivity"
             android:label="@string/title_activity_introduce_android"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceUnityActivity"
+            android:name=".Activity.IntroduceUnityActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_unity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceWebActivity"
+            android:name=".Activity.IntroduceWebActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_web"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceArtActivity"
+            android:name=".Activity.IntroduceArtActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_art"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.AutomaticLoginActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.WidgetSettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.AboutUsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator">
+        </activity>
+
         <receiver
             android:name=".AppWidget.HitokotoAppWidget"
             tools:ignore="ExportedService,InnerclassSeparator">
@@ -100,7 +91,7 @@
             </intent-filter>
 
             <meta-data android:name="android.appwidget.provider"
-                       android:resource="@xml/new_app_widget_info"/>
+                android:resource="@xml/new_app_widget_info"/>
         </receiver>
 
         <service
