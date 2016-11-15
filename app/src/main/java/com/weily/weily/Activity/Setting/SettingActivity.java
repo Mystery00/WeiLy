@@ -104,19 +104,21 @@ public class SettingActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-                builder.setIcon(R.mipmap.huaji);
-                builder.setTitle("关于我们");
-                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
-                builder.setItems(information, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.show();
+                new AlertDialog.Builder(SettingActivity.this)
+                        .setTitle(getString(R.string.title_about_us))
+                        .show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+//                builder.setTitle("关于我们");
+//                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
+//                builder.setItems(information, new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i)
+//                    {
+//                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//                builder.show();
             }
         });
     }

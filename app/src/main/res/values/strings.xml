@@ -265,6 +265,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
 
+    <string name="title_about_us">About Us</string>
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
     <string name="title_activity_introduce_android">Android</string>
