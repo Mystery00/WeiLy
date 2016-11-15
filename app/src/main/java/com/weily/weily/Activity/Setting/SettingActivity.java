@@ -3,6 +3,7 @@ package com.weily.weily.Activity.Setting;
 import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +14,9 @@ import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.weily.weily.PublicMethod.ExitApplication;
@@ -24,6 +27,7 @@ public class SettingActivity extends AppCompatActivity
     private Toolbar toolbar;
     private RelativeLayout layout_widget;
     private RelativeLayout layout_about;
+    private Switch auto_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,6 +57,8 @@ public class SettingActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         layout_widget = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutTwo);
         layout_about = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutThree);
+        auto_login=(Switch)findViewById(R.id.switch_auto);
+        auto_login.setChecked(getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getBoolean(getString(R.string.name_auto_login),false));
         setSupportActionBar(toolbar);
 
     }
@@ -69,6 +75,16 @@ public class SettingActivity extends AppCompatActivity
                 finish();
             }
         });
+        auto_login.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                SharedPreferences.Editor editor=getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).edit();
+                editor.putBoolean(getString(R.string.name_auto_login),isChecked);
+                editor.apply();
+            }
+        });
         layout_widget.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -83,7 +99,6 @@ public class SettingActivity extends AppCompatActivity
                 }
             }
         });
-
         layout_about.setOnClickListener(new View.OnClickListener()
         {
             @Override

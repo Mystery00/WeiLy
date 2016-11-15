@@ -177,6 +177,9 @@ public class SignInActivity extends AppCompatActivity
     {
         if (!isWrong())
         {
+            SharedPreferences.Editor editor=getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).edit();
+            editor.putBoolean(getString(R.string.name_auto_login),true);
+            editor.apply();
             final User user = new User();
             user.setUsername(username_layout.getEditText().getText().toString());
             user.setPassword(password_layout.getEditText().getText().toString());

@@ -35,6 +35,7 @@ public class ChangeTextService extends Service
     {
         RemoteViews remoteview = new RemoteViews(getPackageName(), R.layout.new_app_widget);
         remoteview.setTextViewText(R.id.widget_tv, text);
+        remoteview.setTextColor(R.id.widget_tv,1);
         ComponentName componentname = new ComponentName(getApplicationContext(), HitokotoAppWidget.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(getApplicationContext());
         manager.updateAppWidget(componentname, remoteview);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.io.BufferedReader;
@@ -57,6 +58,7 @@ public class ConnectService extends Service
                     while (getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getBoolean(getString(R.string.name_widget_auto_refresh),true))
                     {
                         HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                        httpurlconnection.setConnectTimeout(20000);
                         httpurlconnection.connect();
                         InputStream inputstream = httpurlconnection.getInputStream();
                         InputStreamReader in = new InputStreamReader(inputstream);
@@ -77,7 +79,7 @@ public class ConnectService extends Service
                     }
                 } catch (java.io.IOException | InterruptedException e)
                 {
-                    e.printStackTrace();
+                    Logs.loge(e);
                 }
             }
         }).start();

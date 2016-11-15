@@ -15,6 +15,7 @@
     <string name="name_widget_refresh_time">refresh_time</string>
     <string name="name_widget_is_enabled">isEnabled</string>
     <string name="name_widget_auto_refresh">auto_refresh</string>
+    <string name="name_auto_login">auto_login</string>
 
     <string name="nav_introduction">Introduction</string>
     <string name="nav_communicate">Communicate</string>

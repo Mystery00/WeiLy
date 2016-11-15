@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 
@@ -89,6 +90,16 @@ public class WidgetSettingActivity extends AppCompatActivity
                 finish();
             }
         });
+        auto_refresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean(getString(R.string.name_widget_auto_refresh),isChecked);
+                editor.apply();
+            }
+        });
         refresh_time.setOnClickListener(new View.OnClickListener()
         {
             @SuppressWarnings("ConstantConditions")
@@ -148,6 +159,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                     URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
                     //noinspection InfiniteLoopStatement
                     HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                    httpurlconnection.setConnectTimeout(20000);
                     httpurlconnection.connect();
                     InputStream inputstream = httpurlconnection.getInputStream();
                     InputStreamReader in = new InputStreamReader(inputstream);
