@@ -48,40 +48,62 @@
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-            android:name=".Activity.SettingsActivity"
+            android:name=".Activity.SettingActivity.AutomaticLoginActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.SettingActivity.WidgetSettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.SettingActivity.AboutUsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.SettingActivity.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-            android:name=".Activity.IntroduceAndroidActivity"
+            android:name=".Activity.IntroduceActivity.IntroduceAndroidActivity"
             android:label="@string/title_activity_introduce_android"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-            android:name=".Activity.IntroduceUnityActivity"
+            android:name=".Activity.IntroduceActivity.IntroduceUnityActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_unity"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-            android:name=".Activity.IntroduceWebActivity"
+            android:name=".Activity.IntroduceActivity.IntroduceWebActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_web"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
         <activity
-            android:name=".Activity.IntroduceArtActivity"
+            android:name=".Activity.IntroduceActivity.IntroduceArtActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_introduce_art"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
         </activity>
+        <activity
+            android:name=".Activity.PageActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
 
         <receiver
             android:name=".AppWidget.HitokotoAppWidget"
