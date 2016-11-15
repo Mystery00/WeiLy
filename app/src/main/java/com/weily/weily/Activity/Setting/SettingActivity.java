@@ -1,4 +1,4 @@
-package com.weily.weily.Activity.SettingActivity;
+package com.weily.weily.Activity.Setting;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,18 +12,17 @@ import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
 
-public class SettingsActivity extends AppCompatActivity
+public class SettingActivity extends AppCompatActivity
 {
     private Toolbar toolbar;
-    private Switch sButton;
+    private RelativeLayout layout_widget;
+    private RelativeLayout layout_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity
         {
             getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_setting);
 
         initialization();
 
@@ -51,48 +50,10 @@ public class SettingsActivity extends AppCompatActivity
         }
         ExitApplication.getInstance().addActivity(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        sButton = (Switch) findViewById(R.id.switch_auto);
+        layout_widget = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutTwo);
+        layout_about = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutThree);
         setSupportActionBar(toolbar);
 
-        click();
-    }
-
-
-    public void click()
-    {
-        RelativeLayout rl2 = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutTwo);
-        RelativeLayout rl3 = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutThree);
-
-        rl2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(SettingsActivity.this, WidgetSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        rl3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                builder.setIcon(R.mipmap.huaji);
-                builder.setTitle("关于我们");
-                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
-                builder.setItems(information, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        Toast.makeText(SettingsActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.show();
-            }
-        });
     }
 
     private void monitor()
@@ -107,20 +68,36 @@ public class SettingsActivity extends AppCompatActivity
                 finish();
             }
         });
-        CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener()
+        layout_widget.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            public void onClick(View view)
             {
-                if (b)
-                {
-
-                } else
-                {
-
-                }
+                Intent intent = new Intent(SettingActivity.this, WidgetSettingActivity.class);
+                startActivity(intent);
             }
-        };
-        sButton.setOnCheckedChangeListener(listener);
+        });
+
+        layout_about.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+                builder.setIcon(R.mipmap.huaji);
+                builder.setTitle("关于我们");
+                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
+                builder.setItems(information, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
+
 }

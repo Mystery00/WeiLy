@@ -54,4 +54,9 @@
     <dimen name="item_honor_text_size">20sp</dimen>
     <!--Page Activity-->
     <dimen name="show_logo_height">80dp</dimen>
+    <!--Setting Activity-->
+    <dimen name="item_setting_height">40dp</dimen>
+    <dimen name="item_setting_dimen_height">15dp</dimen>
+    <dimen name="item_setting_margin_start_end">15dp</dimen>
+    <dimen name="item_setting_button_margin_top">60dp</dimen>
 </resources>

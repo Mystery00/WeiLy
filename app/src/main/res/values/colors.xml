@@ -9,6 +9,7 @@
     <color name="menu_background">#FFFFFF</color>
     <color name="introduce_text_color">#FFFFFF</color>
     <color name="page_background_color">#FFFFFF</color>
+    <color name="settings">#F4F4F4</color>
 
     <color name="Indigo50">#E8EAF6</color>
     <color name="Indigo100">#C5CAE9</color>
@@ -20,6 +21,4 @@
     <color name="Indigo700">#303F9F</color>
     <color name="Indigo800">#283593</color>
     <color name="Indigo900">#1A237E</color>
-
-    <color name="settings">#F4F4F4</color>
 </resources>
