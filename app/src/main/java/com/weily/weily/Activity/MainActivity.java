@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.weily.weily.Activity.SettingActivity.SettingsActivity;
+import com.weily.weily.Activity.Setting.SettingActivity;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
@@ -169,10 +169,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_settings:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    startActivity(new Intent(MainActivity.this, SettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 } else
                 {
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 }
                 break;
         }
@@ -245,10 +245,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_settings:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    startActivity(new Intent(MainActivity.this, SettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 } else
                 {
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 }
                 break;
             case R.id.nav_exit:

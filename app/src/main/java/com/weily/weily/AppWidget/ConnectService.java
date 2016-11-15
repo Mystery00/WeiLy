@@ -13,7 +13,7 @@ import java.net.URL;
 
 /**
  * Created by yangchao on 2016/11/9.
- *打开连接获取数据
+ * 打开连接获取数据
  */
 
 public class ConnectService extends Service
@@ -68,7 +68,7 @@ public class ConnectService extends Service
 
                         Intent intent = new Intent();
                         intent.putExtra("text", str.toString());
-                        intent.setAction("com.text");
+                        intent.setAction("com.Hitokoto.text");
                         sendBroadcast(intent);
 
                         Thread.sleep(300000);//线程睡眠时间，即间隔时间
