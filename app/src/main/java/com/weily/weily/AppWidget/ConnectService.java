@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.weily.weily.R;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,7 +54,7 @@ public class ConnectService extends Service
                 {
                     URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
                     //noinspection InfiniteLoopStatement
-                    while (true)
+                    while (getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getBoolean(getString(R.string.name_widget_auto_refresh),true))
                     {
                         HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
                         httpurlconnection.connect();
@@ -71,7 +73,7 @@ public class ConnectService extends Service
                         intent.setAction("com.Hitokoto.text");
                         sendBroadcast(intent);
 
-                        Thread.sleep(300000);//线程睡眠时间，即间隔时间
+                        Thread.sleep(getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getLong(getString(R.string.name_widget_refresh_time),300000));
                     }
                 } catch (java.io.IOException | InterruptedException e)
                 {

@@ -1,5 +1,6 @@
 package com.weily.weily.Activity.Setting;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -73,8 +74,13 @@ public class SettingActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(SettingActivity.this, WidgetSettingActivity.class);
-                startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(SettingActivity.this, WidgetSettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                } else
+                {
+                    startActivity(new Intent(SettingActivity.this, WidgetSettingActivity.class));
+                }
             }
         });
 

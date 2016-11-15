@@ -40,7 +40,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
     {
         SharedPreferences sharedPreferences=context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget),Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putBoolean("isEnabled",true);
+        editor.putBoolean(context.getString(R.string.name_widget_is_enabled),true);
         editor.apply();
         Intent intent = new Intent(context, ConnectService.class);
         context.startService(intent);
@@ -50,6 +50,11 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onDisabled(Context context)
     {
+        SharedPreferences sharedPreferences=context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget),Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean(context.getString(R.string.name_widget_is_enabled),false);
+        editor.putBoolean(context.getString(R.string.name_widget_auto_refresh),true);
+        editor.apply();
         Intent intent = new Intent(context, ConnectService.class);
         context.stopService(intent);
         intent = new Intent(context, ChangeTextService.class);

@@ -17,8 +17,8 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.SplashActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -70,6 +70,19 @@
             tools:ignore="InnerclassSeparator"/>
         <activity
             android:name=".Activity.PageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.Setting.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.Setting.WidgetSettingActivity"
+            android:label="@string/title_activity_widget_setting"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator"/>
 
@@ -104,17 +117,6 @@
                 <action android:name="com.Hitokoto.text"/>
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".Activity.Setting.SettingActivity"
-            android:label="@string/title_activity_setting"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.Setting.WidgetSettingActivity"
-            android:label="@string/title_activity_widget_setting"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
     </application>
 
 </manifest>
