@@ -110,6 +110,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:background="@drawable/shape"
-        android:text="@string/text_button_logOut"
+        android:text="@string/text_button_logout"
         android:textColor="@color/button_logOut"/>
 </RelativeLayout>

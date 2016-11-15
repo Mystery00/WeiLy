@@ -33,11 +33,15 @@
     <string name="text_share">WeiLy, not just a lab! </string>
     <string name="text_title_introduce">WeiLy Technology Laboratory</string>
     <string name="text_button_more">Go to know more! </string>
+    <string name="text_button_logout">Log out</string>
     <string name="text_text_introduce">Web development, Android development, Unity3D development, art design. WeiLy development so far, has not only a laboratory, more of a platform, providing a programming development, learning exchange, technology sharing, the formation of the team, innovation and entrepreneurship platform! </string>
     <string name="text_android_title">Android Develop</string>
     <string name="text_web_title">Web Develop</string>
     <string name="text_unity_title">Unity 3D Develop</string>
     <string name="text_art_title">Art Develop</string>
+    <string name="text_activity_settings_automaticLogin">Automatic login</string>
+    <string name="text_activity_settings_widgetSettings">Widget settings</string>
+    <string name="text_activity_settings_aboutUs">About us</string>
     <string name="text_introduce_android">
         "Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. "
         "Android's user interface is mainly based on direct manipulation, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a virtual keyboard for text input. "
