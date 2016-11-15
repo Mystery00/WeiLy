@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.weily.weily">
+<manifest package="com.weily.weily"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".App"
@@ -21,29 +21,11 @@
             android:theme="@style/SplashTheme"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.SettingActivity.AutomaticLoginActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.WidgetSettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.AboutUsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name"
@@ -59,12 +41,6 @@
         <activity
             android:name=".Activity.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
-        <activity
-            android:name=".Activity.SettingActivity.SettingsActivity"
-            android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator"/>
@@ -92,6 +68,53 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.PageActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+
+        <receiver
+            android:name=".AppWidget.HitokotoAppWidget"
+            tools:ignore="ExportedService,InnerclassSeparator">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info"/>
+        </receiver>
+
+        <service
+            android:name=".AppWidget.ConnectService"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedService,InnerclassSeparator"/>
+        <service
+            android:name=".AppWidget.ChangeTextService"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedService,InnerclassSeparator"/>
+
+        <receiver
+            android:name=".AppWidget.HitokotoReceiver"
+            android:enabled="true"
+            tools:ignore="ExportedReceiver,InnerclassSeparator">
+            <intent-filter>
+                <action android:name="com.Hitokoto.text"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Activity.Setting.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator"/>
+        <activity
+            android:name=".Activity.Setting.WidgetSettingActivity"
+            android:label="@string/title_activity_widget_setting"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

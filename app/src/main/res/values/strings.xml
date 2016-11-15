@@ -9,6 +9,10 @@
     <string name="action_edit">Edit</string>
     <string name="action_logout">Logout</string>
     <string name="action_open">Open</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="file_sharedPreferences_widget">widget</string>
+    <string name="name_widget_refresh_time">refresh_time</string>
 
     <string name="nav_introduction">Introduction</string>
     <string name="nav_communicate">Communicate</string>
@@ -24,25 +28,33 @@
     <string name="error_out_of_size_password">Please enter 6 to 16 characters!</string>
     <string name="error_wrong_format">Wrong format!</string>
     <string name="error_permission_faild">Authorization exception! </string>
+    <string name="error_widget">Please Check Your Network! </string>
 
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_click">Click here to login</string>
     <string name="hint_double_click">Press twice to exit.</string>
+    <string name="hint_refresh_time">Please Enter Number</string>
+    <string name="hint_broadcast">The Broadcast Send! </string>
 
     <string name="text_share">WeiLy, not just a lab! </string>
     <string name="text_title_introduce">WeiLy Technology Laboratory</string>
     <string name="text_button_more">Go to know more! </string>
-    <string name="text_button_logOut">Log out</string>
+    <string name="text_button_logout">Log out</string>
     <string name="text_text_introduce">Web development, Android development, Unity3D development, art design. WeiLy development so far, has not only a laboratory, more of a platform, providing a programming development, learning exchange, technology sharing, the formation of the team, innovation and entrepreneurship platform! </string>
     <string name="text_android_title">Android Develop</string>
     <string name="text_web_title">Web Develop</string>
     <string name="text_unity_title">Unity 3D Develop</string>
     <string name="text_art_title">Art Develop</string>
-    <string name="text_activity_settings_automaticLogin">Automatic login</string>
-    <string name="text_activity_settings_widgetSettings">Widget settings</string>
-    <string name="text_activity_settings_aboutUs">About us</string>
-
+    <string name="text_settings_automaticLogin">Automatic Login</string>
+    <string name="text_settings_widgetSettings">Widget Settings</string>
+    <string name="text_settings_aboutUs">About Us</string>
+    <string name="text_settings_widget_refresh_time">Refresh Time</string>
+    <string name="text_refresh_now">Refresh Now</string>
+    <string name="text_auto_refresh">Auto Refresh</string>
+    <string name="text_click_listener">Click Event</string>
+    <string name="text_text_color">Text Color</string>
+    <string name="text_text_dimen">Text Alignment</string>
     <string name="text_introduce_android">
         "Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. "
         "Android's user interface is mainly based on direct manipulation, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a virtual keyboard for text input. "
@@ -251,11 +263,10 @@
 
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
-    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_introduce_android">Android</string>
     <string name="title_activity_introduce_unity">Unity</string>
     <string name="title_activity_introduce_web">Web</string>
     <string name="title_activity_introduce_art">Art</string>
-    <string name="title_activity_main2">Main2Activity</string>
-
+    <string name="title_activity_setting">Settings</string>
+    <string name="title_activity_widget_setting">Widget</string>
 </resources>
