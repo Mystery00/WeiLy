@@ -6,12 +6,13 @@ import android.content.Intent;
 
 /**
  * Created by yangchao on 2016/11/9.
+ *消息接收器
  */
 
-public class MyonReceive extends BroadcastReceiver{
+public class HitokotoReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent i = new Intent(context,setService.class);
+        Intent i = new Intent(context,ChangeTextService.class);
         i.putExtra("text",intent.getStringExtra("text"));
         context.startService(i);
     }
