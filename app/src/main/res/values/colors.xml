@@ -3,11 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="icon_color">#FFFFFF</color>
+    <color name="button_logOut">#FFFFFF</color>
     <color name="navigationBarColor">#FFFFFF</color>
     <color name="navigationView_Username">#FFFFFF</color>
     <color name="menu_background">#FFFFFF</color>
     <color name="introduce_text_color">#FFFFFF</color>
-    
+    <color name="page_background_color">#FFFFFF</color>
+    <color name="settings">#F4F4F4</color>
+
     <color name="Indigo50">#E8EAF6</color>
     <color name="Indigo100">#C5CAE9</color>
     <color name="Indigo200">#9FA8DA</color>
