@@ -19,6 +19,7 @@ import java.net.URL;
 public class ConnectService extends Service
 {
     private UpDateThread mUpdateThread;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent)
@@ -35,7 +36,8 @@ public class ConnectService extends Service
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
         mUpdateThread.interrupt();
         super.onDestroy();
     }
@@ -47,10 +49,11 @@ public class ConnectService extends Service
     }
 
 
-
-    class UpDateThread extends Thread{
+    class UpDateThread extends Thread
+    {
         @Override
-        public void run() {
+        public void run()
+        {
             super.run();
             try
             {
