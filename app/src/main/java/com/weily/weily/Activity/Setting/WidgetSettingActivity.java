@@ -159,7 +159,6 @@ public class WidgetSettingActivity extends AppCompatActivity
                     URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
                     //noinspection InfiniteLoopStatement
                     HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
-                    httpurlconnection.setConnectTimeout(20000);
                     httpurlconnection.connect();
                     InputStream inputstream = httpurlconnection.getInputStream();
                     InputStreamReader in = new InputStreamReader(inputstream);
