@@ -1,4 +1,4 @@
-package com.weily.weily.Activity;
+package com.weily.weily.Activity.IntroduceActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -39,7 +39,6 @@ public class IntroduceArtActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
             Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
-            getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
         ExitApplication.getInstance().addActivity(this);
