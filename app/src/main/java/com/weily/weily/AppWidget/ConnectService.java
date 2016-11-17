@@ -18,6 +18,7 @@ import java.net.URL;
 
 public class ConnectService extends Service
 {
+    private UpDateThread mUpdateThread;
     @Nullable
     @Override
     public IBinder onBind(Intent intent)
@@ -28,56 +29,58 @@ public class ConnectService extends Service
     @Override
     public void onCreate()
     {
+        mUpdateThread = new UpDateThread();
+        mUpdateThread.start();
         super.onCreate();
     }
 
-    /**
-     *
-     */
+    @Override
+    public void onDestroy() {
+        mUpdateThread.interrupt();
+        super.onDestroy();
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        get();
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private void get()
-    {
-        new Thread(new Runnable()
-        {
-            @Override
-            public void run()
+
+
+    class UpDateThread extends Thread{
+        @Override
+        public void run() {
+            super.run();
+            try
             {
-                try
+                URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
+                //noinspection InfiniteLoopStatement
+                while (true)
                 {
-                    URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
-                    //noinspection InfiniteLoopStatement
-                    while (true)
+                    HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                    httpurlconnection.connect();
+                    InputStream inputstream = httpurlconnection.getInputStream();
+                    InputStreamReader in = new InputStreamReader(inputstream);
+                    BufferedReader br = new BufferedReader(in);
+                    StringBuilder str = new StringBuilder();
+                    String reader;
+                    while ((reader = br.readLine()) != null)
                     {
-                        HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
-                        httpurlconnection.connect();
-                        InputStream inputstream = httpurlconnection.getInputStream();
-                        InputStreamReader in = new InputStreamReader(inputstream);
-                        BufferedReader br = new BufferedReader(in);
-                        StringBuilder str = new StringBuilder();
-                        String reader;
-                        while ((reader = br.readLine()) != null)
-                        {
-                            str.append(reader);
-                        }
-
-                        Intent intent = new Intent();
-                        intent.putExtra("text", str.toString());
-                        intent.setAction("com.Hitokoto.text");
-                        sendBroadcast(intent);
-
-                        Thread.sleep(300000);//线程睡眠时间，即间隔时间
+                        str.append(reader);
                     }
-                } catch (java.io.IOException | InterruptedException e)
-                {
-                    e.printStackTrace();
+
+                    Intent intent = new Intent();
+                    intent.putExtra("text", str.toString());
+                    intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                    sendBroadcast(intent);
+
+                    Thread.sleep(10000);//线程睡眠时间，即间隔时间
                 }
+            } catch (java.io.IOException | InterruptedException e)
+            {
+                e.printStackTrace();
             }
-        }).start();
+        }
     }
 }
