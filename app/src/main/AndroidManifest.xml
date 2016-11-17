@@ -90,20 +90,6 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService,InnerclassSeparator"/>
-        <service
-            android:name=".AppWidget.ChangeTextService"
-            android:enabled="true"
-            android:exported="true"
-            tools:ignore="ExportedService,InnerclassSeparator"/>
-
-        <receiver
-            android:name=".AppWidget.HitokotoReceiver"
-            android:enabled="true"
-            tools:ignore="ExportedReceiver,InnerclassSeparator">
-            <intent-filter>
-                <action android:name="com.Hitokoto.text"/>
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name=".Activity.Setting.SettingActivity"
