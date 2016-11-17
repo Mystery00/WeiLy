@@ -13,6 +13,9 @@
 
     <string name="file_sharedPreferences_widget">widget</string>
     <string name="name_widget_refresh_time">refresh_time</string>
+    <string name="name_widget_is_enabled">isEnabled</string>
+    <string name="name_widget_auto_refresh">auto_refresh</string>
+    <string name="name_auto_login">auto_login</string>
 
     <string name="nav_introduction">Introduction</string>
     <string name="nav_communicate">Communicate</string>
@@ -34,8 +37,9 @@
     <string name="hint_password">Password</string>
     <string name="hint_click">Click here to login</string>
     <string name="hint_double_click">Press twice to exit.</string>
-    <string name="hint_refresh_time">Please Enter Number</string>
+    <string name="hint_refresh_time">Please Enter Number (Min)</string>
     <string name="hint_broadcast">The Broadcast Send! </string>
+    <string name="hint_disabled">Please Add The Widget! </string>
 
     <string name="text_share">WeiLy, not just a lab! </string>
     <string name="text_title_introduce">WeiLy Technology Laboratory</string>
@@ -261,6 +265,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
 
+    <string name="title_about_us">About Us</string>
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
     <string name="title_activity_introduce_android">Android</string>

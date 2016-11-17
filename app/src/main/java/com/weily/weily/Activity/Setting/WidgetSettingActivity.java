@@ -16,10 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 
 import com.weily.weily.PublicMethod.ExitApplication;
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.io.BufferedReader;
@@ -72,8 +74,8 @@ public class WidgetSettingActivity extends AppCompatActivity
         text_color = (RelativeLayout) findViewById(R.id.layout_color);
         text_alignment = (RelativeLayout) findViewById(R.id.layout_alignment);
         auto_refresh = (Switch) findViewById(R.id.auto_refresh_switch);
+        auto_refresh.setChecked(sharedPreferences.getBoolean(getString(R.string.name_widget_auto_refresh),false));
         setSupportActionBar(toolbar);
-
     }
 
     private void monitor()
@@ -88,15 +90,28 @@ public class WidgetSettingActivity extends AppCompatActivity
                 finish();
             }
         });
+        auto_refresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean(getString(R.string.name_widget_auto_refresh),isChecked);
+                editor.apply();
+            }
+        });
         refresh_time.setOnClickListener(new View.OnClickListener()
         {
+            @SuppressWarnings("ConstantConditions")
             @Override
             public void onClick(View v)
             {
                 final SharedPreferences.Editor editor = sharedPreferences.edit();
                 View view = LayoutInflater.from(WidgetSettingActivity.this).inflate(R.layout.dialog_refresh_time, null);
                 final TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.text_time);
+                textInputLayout.getEditText().setText(String.valueOf(sharedPreferences.getLong(getString(R.string.name_widget_refresh_time),300000)/60000));
                 new AlertDialog.Builder(WidgetSettingActivity.this)
+                        .setTitle(" ")
                         .setView(view)
                         .setNegativeButton(R.string.action_cancel, null)
                         .setPositiveButton(R.string.action_done, new DialogInterface.OnClickListener()
@@ -105,7 +120,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 //noinspection ConstantConditions
-                                long time = Long.parseLong(textInputLayout.getEditText().getText().toString()) * 1000;
+                                long time = Long.parseLong(textInputLayout.getEditText().getText().toString()) * 60000;
                                 editor.putLong(getString(R.string.name_widget_refresh_time), time);
                                 editor.apply();
                             }
@@ -118,9 +133,16 @@ public class WidgetSettingActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                refresh();
-                Snackbar.make(v,getString(R.string.hint_broadcast),Snackbar.LENGTH_SHORT)
-                        .show();
+                if(sharedPreferences.getBoolean(getString(R.string.name_widget_is_enabled),false))
+                {
+                    refresh();
+                    Snackbar.make(v, getString(R.string.hint_broadcast), Snackbar.LENGTH_SHORT)
+                            .show();
+                }else
+                {
+                    Snackbar.make(v, getString(R.string.hint_disabled), Snackbar.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
     }
@@ -137,6 +159,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                     URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
                     //noinspection InfiniteLoopStatement
                     HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                    httpurlconnection.setConnectTimeout(20000);
                     httpurlconnection.connect();
                     InputStream inputstream = httpurlconnection.getInputStream();
                     InputStreamReader in = new InputStreamReader(inputstream);
@@ -153,10 +176,10 @@ public class WidgetSettingActivity extends AppCompatActivity
                     intent.setAction("com.Hitokoto.text");
                     sendBroadcast(intent);
 
-                    Thread.sleep(300000);//线程睡眠时间，即间隔时间
+                    Thread.sleep(sharedPreferences.getLong(getString(R.string.name_widget_refresh_time),300000));//线程睡眠时间，即间隔时间
                 } catch (java.io.IOException | InterruptedException e)
                 {
-                    e.printStackTrace();
+                    Logs.loge(e);
                 }
             }
         }).start();

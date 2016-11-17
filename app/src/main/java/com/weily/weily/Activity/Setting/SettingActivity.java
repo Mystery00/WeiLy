@@ -1,7 +1,9 @@
 package com.weily.weily.Activity.Setting;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,7 +14,9 @@ import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.weily.weily.PublicMethod.ExitApplication;
@@ -23,6 +27,7 @@ public class SettingActivity extends AppCompatActivity
     private Toolbar toolbar;
     private RelativeLayout layout_widget;
     private RelativeLayout layout_about;
+    private Switch auto_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +57,8 @@ public class SettingActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         layout_widget = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutTwo);
         layout_about = (RelativeLayout) findViewById(R.id.content_settings_relativeLayoutThree);
+        auto_login=(Switch)findViewById(R.id.switch_auto);
+        auto_login.setChecked(getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getBoolean(getString(R.string.name_auto_login),false));
         setSupportActionBar(toolbar);
 
     }
@@ -68,34 +75,50 @@ public class SettingActivity extends AppCompatActivity
                 finish();
             }
         });
+        auto_login.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                SharedPreferences.Editor editor=getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).edit();
+                editor.putBoolean(getString(R.string.name_auto_login),isChecked);
+                editor.apply();
+            }
+        });
         layout_widget.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(SettingActivity.this, WidgetSettingActivity.class);
-                startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    startActivity(new Intent(SettingActivity.this, WidgetSettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(SettingActivity.this).toBundle());
+                } else
+                {
+                    startActivity(new Intent(SettingActivity.this, WidgetSettingActivity.class));
+                }
             }
         });
-
         layout_about.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-                builder.setIcon(R.mipmap.huaji);
-                builder.setTitle("关于我们");
-                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
-                builder.setItems(information, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.show();
+                new AlertDialog.Builder(SettingActivity.this)
+                        .setTitle(getString(R.string.title_about_us))
+                        .show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+//                builder.setTitle("关于我们");
+//                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
+//                builder.setItems(information, new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i)
+//                    {
+//                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//                builder.show();
             }
         });
     }
