@@ -9,12 +9,9 @@ import com.weily.weily.PublicMethod.GetInfo;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ImageLoader
 {
-    private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     private DiskCache diskCache = new DiskCache();
     private MemoryCache memoryCache = new MemoryCache();
 
@@ -33,7 +30,7 @@ public class ImageLoader
         } else
         {
             //如果缓存中没有的话就开启异步任务去下载图片，
-            submitLoadRequest(url, imageView);
+            new ImageLoadAsyncTask(imageView,url).execute(url);
         }
     }
 
@@ -45,13 +42,6 @@ public class ImageLoader
     private Bitmap getBitmapFromDiskCache(String url)
     {
         return diskCache.get(GetInfo.getFileName(url));
-    }
-
-    private void addBitmapToCaches(String url, Bitmap bitmap)
-    {
-        memoryCache.put(url, bitmap);
-        diskCache.put(GetInfo.getFileName(url), bitmap);
-
     }
 
     public static Bitmap getImage(final String address)
@@ -67,28 +57,6 @@ public class ImageLoader
             e.printStackTrace();
         }
         return bitmap;
-    }
-
-    private void submitLoadRequest(final String url, final ImageView imageView)
-    {
-        imageView.setTag(url);
-        executorService.submit(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                Bitmap bitmap = getImage(url);
-                if (bitmap == null)
-                {
-                    return;
-                }
-                if (imageView.getTag().equals(url))
-                {
-                    imageView.setImageBitmap(bitmap);
-                }
-                addBitmapToCaches(url, bitmap);
-            }
-        });
     }
 }
 
