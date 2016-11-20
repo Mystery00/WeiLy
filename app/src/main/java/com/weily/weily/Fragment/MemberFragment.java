@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
+import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
 import com.weily.weily.PublicMethod.GetInfo;
 import com.weily.weily.PublicMethod.Equal;
@@ -93,24 +94,33 @@ public class MemberFragment extends Fragment
                 TextView occupation=(TextView)view.findViewById(R.id.text_occupation);
                 if (!Equal.equals(user.getPhotoUrl(), ""))
                 {
-                    new Thread(new Runnable()
+                    final DiskCache diskCache=new DiskCache();
+                    Bitmap bitmap=diskCache.get(GetInfo.getFileName(user.getPhotoUrl()));
+                    if(bitmap!=null)
                     {
-                        @Override
-                        public void run()
+                        head.setImageBitmap(bitmap);
+                    }else
+                    {
+                        new Thread(new Runnable()
                         {
-                            try
+                            @Override
+                            public void run()
                             {
-                                Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
-                                Message message = new Message();
-                                message.what = DOWNLOAD;
-                                message.obj = bitmap;
-                                handler.sendMessage(message);
-                            } catch (Exception e)
-                            {
-                                e.printStackTrace();
+                                try
+                                {
+                                    Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
+                                    diskCache.put(GetInfo.getFileName(user.getPhotoUrl()),bitmap);
+                                    Message message = new Message();
+                                    message.what = DOWNLOAD;
+                                    message.obj = bitmap;
+                                    handler.sendMessage(message);
+                                } catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
-                    }).start();
+                        }).start();
+                    }
                 }
                 name.setText(user.getName());
                 collage.setText(user.getCollege());
