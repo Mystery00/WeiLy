@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,13 +19,13 @@ import android.widget.TextView;
 
 import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
-import com.weily.weily.PublicMethod.DownloadHeadFile;
+import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
+import com.weily.weily.PublicMethod.GetInfo;
 import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MemberFragment extends Fragment
 {
@@ -101,7 +100,7 @@ public class MemberFragment extends Fragment
                         {
                             try
                             {
-                                Bitmap bitmap = DownloadHeadFile.getImage(user.getPhotoUrl());
+                                Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
                                 Message message = new Message();
                                 message.what = DOWNLOAD;
                                 message.obj = bitmap;

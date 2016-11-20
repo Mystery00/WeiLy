@@ -11,6 +11,10 @@
     <string name="action_open">Open</string>
     <string name="action_cancel">Cancel</string>
 
+    <string name="intent_show_page">Time</string>
+
+    <string name="url_show_page">http://www.dujin.org/sys/bing/1366.php</string>
+
     <string name="file_sharedPreferences_widget">widget</string>
     <string name="name_widget_refresh_time">refresh_time</string>
     <string name="name_widget_is_enabled">isEnabled</string>

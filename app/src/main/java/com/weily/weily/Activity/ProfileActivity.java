@@ -19,7 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.weily.weily.PublicMethod.DownloadHeadFile;
+import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
+import com.weily.weily.PublicMethod.GetInfo;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.PublicMethod.SetStutes;
 import com.weily.weily.R;
@@ -129,7 +130,7 @@ public class ProfileActivity extends AppCompatActivity
             {
                 try
                 {
-                    Bitmap bitmap = DownloadHeadFile.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
+                    Bitmap bitmap = ImageLoader.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
                     Message message = new Message();
                     message.what = DOWNLOAD;
                     message.obj = bitmap;

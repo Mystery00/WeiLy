@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weily.weily.Class.User;
-import com.weily.weily.PublicMethod.ImageLoader;
+import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
 import com.weily.weily.R;
 
 import java.util.List;
@@ -72,7 +72,7 @@ public class MemberAdapter extends BaseAdapter
         //给当前的ImageView设置Tag
         viewHolder.photo.setTag(userList.get(position).getPhotoUrl());
         ImageLoader imageLoader=new ImageLoader();
-        imageLoader.showImageByAsyncTask(viewHolder.photo,userList.get(position).getPhotoUrl());
+        imageLoader.DisplayImage(viewHolder.photo,userList.get(position).getPhotoUrl());
         viewHolder.name.setText(member.getName());
         viewHolder.occupation.setText(member.getOccupation());
         viewHolder.profession.setText(member.getProfession());
