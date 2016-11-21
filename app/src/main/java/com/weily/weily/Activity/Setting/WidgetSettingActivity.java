@@ -38,7 +38,6 @@ public class WidgetSettingActivity extends AppCompatActivity
     private RelativeLayout click_event;
     private RelativeLayout text_color;
     private RelativeLayout text_alignment;
-    private Switch auto_refresh;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -73,8 +72,6 @@ public class WidgetSettingActivity extends AppCompatActivity
         click_event = (RelativeLayout) findViewById(R.id.layout_click);
         text_color = (RelativeLayout) findViewById(R.id.layout_color);
         text_alignment = (RelativeLayout) findViewById(R.id.layout_alignment);
-        auto_refresh = (Switch) findViewById(R.id.auto_refresh_switch);
-        auto_refresh.setChecked(sharedPreferences.getBoolean(getString(R.string.name_widget_auto_refresh),false));
         setSupportActionBar(toolbar);
     }
 
@@ -88,16 +85,6 @@ public class WidgetSettingActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 finish();
-            }
-        });
-        auto_refresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putBoolean(getString(R.string.name_widget_auto_refresh),isChecked);
-                editor.apply();
             }
         });
         refresh_time.setOnClickListener(new View.OnClickListener()
@@ -174,9 +161,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                     intent.putExtra("text", str.toString());
                     intent.setAction("com.Hitokoto.text");
                     sendBroadcast(intent);
-
-                    Thread.sleep(sharedPreferences.getLong(getString(R.string.name_widget_refresh_time),300000));//线程睡眠时间，即间隔时间
-                } catch (java.io.IOException | InterruptedException e)
+                } catch (java.io.IOException e)
                 {
                     Logs.loge(e);
                 }

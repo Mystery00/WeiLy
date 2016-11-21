@@ -61,7 +61,7 @@ public class ConnectService extends Service
             {
                 URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
                 //noinspection InfiniteLoopStatement
-                while (getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getBoolean(getString(R.string.name_widget_auto_refresh),true))
+                while (true)
                 {
                     HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
                     httpurlconnection.connect();

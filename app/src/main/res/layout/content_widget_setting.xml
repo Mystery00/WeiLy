@@ -50,40 +50,10 @@
     </RelativeLayout>
 
     <View
-        android:id="@+id/setting_dimen_b"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_setting_dimen_height"
-        android:layout_below="@id/layout_refresh"/>
-
-    <RelativeLayout
-        android:id="@+id/layout_refresh_auto"
-        android:layout_width="match_parent"
-        android:layout_below="@id/setting_dimen_b"
-        android:layout_height="@dimen/item_setting_height"
-        android:background="@color/settings">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/item_setting_margin_start_end"
-            android:text="@string/text_auto_refresh"/>
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="@dimen/item_setting_margin_start_end"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/auto_refresh_switch"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-    <View
         android:id="@+id/setting_dimen_c"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_setting_dimen_height"
-        android:layout_below="@id/layout_refresh_auto"/>
+        android:layout_below="@id/layout_refresh"/>
 
     <RelativeLayout
         android:id="@+id/layout_click"
