@@ -136,10 +136,8 @@ public class SignInActivity extends AppCompatActivity
                     //申请WRITE_EXTERNAL_STORAGE权限
                     ActivityCompat.requestPermissions(SignInActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-                }else
-                {
-                    login();
                 }
+                login();
             }
         });
     }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.weily.weily.Callback.ImageCache;
+import com.weily.weily.PublicMethod.FileDo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,27 +23,30 @@ public class DiskCache implements ImageCache
     @Override
     public void put(String url, Bitmap bitmap)
     {
-        FileOutputStream fileOutputStream=null;
-        try
+        if(FileDo.isFolderExists(CacheDir))
         {
-            File file=new File(CacheDir+url+".png");
-            //noinspection ResultOfMethodCallIgnored
-            file.createNewFile();
-            fileOutputStream=new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,fileOutputStream);
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-        } finally
-        {
-            if(fileOutputStream!=null)
+            FileOutputStream fileOutputStream = null;
+            try
             {
-                try
+                File file = new File(CacheDir + url + ".png");
+                //noinspection ResultOfMethodCallIgnored
+                file.createNewFile();
+                fileOutputStream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            } finally
+            {
+                if (fileOutputStream != null)
                 {
-                    fileOutputStream.close();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
+                    try
+                    {
+                        fileOutputStream.close();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
