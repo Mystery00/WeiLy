@@ -99,7 +99,7 @@
         </receiver>
 
         <service
-            android:name=".AppWidget.ConnectService"
+            android:name=".AppWidget.WidgetService"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService,InnerclassSeparator"/>

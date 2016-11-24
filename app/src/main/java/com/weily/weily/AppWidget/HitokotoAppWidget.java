@@ -7,8 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.io.BufferedReader;
@@ -28,7 +32,7 @@ import java.util.Set;
 public class HitokotoAppWidget extends AppWidgetProvider
 {
     private static Set<Integer> idsSet = new HashSet<>();
-    private static String text;
+    //private static String text;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
@@ -68,7 +72,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isEnabled", true);
         editor.apply();
-        Intent intent = new Intent(context, ConnectService.class);
+        Intent intent = new Intent(context, WidgetService.class);
         context.startService(intent);
         super.onEnabled(context);
     }
@@ -77,7 +81,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
     public void onDisabled(Context context)
     {
         Log.i("TAG", "onDisabled");
-        Intent intent = new Intent(context, ConnectService.class);
+        Intent intent = new Intent(context, WidgetService.class);
         context.stopService(intent);
         super.onDisabled(context);
     }
@@ -89,8 +93,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
 
         if ("android.appwidget.action.APPWIDGET_UPDATE".equals(action))
         {
-            MyThread();
-            updateAllAppWidgets(text, context, AppWidgetManager.getInstance(context), idsSet);
+            MyThread(context);
         } else if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE))
         {
             Intent intent1 = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
@@ -108,13 +111,16 @@ public class HitokotoAppWidget extends AppWidgetProvider
             appID = anIdsSet;
             RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
             remoteView.setTextViewText(R.id.widget_tv, word);
+            View view=LayoutInflater.from(context).inflate(remoteView.getLayoutId(),null);
+            TextView textView=(TextView)view.findViewById(R.id.widget_tv);
+            Logs.logi("test:"+textView.getText().toString());
             remoteView.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
 
             appWidgetManager.updateAppWidget(appID, remoteView);
         }
     }
 
-    private void MyThread()
+    private void MyThread(final Context context)
     {
         new Thread(new Runnable()
         {
@@ -135,7 +141,8 @@ public class HitokotoAppWidget extends AppWidgetProvider
                     {
                         str.append(reader);
                     }
-                    text = str.toString();
+                    //text = str.toString();
+                    updateAllAppWidgets(str.toString(), context, AppWidgetManager.getInstance(context), idsSet);
                 } catch (IOException e)
                 {
                     e.printStackTrace();

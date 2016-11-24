@@ -16,19 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class WidgetSettingActivity extends AppCompatActivity
 {
@@ -122,7 +113,9 @@ public class WidgetSettingActivity extends AppCompatActivity
             {
                 if(sharedPreferences.getBoolean(getString(R.string.name_widget_is_enabled),false))
                 {
-                    refresh();
+                    Intent intent = new Intent();
+                    intent.setAction("com.Hitokoto.text");
+                    sendBroadcast(intent);
                     Snackbar.make(v, getString(R.string.hint_broadcast), Snackbar.LENGTH_SHORT)
                             .show();
                 }else
@@ -132,40 +125,5 @@ public class WidgetSettingActivity extends AppCompatActivity
                 }
             }
         });
-    }
-
-    private void refresh()
-    {
-        new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                try
-                {
-                    URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
-                    //noinspection InfiniteLoopStatement
-                    HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
-                    httpurlconnection.connect();
-                    InputStream inputstream = httpurlconnection.getInputStream();
-                    InputStreamReader in = new InputStreamReader(inputstream);
-                    BufferedReader br = new BufferedReader(in);
-                    StringBuilder str = new StringBuilder();
-                    String reader;
-                    while ((reader = br.readLine()) != null)
-                    {
-                        str.append(reader);
-                    }
-
-                    Intent intent = new Intent();
-                    intent.putExtra("text", str.toString());
-                    intent.setAction("com.Hitokoto.text");
-                    sendBroadcast(intent);
-                } catch (java.io.IOException e)
-                {
-                    Logs.loge(e);
-                }
-            }
-        }).start();
     }
 }
