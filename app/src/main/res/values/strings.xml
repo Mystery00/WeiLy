@@ -6,6 +6,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_done">Done</string>
+    <string name="action_ok">OK</string>
     <string name="action_edit">Edit</string>
     <string name="action_logout">Logout</string>
     <string name="action_open">Open</string>
@@ -63,6 +64,8 @@
     <string name="text_click_listener">Click Event</string>
     <string name="text_text_color">Text Color</string>
     <string name="text_text_dimen">Text Alignment</string>
+    <string name="text_about_version">V1.1.0</string>
+    <string name="text_about_team">Made by WeiLy</string>
     <string name="text_introduce_android">
         "Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. "
         "Android's user interface is mainly based on direct manipulation, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a virtual keyboard for text input. "

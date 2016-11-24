@@ -1,7 +1,6 @@
 package com.weily.weily.Activity.Setting;
 
 import android.app.ActivityOptions;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -17,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.R;
@@ -105,20 +103,9 @@ public class SettingActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 new AlertDialog.Builder(SettingActivity.this)
-                        .setTitle(getString(R.string.title_about_us))
+                        .setView(R.layout.dialog_about_us)
+                        .setNegativeButton(getString(R.string.action_ok),null)
                         .show();
-//                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-//                builder.setTitle("关于我们");
-//                final String[] information = {"作者：邓易林", "时间：2016.12.12", "版本号：1.1.1"};
-//                builder.setItems(information, new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i)
-//                    {
-//                        Toast.makeText(SettingActivity.this, "关于：" + information[i], Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//                builder.show();
             }
         });
     }
