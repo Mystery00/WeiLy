@@ -4,4 +4,9 @@
         <item>Introduce</item>
         <item>Direction Introduce</item>
     </string-array>
+    <string-array name="text_alignment">
+        <item>Left</item>
+        <item>Center</item>
+        <item>Right</item>
+    </string-array>
 </resources>

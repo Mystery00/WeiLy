@@ -7,12 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.RemoteViews;
-import android.widget.TextView;
 
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.io.BufferedReader;
@@ -57,7 +53,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
 
     private void updatewidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId)
     {
-        RemoteViews remoteview = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+        RemoteViews remoteview = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
         CharSequence widget = context.getString(R.string.error_widget);
         remoteview.setTextViewText(R.id.widget_tv, widget);
 
@@ -109,11 +105,8 @@ public class HitokotoAppWidget extends AppWidgetProvider
         for (Integer anIdsSet : idsSet)
         {
             appID = anIdsSet;
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
             remoteView.setTextViewText(R.id.widget_tv, word);
-            View view=LayoutInflater.from(context).inflate(remoteView.getLayoutId(),null);
-            TextView textView=(TextView)view.findViewById(R.id.widget_tv);
-            Logs.logi("test:"+textView.getText().toString());
             remoteView.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
 
             appWidgetManager.updateAppWidget(appID, remoteView);
@@ -141,7 +134,6 @@ public class HitokotoAppWidget extends AppWidgetProvider
                     {
                         str.append(reader);
                     }
-                    //text = str.toString();
                     updateAllAppWidgets(str.toString(), context, AppWidgetManager.getInstance(context), idsSet);
                 } catch (IOException e)
                 {

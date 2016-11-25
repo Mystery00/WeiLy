@@ -103,6 +103,7 @@ public class SettingActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 new AlertDialog.Builder(SettingActivity.this)
+                        .setTitle(" ")
                         .setView(R.layout.dialog_about_us)
                         .setNegativeButton(getString(R.string.action_ok),null)
                         .show();

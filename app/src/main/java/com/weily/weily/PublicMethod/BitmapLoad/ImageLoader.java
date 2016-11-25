@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
+import com.weily.weily.PublicMethod.FileDo;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,7 +41,7 @@ public class ImageLoader
 
     private Bitmap getBitmapFromDiskCache(String url)
     {
-        return diskCache.get(GetInfo.getFileName(url));
+        return diskCache.get(FileDo.getFileName(url));
     }
 
     public static Bitmap getImage(final String address)

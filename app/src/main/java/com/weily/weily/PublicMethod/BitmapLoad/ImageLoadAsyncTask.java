@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
+import com.weily.weily.PublicMethod.FileDo;
+
 /**
  * Created by myste on 2016/11/20.
  * 异步加载
@@ -55,6 +57,6 @@ public class ImageLoadAsyncTask extends AsyncTask<String, Void, Bitmap>
     private void addBitmapToLruCaches(String url, Bitmap bitmap)
     {
         new MemoryCache().put(url, bitmap);
-        new DiskCache().put(GetInfo.getFileName(url), bitmap);
+        new DiskCache().put(FileDo.getFileName(url), bitmap);
     }
 }

@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.weily.weily.PublicMethod.ExitApplication;
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 public class WidgetSettingActivity extends AppCompatActivity
@@ -30,6 +31,7 @@ public class WidgetSettingActivity extends AppCompatActivity
     private RelativeLayout text_color;
     private RelativeLayout text_alignment;
     private SharedPreferences sharedPreferences;
+    private int choose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -97,7 +99,6 @@ public class WidgetSettingActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which)
                             {
-                                //noinspection ConstantConditions
                                 long time = Long.parseLong(textInputLayout.getEditText().getText().toString()) * 60000;
                                 editor.putLong(getString(R.string.name_widget_refresh_time), time);
                                 editor.apply();
@@ -123,6 +124,67 @@ public class WidgetSettingActivity extends AppCompatActivity
                     Snackbar.make(v, getString(R.string.hint_disabled), Snackbar.LENGTH_SHORT)
                             .show();
                 }
+            }
+        });
+        text_color.setOnClickListener(new View.OnClickListener()
+        {
+            @SuppressWarnings("ConstantConditions")
+            @Override
+            public void onClick(View v)
+            {
+                final SharedPreferences.Editor editor=sharedPreferences.edit();
+                View view=LayoutInflater.from(WidgetSettingActivity.this).inflate(R.layout.dialog_text_color,null);
+                final TextInputLayout textInputLayout=(TextInputLayout)view.findViewById(R.id.text_color);
+                textInputLayout.getEditText().setText(sharedPreferences.getString(getString(R.string.name_widget_text_color),"#FFFFFF"));
+                new AlertDialog.Builder(WidgetSettingActivity.this)
+                        .setTitle(" ")
+                        .setView(view)
+                        .setPositiveButton(getString(R.string.action_done), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                String text_color=textInputLayout.getEditText().getText().toString();
+                                editor.putString(getString(R.string.name_widget_text_color),text_color);
+                                editor.apply();
+                            }
+                        })
+                        .show();
+            }
+        });
+        text_alignment.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                final SharedPreferences.Editor editor=sharedPreferences.edit();
+                new AlertDialog.Builder(WidgetSettingActivity.this)
+                        .setSingleChoiceItems(R.array.text_alignment, sharedPreferences.getInt(getString(R.string.name_widget_text_alignment), 1), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                choose=which;
+                            }
+                        })
+                        .setPositiveButton(getString(R.string.action_ok), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                editor.putInt(getString(R.string.name_widget_text_alignment),choose);
+                                editor.apply();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.action_cancel), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                editor.clear();
+                            }
+                        })
+                        .show();
             }
         });
     }

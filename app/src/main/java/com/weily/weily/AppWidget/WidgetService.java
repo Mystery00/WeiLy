@@ -10,7 +10,7 @@ import com.weily.weily.R;
 
 /**
  * Created by yangchao on 2016/11/9.
- * 打开连接获取数据
+ * while发送广播
  */
 
 public class WidgetService extends Service
@@ -51,7 +51,6 @@ public class WidgetService extends Service
         @Override
         public void run()
         {
-            super.run();
             try
             {
                 //noinspection InfiniteLoopStatement
@@ -59,7 +58,6 @@ public class WidgetService extends Service
                 {
                     Logs.logi("开始更新！");
                     Intent intent = new Intent();
-                    //intent.putExtra("text", str.toString());
                     intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                     sendBroadcast(intent);
 
