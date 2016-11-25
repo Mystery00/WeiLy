@@ -19,7 +19,7 @@ public class User
     {
     }
 
-    public User(String username, String password, String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber, boolean isManager)
+    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber, boolean isManager)
     {
         this.photoUrl = photoUrl;//头像
         this.name = name;//姓名
