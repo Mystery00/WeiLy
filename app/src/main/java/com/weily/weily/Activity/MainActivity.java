@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed()
     {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(100);
+        vibrator.vibrate(50);
         if (!isBackKeyPressed)
         {
             Toast.makeText(this, getString(R.string.hint_double_click), Toast.LENGTH_SHORT).show();

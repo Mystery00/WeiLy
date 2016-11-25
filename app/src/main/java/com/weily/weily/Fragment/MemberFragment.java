@@ -21,8 +21,8 @@ import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
-import com.weily.weily.PublicMethod.GetInfo;
 import com.weily.weily.PublicMethod.Equal;
+import com.weily.weily.PublicMethod.FileDo;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public class MemberFragment extends Fragment
                 if (!Equal.equals(user.getPhotoUrl(), ""))
                 {
                     final DiskCache diskCache=new DiskCache();
-                    Bitmap bitmap=diskCache.get(GetInfo.getFileName(user.getPhotoUrl()));
+                    Bitmap bitmap=diskCache.get(FileDo.getFileName(user.getPhotoUrl()));
                     if(bitmap!=null)
                     {
                         head.setImageBitmap(bitmap);
@@ -109,7 +109,7 @@ public class MemberFragment extends Fragment
                                 try
                                 {
                                     Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
-                                    diskCache.put(GetInfo.getFileName(user.getPhotoUrl()),bitmap);
+                                    diskCache.put(FileDo.getFileName(user.getPhotoUrl()),bitmap);
                                     Message message = new Message();
                                     message.what = DOWNLOAD;
                                     message.obj = bitmap;

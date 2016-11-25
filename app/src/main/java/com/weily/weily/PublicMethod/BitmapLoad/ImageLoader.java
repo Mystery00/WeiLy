@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-import com.weily.weily.PublicMethod.GetInfo;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;

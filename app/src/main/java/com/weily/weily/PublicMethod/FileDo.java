@@ -19,4 +19,22 @@ public class FileDo
         File file = new File(strFolder);
         return file.exists() || file.mkdirs();
     }
+
+    /**
+     * 通过url获取文件名
+     * @param url 地址
+     * @return 文件名
+     */
+    public static String getFileName(String url)
+    {
+        int start = url.lastIndexOf("/");
+        int end = url.lastIndexOf(".");
+        if (start != -1 && end != -1)
+        {
+            return url.substring(start + 1, end);
+        } else
+        {
+            return null;
+        }
+    }
 }

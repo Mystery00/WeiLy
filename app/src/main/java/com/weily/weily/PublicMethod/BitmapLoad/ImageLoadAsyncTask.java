@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
-import com.weily.weily.PublicMethod.GetInfo;
-
 /**
  * Created by myste on 2016/11/20.
  * 异步加载

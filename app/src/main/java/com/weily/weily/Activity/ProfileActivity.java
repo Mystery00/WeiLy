@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
-import com.weily.weily.PublicMethod.GetInfo;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.PublicMethod.SetStutes;
 import com.weily.weily.R;
