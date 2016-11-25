@@ -2,11 +2,19 @@ package com.weily.weily.AppWidget;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by yangchao on 2016/11/9.
@@ -15,7 +23,16 @@ import com.weily.weily.R;
 
 public class WidgetService extends Service
 {
-    private UpDateThread mUpdateThread;
+    private Handler handler=new Handler();
+    private Runnable runnable=new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            getText();
+            handler.postDelayed(runnable,getRefreshTime());
+        }
+    };
 
     @Nullable
     @Override
@@ -27,46 +44,45 @@ public class WidgetService extends Service
     @Override
     public void onCreate()
     {
-        mUpdateThread = new UpDateThread();
-        mUpdateThread.start();
+        handler.post(runnable);
         super.onCreate();
     }
 
-    @Override
-    public void onDestroy()
+    private long getRefreshTime()
     {
-        mUpdateThread.interrupt();
-        super.onDestroy();
+        return getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getLong(getString(R.string.name_widget_refresh_time),300000);
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
+    private void getText()
     {
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-
-    class UpDateThread extends Thread
-    {
-        @Override
-        public void run()
+        new Thread(new Runnable()
         {
-            try
+            @Override
+            public void run()
             {
-                //noinspection InfiniteLoopStatement
-                while (true)
+                try
                 {
-                    Logs.logi("开始更新！");
-                    Intent intent = new Intent();
-                    intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                    URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
+                    HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                    httpurlconnection.connect();
+                    InputStream inputstream = httpurlconnection.getInputStream();
+                    InputStreamReader in = new InputStreamReader(inputstream);
+                    BufferedReader br = new BufferedReader(in);
+                    StringBuilder str = new StringBuilder();
+                    String reader;
+                    while ((reader = br.readLine()) != null)
+                    {
+                        str.append(reader);
+                    }
+                    Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
+                    intent.putExtra("text",str.toString());
+                    Logs.logi("发送广播");
                     sendBroadcast(intent);
-
-                    Thread.sleep(getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).getLong(getString(R.string.name_widget_refresh_time),300000));//线程睡眠时间，即间隔时间
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e)
-            {
-                e.printStackTrace();
             }
-        }
+        }).start();
     }
 }

@@ -6,17 +6,11 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,10 +26,11 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
+        Logs.logi("onUpdate");
         for (int appWidgetId : appWidgetIds)
         {
             idsSet.add(appWidgetId);
-            updatewidget(context, appWidgetManager, appWidgetId);
+            updateWidget(context, appWidgetManager, appWidgetId);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
@@ -43,6 +38,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onDeleted(Context context, int[] appWidgetIds)
     {
+        Logs.logi("onDeleted");
         for (int appWidgetId : appWidgetIds)
         {
             idsSet.remove(appWidgetId);
@@ -50,23 +46,41 @@ public class HitokotoAppWidget extends AppWidgetProvider
         super.onDeleted(context, appWidgetIds);
     }
 
-    private void updatewidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId)
+    private void updateWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId)
     {
-        RemoteViews remoteview = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
+        RemoteViews remoteViews;
+        switch (sharedPreferences.getInt(context.getString(R.string.name_widget_text_alignment),1))
+        {
+            case 0://left
+                remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
+                break;
+            case 2://right
+                remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_end);
+                break;
+            default:
+                remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_center);
+                break;
+        }
         CharSequence widget = context.getString(R.string.error_widget);
-        remoteview.setTextViewText(R.id.widget_tv, widget);
+        //remoteViews.setTextColor();
+        remoteViews.setTextViewText(R.id.widget_tv, widget);
+        remoteViews.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
 
-        appWidgetManager.updateAppWidget(appWidgetId, remoteview);
+        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }
 
     @Override
     public void onEnabled(Context context)
     {
-        Log.i("TAG", "onEnabled");
+        Logs.logi("onEnabled");
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isEnabled", true);
         editor.apply();
+        /**
+         * 启用定时刷新
+         */
         Intent intent = new Intent(context, WidgetService.class);
         context.startService(intent);
         super.onEnabled(context);
@@ -75,7 +89,7 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onDisabled(Context context)
     {
-        Log.i("TAG", "onDisabled");
+        Logs.logi("onDisabled");
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isEnabled", false);
@@ -88,17 +102,19 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onReceive(Context context, Intent intent)
     {
+        Logs.logi("接收到广播:"+intent.getAction());
+        super.onReceive(context, intent);
         String action = intent.getAction();
-
         if ("android.appwidget.action.APPWIDGET_UPDATE".equals(action))
         {
-            MyThread(context);
+            String text=intent.getStringExtra("text");
+            Logs.logi("test:"+text);
+            updateAllAppWidgets(text, context, AppWidgetManager.getInstance(context), idsSet);
         } else if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE))
         {
             Intent intent1 = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
             context.sendBroadcast(intent1);
         }
-        super.onReceive(context, intent);
     }
 
     private void updateAllAppWidgets(String word, Context context, AppWidgetManager appWidgetManager, Set<Integer> idsSet)
@@ -116,47 +132,18 @@ public class HitokotoAppWidget extends AppWidgetProvider
                     remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
                     break;
                 case 2://right
-                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_center);
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_end);
                     break;
                 default:
-                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_end);
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_center);
                     break;
             }
             remoteViews.setTextViewText(R.id.widget_tv, word);
+            //remoteViews.setTextColor();
             remoteViews.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
 
             appWidgetManager.updateAppWidget(appID, remoteViews);
         }
-    }
-
-    private void MyThread(final Context context)
-    {
-        new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                try
-                {
-                    URL url = new URL("https://api.lwl12.com/hitokoto/main/get");
-                    HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
-                    httpurlconnection.connect();
-                    InputStream inputstream = httpurlconnection.getInputStream();
-                    InputStreamReader in = new InputStreamReader(inputstream);
-                    BufferedReader br = new BufferedReader(in);
-                    StringBuilder str = new StringBuilder();
-                    String reader;
-                    while ((reader = br.readLine()) != null)
-                    {
-                        str.append(reader);
-                    }
-                    updateAllAppWidgets(str.toString(), context, AppWidgetManager.getInstance(context), idsSet);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 
     private PendingIntent getPendingIntent(Context context)
