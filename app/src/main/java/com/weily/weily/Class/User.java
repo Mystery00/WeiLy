@@ -2,8 +2,6 @@ package com.weily.weily.Class;
 
 import com.weily.weily.Callback.SignInListener;
 
-import java.io.Serializable;
-
 public class User
 {
     private String username;
@@ -15,12 +13,13 @@ public class User
     private String college;
     private String phoneNumber;
     private String classNumber;
+    private boolean isManager;
 
     public User()
     {
     }
 
-    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber)
+    public User(String username, String password, String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber, boolean isManager)
     {
         this.photoUrl = photoUrl;//头像
         this.name = name;//姓名
@@ -29,6 +28,7 @@ public class User
         this.college = college;//学院
         this.phoneNumber = phoneNumber;//电话
         this.classNumber = classNumber;//班级
+        this.isManager = isManager;//管理员标识
     }
 
     public String getUsername()
@@ -114,6 +114,16 @@ public class User
     public void setClassNumber(String classNumber)
     {
         this.classNumber = classNumber;
+    }
+
+    public boolean getIsManager()
+    {
+        return isManager;
+    }
+
+    public void setIsManager(boolean isManager)
+    {
+        this.isManager = isManager;
     }
 
     public void login(SignInListener signInListener)
