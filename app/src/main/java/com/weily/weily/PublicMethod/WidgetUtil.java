@@ -73,7 +73,6 @@ public class WidgetUtil
     public static int getTextColor(Context context)
     {
         String color=context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget),Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_color),"#FFFFFF");
-        Logs.logi("color:"+color);
         return Color.parseColor(color);
     }
 

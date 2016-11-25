@@ -10,7 +10,7 @@ import com.weily.weily.PublicMethod.WidgetUtil;
 
 /**
  * Created by yangchao on 2016/11/9.
- * while发送广播
+ * 使用handler嵌套，调用刷新方法，循环更新视图
  */
 
 public class WidgetService extends Service
