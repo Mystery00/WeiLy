@@ -17,8 +17,8 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.SplashActivity"
-            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -103,6 +103,12 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService,InnerclassSeparator"/>
+        <service
+            android:name=".AppWidget.OnClickService"
+            android:enabled="true"
+            android:exported="false"
+            tools:ignore="InnerclassSeparator">
+        </service>
     </application>
 
 </manifest>

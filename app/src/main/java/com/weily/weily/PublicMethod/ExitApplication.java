@@ -41,8 +41,6 @@ public class ExitApplication extends Application
         {
             activity.finish();
         }
-
         System.exit(0);
-
     }
 }

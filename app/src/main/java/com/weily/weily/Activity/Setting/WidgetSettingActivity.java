@@ -18,8 +18,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.weily.weily.AppWidget.OnClickService;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
+import com.weily.weily.PublicMethod.WidgetUtil;
 import com.weily.weily.R;
 
 public class WidgetSettingActivity extends AppCompatActivity
@@ -27,7 +28,6 @@ public class WidgetSettingActivity extends AppCompatActivity
     private Toolbar toolbar;
     private RelativeLayout refresh_time;
     private RelativeLayout refresh_now;
-    private RelativeLayout click_event;
     private RelativeLayout text_color;
     private RelativeLayout text_alignment;
     private SharedPreferences sharedPreferences;
@@ -62,7 +62,6 @@ public class WidgetSettingActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         refresh_time = (RelativeLayout) findViewById(R.id.layout_refresh_time);
         refresh_now = (RelativeLayout) findViewById(R.id.layout_refresh);
-        click_event = (RelativeLayout) findViewById(R.id.layout_click);
         text_color = (RelativeLayout) findViewById(R.id.layout_color);
         text_alignment = (RelativeLayout) findViewById(R.id.layout_alignment);
         setSupportActionBar(toolbar);
@@ -102,6 +101,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                                 long time = Long.parseLong(textInputLayout.getEditText().getText().toString()) * 60000;
                                 editor.putLong(getString(R.string.name_widget_refresh_time), time);
                                 editor.apply();
+                                WidgetUtil.restartService(getApplicationContext());
                             }
                         })
                         .show();
@@ -114,9 +114,7 @@ public class WidgetSettingActivity extends AppCompatActivity
             {
                 if(sharedPreferences.getBoolean(getString(R.string.name_widget_is_enabled),false))
                 {
-                    Intent intent = new Intent();
-                    intent.setAction("com.Hitokoto.text");
-                    sendBroadcast(intent);
+                    startService(new Intent(WidgetSettingActivity.this, OnClickService.class));
                     Snackbar.make(v, getString(R.string.hint_broadcast), Snackbar.LENGTH_SHORT)
                             .show();
                 }else
@@ -147,6 +145,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                                 String text_color=textInputLayout.getEditText().getText().toString();
                                 editor.putString(getString(R.string.name_widget_text_color),text_color);
                                 editor.apply();
+                                WidgetUtil.updateWidget(getApplicationContext());
                             }
                         })
                         .show();
@@ -174,6 +173,7 @@ public class WidgetSettingActivity extends AppCompatActivity
                             {
                                 editor.putInt(getString(R.string.name_widget_text_alignment),choose);
                                 editor.apply();
+                                WidgetUtil.updateWidget(getApplicationContext());
                             }
                         })
                         .setNegativeButton(getString(R.string.action_cancel), new DialogInterface.OnClickListener()

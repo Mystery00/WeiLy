@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -31,6 +32,7 @@ import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.ExitApplication;
+import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.util.Timer;
