@@ -28,8 +28,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler
     //log文件的后缀名
     private static final String FILE_NAME_SUFFIX = ".txt";
 
-    @SuppressLint("StaticFieldLeak")
-    private static CrashHandler sInstance = new CrashHandler();
+    private static CrashHandler sInstance;
 
     //系统默认的异常处理（默认情况下，系统会终止当前的异常程序）
     private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
@@ -43,6 +42,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler
 
     public static CrashHandler getInstance()
     {
+        if (null == sInstance)
+        {
+            sInstance = new CrashHandler();
+        }
         return sInstance;
     }
 
