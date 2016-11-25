@@ -28,7 +28,6 @@ import java.util.Set;
 public class HitokotoAppWidget extends AppWidgetProvider
 {
     private static Set<Integer> idsSet = new HashSet<>();
-    //private static String text;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
