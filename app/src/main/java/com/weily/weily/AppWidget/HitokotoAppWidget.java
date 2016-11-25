@@ -76,6 +76,10 @@ public class HitokotoAppWidget extends AppWidgetProvider
     public void onDisabled(Context context)
     {
         Log.i("TAG", "onDisabled");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isEnabled", false);
+        editor.apply();
         Intent intent = new Intent(context, WidgetService.class);
         context.stopService(intent);
         super.onDisabled(context);
@@ -99,16 +103,29 @@ public class HitokotoAppWidget extends AppWidgetProvider
 
     private void updateAllAppWidgets(String word, Context context, AppWidgetManager appWidgetManager, Set<Integer> idsSet)
     {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
         int appID;
         // 迭代器，用于遍历所有保存的widget的id
         for (Integer anIdsSet : idsSet)
         {
             appID = anIdsSet;
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
-            remoteView.setTextViewText(R.id.widget_tv, word);
-            remoteView.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
+            RemoteViews remoteViews;
+            switch (sharedPreferences.getInt(context.getString(R.string.name_widget_text_alignment),1))
+            {
+                case 0://left
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_start);
+                    break;
+                case 2://right
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_center);
+                    break;
+                default:
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_end);
+                    break;
+            }
+            remoteViews.setTextViewText(R.id.widget_tv, word);
+            remoteViews.setOnClickPendingIntent(R.id.widget_tv, getPendingIntent(context));
 
-            appWidgetManager.updateAppWidget(appID, remoteView);
+            appWidgetManager.updateAppWidget(appID, remoteViews);
         }
     }
 
