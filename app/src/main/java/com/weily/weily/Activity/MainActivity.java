@@ -4,11 +4,11 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -32,7 +32,6 @@ import com.weily.weily.Fragment.UsageFragment;
 import com.weily.weily.PublicMethod.CircleImageView;
 import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.util.Timer;
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     private MemberFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
+    private FloatingActionButton floatingActionButton;
     private static boolean isBackKeyPressed = false;// 记录是否有首次按键
 
     @Override
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity
         View headerLayout = navigationView.getHeaderView(0);
         head = (CircleImageView) headerLayout.findViewById(R.id.nav_head);
         username = (TextView) headerLayout.findViewById(R.id.nav_username);
+        floatingActionButton=(FloatingActionButton)findViewById(R.id.fab);
         view = findViewById(R.id.coordinatorLayout);
         setSupportActionBar(toolbar);
 
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
     {
+        floatingActionButton.setVisibility(View.GONE);
         if (introduceFragment != null)
         {
             fragmentTransaction.hide(introduceFragment);

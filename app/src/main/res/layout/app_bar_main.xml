@@ -31,6 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_add"
         android:layout_margin="@dimen/fab_margin"/>
 
     <LinearLayout
