@@ -131,4 +131,9 @@ public class User
         //执行登录操作
         signInListener.Success();
     }
+
+    public User getCurrectUser()
+    {
+        return new User();
+    }
 }

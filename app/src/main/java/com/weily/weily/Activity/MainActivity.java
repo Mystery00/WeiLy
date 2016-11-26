@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weily.weily.Activity.Setting.SettingActivity;
+import com.weily.weily.Class.User;
 import com.weily.weily.Fragment.HonorFragment;
 import com.weily.weily.Fragment.IntroduceFragment.IntroduceFragment;
 import com.weily.weily.Fragment.MemberFragment;
@@ -225,6 +226,14 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_usage:
                 hideFragments(fragmentTransaction);
+                /**
+                 * 判断是否是管理员，然后显示悬浮按钮
+                 */
+                User user=new User();
+                if(user.getIsManager())
+                {
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                }
                 if (usageFragment == null)
                 {
                     usageFragment = new UsageFragment();
