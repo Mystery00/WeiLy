@@ -65,4 +65,6 @@
     <dimen name="dialog_about_team_size">18sp</dimen>
     <!--Widget Layout-->
     <dimen name="widget_text_size">16sp</dimen>
+    <!--New Usage Dialog-->
+    <dimen name="dialog_new_usage_margin_top">20dp</dimen>
 </resources>

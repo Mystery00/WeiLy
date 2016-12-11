@@ -49,9 +49,13 @@
     <string name="hint_double_click">Press twice to exit.</string>
     <string name="hint_refresh_time">Please Enter Number (Min)</string>
     <string name="hint_text_color">Please enter a color value (RGB)</string>
+    <string name="hint_usage">Please Enter Amount</string>
+    <string name="hint_person">Please Enter the Person</string>
     <string name="hint_broadcast">The Broadcast Send! </string>
     <string name="hint_disabled">Please Add The Widget! </string>
 
+    <string name="text_income">Income</string>
+    <string name="text_outcome">Outcome</string>
     <string name="text_share">WeiLy, not just a lab! </string>
     <string name="text_title_introduce">WeiLy Technology Laboratory</string>
     <string name="text_button_more">Go to know more! </string>
@@ -279,6 +283,7 @@
     </string>
 
     <string name="title_about_us">About Us</string>
+    <string name="title_dialog_new_usage">New Usage</string>
     <string name="title_activity_sign_in">Sign In</string>
     <string name="title_activity_profile"> </string>
     <string name="title_activity_introduce_android">Android</string>

@@ -10,14 +10,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.weily.weily.Callback.ShowPageListener;
-import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.PublicMethod.ShowPage;
 import com.weily.weily.R;
 

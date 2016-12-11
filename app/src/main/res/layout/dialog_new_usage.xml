@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dialog_new_usage_margin_top"
+        android:orientation="horizontal"
+        android:id="@+id/button_group"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:text="@string/text_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton_income"
+            android:checked="true"/>
+
+        <RadioButton
+            android:text="@string/text_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton_outcome"/>
+
+    </RadioGroup>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/amount_input"
+        android:layout_below="@id/button_group"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_usage"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/person_input"
+        android:layout_below="@id/amount_input"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_person"/>
+    </android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>

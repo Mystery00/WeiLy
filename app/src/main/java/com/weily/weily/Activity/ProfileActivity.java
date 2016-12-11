@@ -1,12 +1,8 @@
 package com.weily.weily.Activity;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
@@ -29,14 +25,12 @@ import com.weily.weily.R;
 
 public class ProfileActivity extends AppCompatActivity
 {
-    final private static String HEADURL = "head_url";
     final private static String NAME = "name";
     final private static String COLLAGE = "collage";
     final private static String CLASS_NUMBER = "class_number";
     final private static String PHONE_NUMBER = "phone_number";
     final private static String PROFESSION = "profession";
     final private static String OCCUPATION = "occupation";
-    final private static int DOWNLOAD = 233;
     private Toolbar toolbar;
     private TextView show_name;
     private EditText show_collage;
@@ -45,22 +39,6 @@ public class ProfileActivity extends AppCompatActivity
     private EditText show_profession;
     private EditText show_occupation;
     private ImageView profile_background;
-
-    /**
-     * 解决子线程加载试图问题
-     */
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler()
-    {
-        @Override
-        public void handleMessage(Message msg)
-        {
-            if (msg.what == DOWNLOAD)
-            {
-                profile_background.setImageBitmap((Bitmap) msg.obj);
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -128,26 +106,8 @@ public class ProfileActivity extends AppCompatActivity
 
         RequestQueue requestQueue = Volley.newRequestQueue(ProfileActivity.this);
         ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(null, R.mipmap.image_default, R.mipmap.image_faild);
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(profile_background, R.mipmap.image_default, R.mipmap.image_faild);
         imageLoader.get(getString(R.string.url_show_page), listener);
-//        new Thread(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                try
-//                {
-//                    Bitmap bitmap = ImageLoader.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
-//                    Message message = new Message();
-//                    message.what = DOWNLOAD;
-//                    message.obj = bitmap;
-//                    handler.sendMessage(message);
-//                } catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
     }
 
     @Override

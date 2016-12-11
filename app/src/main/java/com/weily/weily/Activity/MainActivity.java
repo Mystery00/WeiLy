@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity
     private MemberFragment memberFragment;
     private UsageFragment usageFragment;
     private View view;
-    private FloatingActionButton floatingActionButton;
     private static boolean isBackKeyPressed = false;// 记录是否有首次按键
 
     @Override
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity
         View headerLayout = navigationView.getHeaderView(0);
         head = (CircleImageView) headerLayout.findViewById(R.id.nav_head);
         username = (TextView) headerLayout.findViewById(R.id.nav_username);
-        floatingActionButton=(FloatingActionButton)findViewById(R.id.fab);
         view = findViewById(R.id.coordinatorLayout);
         setSupportActionBar(toolbar);
 
@@ -115,7 +112,6 @@ public class MainActivity extends AppCompatActivity
 
     public void hideFragments(FragmentTransaction fragmentTransaction)
     {
-        floatingActionButton.setVisibility(View.GONE);
         if (introduceFragment != null)
         {
             fragmentTransaction.hide(introduceFragment);
@@ -229,11 +225,6 @@ public class MainActivity extends AppCompatActivity
                 /**
                  * 判断是否是管理员，然后显示悬浮按钮
                  */
-                User user=new User();
-                if(user.getIsManager())
-                {
-                    floatingActionButton.setVisibility(View.VISIBLE);
-                }
                 if (usageFragment == null)
                 {
                     usageFragment = new UsageFragment();
