@@ -3,12 +3,9 @@ package com.weily.weily.PublicMethod;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.weily.weily.Callback.ShowPageListener;
 import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
+import com.weily.weily.PublicMethod.BitmapLoad.ImageConnection;
 import com.weily.weily.R;
 
 import java.util.Calendar;
@@ -41,45 +38,24 @@ public class ShowPage
             return;
         }
         showPageListener.cancel();
-
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
-        ImageLoader.ImageListener listener = new ImageLoader.ImageListener()
+        new Thread(new Runnable()
         {
             @Override
-            public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b)
+            public void run()
             {
-                Logs.logi(String.valueOf(b));
-                Logs.logi(imageContainer.getRequestUrl());
-                diskCache.putBitmap(date, imageContainer.getBitmap());
+                /**
+                 * 调用下载方法，并缓存
+                 */
+                try
+                {
+                    Bitmap bitmap = ImageConnection.getImage(context.getString(R.string.url_show_page));
+                    diskCache.putBitmap(date, bitmap);
+                } catch (Exception e)
+                {
+                    Logs.loge(e);
+                    e.printStackTrace();
+                }
             }
-
-            @Override
-            public void onErrorResponse(VolleyError volleyError)
-            {
-                Logs.loge(volleyError.getMessage());
-            }
-        };
-        imageLoader.get("http://git-sublime.github.io/test/weily/picture/logo.png", listener);
-
-//        new Thread(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                /**
-//                 * 调用下载方法，并缓存
-//                 */
-//                try
-//                {
-//                    Bitmap bitmap = ImageLoader.getImage(context.getString(R.string.url_show_page));
-//                    diskCache.putBitmap(date, bitmap);
-//                } catch (Exception e)
-//                {
-//                    Logs.loge(e);
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
+        }).start();
     }
 }

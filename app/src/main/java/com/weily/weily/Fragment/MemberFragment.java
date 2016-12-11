@@ -1,12 +1,8 @@
 package com.weily.weily.Fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -24,7 +20,6 @@ import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.Equal;
-import com.weily.weily.PublicMethod.FileDo;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
@@ -34,22 +29,6 @@ public class MemberFragment extends Fragment
 {
     private List<User> list=new ArrayList<>();
     private ImageView head;
-    final private static int DOWNLOAD = 233;
-
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler()
-    {
-        @Override
-        public void handleMessage(Message msg)
-        {
-            switch (msg.what)
-            {
-                case DOWNLOAD:
-                    head.setImageBitmap((Bitmap) msg.obj);
-                    break;
-            }
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -84,7 +63,6 @@ public class MemberFragment extends Fragment
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
-            @SuppressLint("NewApi")
             @Override
             public void onItemClick(AdapterView<?> parent, final View view1, int position, long id)
             {
@@ -102,35 +80,8 @@ public class MemberFragment extends Fragment
                 {
                     RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                     ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
-                    ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(head, R.drawable.ic_collage, R.drawable.ic_honor);
+                    ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(head, R.mipmap.image_default, R.mipmap.image_faild);
                     imageLoader.get(user.getPhotoUrl(), imageListener);
-//                    final DiskCache diskCache=new DiskCache();
-//                    Bitmap bitmap=diskCache.getBitmap(FileDo.getFileName(user.getPhotoUrl()));
-//                    if(bitmap!=null)
-//                    {
-//                        head.setImageBitmap(bitmap);
-//                    }else
-//                    {
-//                        new Thread(new Runnable()
-//                        {
-//                            @Override
-//                            public void run()
-//                            {
-//                                try
-//                                {
-//                                    Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
-//                                    diskCache.put(FileDo.getFileName(user.getPhotoUrl()),bitmap);
-//                                    Message message = new Message();
-//                                    message.what = DOWNLOAD;
-//                                    message.obj = bitmap;
-//                                    handler.sendMessage(message);
-//                                } catch (Exception e)
-//                                {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        }).start();
-//                    }
                 }
                 name.setText(user.getName());
                 collage.setText(user.getCollege());
