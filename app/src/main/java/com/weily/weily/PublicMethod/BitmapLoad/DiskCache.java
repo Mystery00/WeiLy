@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-import com.weily.weily.Callback.ImageCache;
+import com.android.volley.toolbox.ImageLoader;
 import com.weily.weily.PublicMethod.FileDo;
 
 import java.io.File;
@@ -16,12 +16,18 @@ import java.io.IOException;
  * sd卡缓存
  */
 
-public class DiskCache implements ImageCache
+public class DiskCache implements ImageLoader.ImageCache
 {
     private static String CacheDir= Environment.getExternalStorageDirectory().getPath() + "/Android/data/com.weily.weily/cache/";
 
     @Override
-    public void put(String url, Bitmap bitmap)
+    public Bitmap getBitmap(String url)
+    {
+        return BitmapFactory.decodeFile(CacheDir + url + ".png");
+    }
+
+    @Override
+    public void putBitmap(String url, Bitmap bitmap)
     {
         if(FileDo.isFolderExists(CacheDir))
         {
@@ -50,10 +56,5 @@ public class DiskCache implements ImageCache
                 }
             }
         }
-    }
-
-    public Bitmap get(String url)
-    {
-        return BitmapFactory.decodeFile(CacheDir+url+".png");
     }
 }

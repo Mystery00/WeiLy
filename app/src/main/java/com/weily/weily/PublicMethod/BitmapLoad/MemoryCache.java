@@ -3,14 +3,14 @@ package com.weily.weily.PublicMethod.BitmapLoad;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
-import com.weily.weily.Callback.ImageCache;
+import com.android.volley.toolbox.ImageLoader;
 
 /**
  * Created by myste on 2016/11/20.
  * 内存缓存
  */
 
-class MemoryCache implements ImageCache
+class MemoryCache implements ImageLoader.ImageCache
 {
     private LruCache<String, Bitmap> lruCache= null;
     MemoryCache()
@@ -21,14 +21,14 @@ class MemoryCache implements ImageCache
     }
 
     @Override
-    public void put(String url, Bitmap bitmap)
+    public Bitmap getBitmap(String url)
     {
-        lruCache.put(url,bitmap);
+        return lruCache.get(url);
     }
 
     @Override
-    public Bitmap get(String url)
+    public void putBitmap(String url, Bitmap bitmap)
     {
-        return lruCache.get(url);
+        lruCache.put(url, bitmap);
     }
 }

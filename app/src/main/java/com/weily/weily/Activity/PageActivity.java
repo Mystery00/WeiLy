@@ -27,7 +27,7 @@ public class PageActivity extends AppCompatActivity
             {
                 ImageView imageView=(ImageView)findViewById(R.id.show_img);
                 DiskCache diskCache=new DiskCache();
-                imageView.setImageBitmap(diskCache.get(date));
+                imageView.setImageBitmap(diskCache.getBitmap(date));
             }
         }
         new Thread(new Runnable()

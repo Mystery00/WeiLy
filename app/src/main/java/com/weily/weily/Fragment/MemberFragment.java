@@ -17,10 +17,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 import com.weily.weily.Adapter.MemberAdapter;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
-import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
 import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.FileDo;
 import com.weily.weily.R;
@@ -98,33 +100,37 @@ public class MemberFragment extends Fragment
                 TextView occupation=(TextView)view.findViewById(R.id.text_occupation);
                 if (!Equal.equals(user.getPhotoUrl(), ""))
                 {
-                    final DiskCache diskCache=new DiskCache();
-                    Bitmap bitmap=diskCache.get(FileDo.getFileName(user.getPhotoUrl()));
-                    if(bitmap!=null)
-                    {
-                        head.setImageBitmap(bitmap);
-                    }else
-                    {
-                        new Thread(new Runnable()
-                        {
-                            @Override
-                            public void run()
-                            {
-                                try
-                                {
-                                    Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
-                                    diskCache.put(FileDo.getFileName(user.getPhotoUrl()),bitmap);
-                                    Message message = new Message();
-                                    message.what = DOWNLOAD;
-                                    message.obj = bitmap;
-                                    handler.sendMessage(message);
-                                } catch (Exception e)
-                                {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }).start();
-                    }
+                    RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                    ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
+                    ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(head, R.drawable.ic_collage, R.drawable.ic_honor);
+                    imageLoader.get(user.getPhotoUrl(), imageListener);
+//                    final DiskCache diskCache=new DiskCache();
+//                    Bitmap bitmap=diskCache.getBitmap(FileDo.getFileName(user.getPhotoUrl()));
+//                    if(bitmap!=null)
+//                    {
+//                        head.setImageBitmap(bitmap);
+//                    }else
+//                    {
+//                        new Thread(new Runnable()
+//                        {
+//                            @Override
+//                            public void run()
+//                            {
+//                                try
+//                                {
+//                                    Bitmap bitmap = ImageLoader.getImage(user.getPhotoUrl());
+//                                    diskCache.put(FileDo.getFileName(user.getPhotoUrl()),bitmap);
+//                                    Message message = new Message();
+//                                    message.what = DOWNLOAD;
+//                                    message.obj = bitmap;
+//                                    handler.sendMessage(message);
+//                                } catch (Exception e)
+//                                {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }).start();
+//                    }
                 }
                 name.setText(user.getName());
                 collage.setText(user.getCollege());

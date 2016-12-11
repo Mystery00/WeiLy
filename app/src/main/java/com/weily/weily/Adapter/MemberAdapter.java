@@ -8,8 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
 import com.weily.weily.Class.User;
-import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
+import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.R;
 
 import java.util.List;
@@ -71,8 +74,10 @@ public class MemberAdapter extends BaseAdapter
         }
         //给当前的ImageView设置Tag
         viewHolder.photo.setTag(userList.get(position).getPhotoUrl());
-        ImageLoader imageLoader=new ImageLoader();
-        imageLoader.DisplayImage(viewHolder.photo,userList.get(position).getPhotoUrl());
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(viewHolder.photo, R.mipmap.image_default, R.mipmap.image_faild);
+        imageLoader.get(userList.get(position).getPhotoUrl(), listener);
         viewHolder.name.setText(member.getName());
         viewHolder.occupation.setText(member.getOccupation());
         viewHolder.profession.setText(member.getProfession());

@@ -19,7 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.weily.weily.PublicMethod.BitmapLoad.ImageLoader;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
+import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.ExitApplication;
 import com.weily.weily.PublicMethod.SetStutes;
 import com.weily.weily.R;
@@ -122,24 +125,29 @@ public class ProfileActivity extends AppCompatActivity
         show_profession.setText(sharedPreferences.getString(PROFESSION, ""));
         show_occupation.setText(sharedPreferences.getString(OCCUPATION, ""));
 
-        new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                try
-                {
-                    Bitmap bitmap = ImageLoader.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
-                    Message message = new Message();
-                    message.what = DOWNLOAD;
-                    message.obj = bitmap;
-                    handler.sendMessage(message);
-                } catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+
+        RequestQueue requestQueue = Volley.newRequestQueue(ProfileActivity.this);
+        ImageLoader imageLoader = new ImageLoader(requestQueue, new DiskCache());
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(null, R.mipmap.image_default, R.mipmap.image_faild);
+        imageLoader.get(getString(R.string.url_show_page), listener);
+//        new Thread(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                try
+//                {
+//                    Bitmap bitmap = ImageLoader.getImage(sharedPreferences.getString(HEADURL, "http://git-sublime.github.io/test/weily/picture/logo.png"));
+//                    Message message = new Message();
+//                    message.what = DOWNLOAD;
+//                    message.obj = bitmap;
+//                    handler.sendMessage(message);
+//                } catch (Exception e)
+//                {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
     }
 
     @Override
