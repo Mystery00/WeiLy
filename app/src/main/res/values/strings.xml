@@ -74,7 +74,7 @@
     <string name="text_click_listener">Click Event</string>
     <string name="text_text_color">Text Color</string>
     <string name="text_text_dimen">Text Alignment</string>
-    <string name="text_about_version">V1.1.0</string>
+    <string name="text_about_version">V1.2.0</string>
     <string name="text_about_team">Made by WeiLy</string>
     <string name="text_introduce_android">
         "Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. "
