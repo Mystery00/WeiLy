@@ -3,13 +3,13 @@ apply plugin: 'com.nillith.autoversion'
 
 autoVersion {
     major 1
-    minor 2
+    minor 0
     patch 0
 }
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.weily.weily"
         minSdkVersion 17
@@ -36,5 +36,4 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
     testCompile 'junit:junit:4.12'
-    compile files('libs/volley.jar')
 }
