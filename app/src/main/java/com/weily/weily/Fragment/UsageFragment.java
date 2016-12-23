@@ -12,7 +12,6 @@ import android.widget.ListView;
 
 import com.weily.weily.Adapter.UsageAdapter;
 import com.weily.weily.Class.Usage;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.util.ArrayList;
@@ -49,7 +48,6 @@ public class UsageFragment extends Fragment
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i)
                             {
-                                Logs.logi("test");
                             }
                         })
                         .show();

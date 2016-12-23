@@ -1,9 +1,22 @@
 package com.weily.weily.Class;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.weily.weily.Callback.SignInListener;
+import com.weily.weily.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class User
 {
+    private static final String TAG = "User";
     private String username;
     private String password;
     private String photoUrl;
@@ -126,14 +139,44 @@ public class User
         this.isManager = isManager;
     }
 
-    public void login(SignInListener signInListener)
+    public void login(Context context, final SignInListener signInListener)
     {
         //执行登录操作
-        signInListener.Success();
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(context.getString(R.string.url_login) + "username=kone&password=" + password, null, new Response.Listener<JSONObject>()
+        {
+            @Override
+            public void onResponse(JSONObject jsonObject)
+            {
+                try
+                {
+                    if (jsonObject.getString("data").equals("1"))
+                    {
+                        Log.i(TAG, "onResponse: 登陆成功");
+                        signInListener.Success();
+                    } else
+                    {
+                        signInListener.Failure("Username or password error!");
+                    }
+                } catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError volleyError)
+            {
+                volleyError.printStackTrace();
+                signInListener.Failure("test");
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 
     public User getCurrectUser()
     {
-        return new User();
+        return null;
     }
 }

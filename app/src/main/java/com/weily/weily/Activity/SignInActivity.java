@@ -14,12 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
 import com.weily.weily.Callback.SignInListener;
 import com.weily.weily.Class.User;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 import java.util.regex.Pattern;
@@ -50,7 +50,7 @@ public class SignInActivity extends AppCompatActivity
     {
         ExitApplication.getInstance().addActivity(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        view=findViewById(R.id.coordinatorLayout);
+        view = findViewById(R.id.coordinatorLayout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         username_layout = (TextInputLayout) findViewById(R.id.usernameLayout);
         password_layout = (TextInputLayout) findViewById(R.id.passwordLayout);
@@ -162,9 +162,9 @@ public class SignInActivity extends AppCompatActivity
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
                 login();
-            }else
+            } else
             {
-                Snackbar.make(view,getString(R.string.error_permission_faild),Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(R.string.error_permission_faild), Snackbar.LENGTH_LONG)
                         .show();
             }
         }
@@ -175,18 +175,17 @@ public class SignInActivity extends AppCompatActivity
     {
         if (!isWrong())
         {
-            SharedPreferences.Editor editor=getSharedPreferences(getString(R.string.file_sharedPreferences_widget),MODE_PRIVATE).edit();
-            editor.putBoolean(getString(R.string.name_auto_login),true);
+            SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.file_sharedPreferences_widget), MODE_PRIVATE).edit();
+            editor.putBoolean(getString(R.string.name_auto_login), true);
             editor.apply();
             final User user = new User();
             user.setUsername(username_layout.getEditText().getText().toString());
             user.setPassword(password_layout.getEditText().getText().toString());
-            user.login(new SignInListener()
+            user.login(SignInActivity.this, new SignInListener()
             {
                 @Override
                 public void Success()
                 {
-                    //登陆成功保存登录信息
                     SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                     sharedPreferences.edit()
                             .putString("username", username_layout.getEditText().getText().toString())
@@ -196,14 +195,16 @@ public class SignInActivity extends AppCompatActivity
                 }
 
                 @Override
-                public void Failure(int code, String message)
+                public void Failure(String message)
                 {
-                    Logs.loge(code, message);//打印错误信息
+                    Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+                            .show();
+                    Log.e("error", message);
                 }
             });
         } else
         {
-            Logs.loge(getString(R.string.error_wrong_format));
+            Log.e("error", getString(R.string.error_wrong_format));
             Snackbar.make(view, getString(R.string.error_wrong_format), Snackbar.LENGTH_SHORT)
                     .show();
         }

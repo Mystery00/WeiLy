@@ -7,7 +7,6 @@ import android.widget.ImageView;
 
 import com.weily.weily.PublicMethod.BitmapLoad.DiskCache;
 import com.weily.weily.PublicMethod.ExitApplication;
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.R;
 
 public class PageActivity extends AppCompatActivity
@@ -42,7 +41,7 @@ public class PageActivity extends AppCompatActivity
                     finish();
                 } catch (InterruptedException e)
                 {
-                    Logs.loge(e);
+                    e.printStackTrace();
                     startActivity(new Intent(PageActivity.this,MainActivity.class));
                     finish();
                 }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.weily.weily.PublicMethod.Equal;
 import com.weily.weily.PublicMethod.FileDo;
 
 import java.io.File;

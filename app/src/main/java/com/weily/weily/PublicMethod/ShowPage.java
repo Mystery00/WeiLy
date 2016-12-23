@@ -52,7 +52,6 @@ public class ShowPage
                     diskCache.putBitmap(date, bitmap);
                 } catch (Exception e)
                 {
-                    Logs.loge(e);
                     e.printStackTrace();
                 }
             }

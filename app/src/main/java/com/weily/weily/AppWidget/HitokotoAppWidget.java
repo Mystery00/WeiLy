@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
-import com.weily.weily.PublicMethod.Logs;
 import com.weily.weily.PublicMethod.WidgetUtil;
 import com.weily.weily.R;
 
@@ -26,7 +25,6 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
-        Logs.logi("onUpdate");
         super.onUpdate(context, appWidgetManager, appWidgetIds);
         for (int appWidgetId : appWidgetIds)
         {
@@ -39,7 +37,6 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onDeleted(Context context, int[] appWidgetIds)
     {
-        Logs.logi("onDeleted");
         super.onDeleted(context, appWidgetIds);
         for (int appWidgetId : appWidgetIds)
         {
@@ -77,7 +74,6 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onEnabled(Context context)
     {
-        Logs.logi("onEnabled");
         super.onEnabled(context);
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -93,7 +89,6 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onDisabled(Context context)
     {
-        Logs.logi("onDisabled");
         super.onDisabled(context);
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -106,13 +101,11 @@ public class HitokotoAppWidget extends AppWidgetProvider
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        Logs.logi("接收到广播:" + intent.getAction());
         super.onReceive(context, intent);
         String action = intent.getAction();
         if ("android.appwidget.action.APPWIDGET_UPDATE".equals(action))
         {
             String text = intent.getStringExtra(context.getString(R.string.intent_widget_text));
-            Logs.logi("test:" + text);
             WidgetUtil.updateAllAppWidgets(text, context, AppWidgetManager.getInstance(context), idsSet);
         }
     }

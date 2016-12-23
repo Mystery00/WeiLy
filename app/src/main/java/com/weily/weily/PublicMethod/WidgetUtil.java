@@ -50,7 +50,6 @@ public class WidgetUtil
                     }
                     Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
                     intent.putExtra(context.getString(R.string.intent_widget_text), str.toString());
-                    Logs.logi("发送广播");
                     context.sendBroadcast(intent);
                 } catch (IOException e)
                 {
@@ -116,7 +115,6 @@ public class WidgetUtil
     {
         Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
         intent.putExtra(context.getString(R.string.intent_widget_text), context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_now),context.getString(R.string.error_widget)));
-        Logs.logi("更新视图");
         context.sendBroadcast(intent);
     }
 

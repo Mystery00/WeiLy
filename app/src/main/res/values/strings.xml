@@ -17,6 +17,7 @@
 
     <string name="url_show_page">http://www.dujin.org/sys/bing/1366.php</string>
     <string name="url_widget">https://api.lwl12.com/hitokoto/main/get</string>
+    <string name="url_login">http://bluewolfrain.cn:8080/weily/account/login?</string>
 
     <string name="file_sharedPreferences_widget">widget</string>
     <string name="name_widget_refresh_time">refresh_time</string>
