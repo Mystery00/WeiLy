@@ -13,13 +13,13 @@ public class User
     private String college;
     private String phoneNumber;
     private String classNumber;
-    private boolean isManager;
+    private int isManager;
 
     public User()
     {
     }
 
-    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber, boolean isManager)
+    public User(String photoUrl, String name, String occupation, String profession, String college, String phoneNumber, String classNumber, int isManager)
     {
         this.photoUrl = photoUrl;//头像
         this.name = name;//姓名
@@ -116,12 +116,12 @@ public class User
         this.classNumber = classNumber;
     }
 
-    public boolean getIsManager()
+    public int getIsManager()
     {
         return isManager;
     }
 
-    public void setIsManager(boolean isManager)
+    public void setIsManager(int isManager)
     {
         this.isManager = isManager;
     }
