@@ -26,6 +26,7 @@ import com.weily.weily.R;
 public class WidgetSettingActivity extends AppCompatActivity
 {
     private Toolbar toolbar;
+    private View view;
     private RelativeLayout refresh_time;
     private RelativeLayout refresh_now;
     private RelativeLayout text_color;
@@ -60,6 +61,7 @@ public class WidgetSettingActivity extends AppCompatActivity
         ExitApplication.getInstance().addActivity(this);
         sharedPreferences = getSharedPreferences(getString(R.string.file_sharedPreferences_widget), MODE_PRIVATE);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        view=findViewById(R.id.coordinatorLayout);
         refresh_time = (RelativeLayout) findViewById(R.id.layout_refresh_time);
         refresh_now = (RelativeLayout) findViewById(R.id.layout_refresh);
         text_color = (RelativeLayout) findViewById(R.id.layout_color);
@@ -99,9 +101,16 @@ public class WidgetSettingActivity extends AppCompatActivity
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 long time = Long.parseLong(textInputLayout.getEditText().getText().toString()) * 60000;
-                                editor.putLong(getString(R.string.name_widget_refresh_time), time);
-                                editor.apply();
-                                WidgetUtil.restartService(getApplicationContext());
+                                if(time/6000>0)
+                                {
+                                    editor.putLong(getString(R.string.name_widget_refresh_time), time);
+                                    editor.apply();
+                                    WidgetUtil.restartService(getApplicationContext());
+                                }else
+                                {
+                                    Snackbar.make(WidgetSettingActivity.this.view,R.string.error_wrong_format,Snackbar.LENGTH_SHORT)
+                                            .show();
+                                }
                             }
                         })
                         .show();
