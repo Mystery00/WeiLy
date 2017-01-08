@@ -16,10 +16,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
-            tools:ignore="InnerclassSeparator">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -27,67 +26,57 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.SignInActivity"
+            android:name=".activity.SignInActivity"
             android:label="@string/title_activity_sign_in"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.ProfileActivity"
+            android:name=".activity.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceAndroidActivity"
+            android:name=".activity.introduce_activity.IntroduceAndroidActivity"
             android:label="@string/title_activity_introduce_android"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceUnityActivity"
+            android:name=".activity.introduce_activity.IntroduceUnityActivity"
             android:label="@string/title_activity_introduce_unity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceWebActivity"
+            android:name=".activity.introduce_activity.IntroduceWebActivity"
             android:label="@string/title_activity_introduce_web"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.IntroduceActivity.IntroduceArtActivity"
+            android:name=".activity.introduce_activity.IntroduceArtActivity"
             android:label="@string/title_activity_introduce_art"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.PageActivity"
+            android:name=".activity.PageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.Setting.SettingActivity"
+            android:name=".activity.setting.SettingActivity"
             android:label="@string/title_activity_setting"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.Setting.WidgetSettingActivity"
+            android:name=".activity.setting.WidgetSettingActivity"
             android:label="@string/title_activity_widget_setting"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="InnerclassSeparator"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <receiver
-            android:name=".AppWidget.HitokotoAppWidget"
+            android:name=".app_widget.HitokotoAppWidget"
             tools:ignore="ExportedService,InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -99,16 +88,14 @@
         </receiver>
 
         <service
-            android:name=".AppWidget.WidgetService"
+            android:name=".app_widget.WidgetService"
             android:enabled="true"
             android:exported="true"
-            tools:ignore="ExportedService,InnerclassSeparator"/>
+            tools:ignore="ExportedService"/>
         <service
-            android:name=".AppWidget.OnClickService"
+            android:name=".app_widget.OnClickService"
             android:enabled="true"
-            android:exported="false"
-            tools:ignore="InnerclassSeparator">
-        </service>
+            android:exported="false"/>
     </application>
 
 </manifest>

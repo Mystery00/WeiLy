@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.weily.weily.Activity.IntroduceActivity.IntroduceUnityActivity">
+      tools:context="com.weily.weily.activity.introduce_activity.IntroduceUnityActivity">
     <item
         android:id="@+id/action_open"
         android:orderInCategory="100"
