@@ -22,7 +22,7 @@ public class UsageAdapter extends RecyclerView.Adapter<UsageAdapter.ViewHolder>
         TextView outcome;
         TextView over;
         TextView person;
-        public ViewHolder(View itemView)
+        ViewHolder(View itemView)
         {
             super(itemView);
             date = (TextView) itemView.findViewById(R.id.date);

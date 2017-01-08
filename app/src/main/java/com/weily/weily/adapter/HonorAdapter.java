@@ -19,7 +19,7 @@ public class HonorAdapter extends RecyclerView.Adapter<HonorAdapter.ViewHolder>
         View fullView;
         TextView textView;
 
-        public ViewHolder(View itemView)
+        ViewHolder(View itemView)
         {
             super(itemView);
             fullView = itemView;
