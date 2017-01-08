@@ -22,9 +22,8 @@ public class ImageConnection
             URL url = new URL(address);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             bitmap = BitmapFactory.decodeStream(conn.getInputStream());
-        } catch (IOException e)
+        } catch (IOException ignored)
         {
-            e.printStackTrace();
         }
         return bitmap;
     }

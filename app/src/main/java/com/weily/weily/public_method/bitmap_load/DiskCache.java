@@ -39,9 +39,8 @@ public class DiskCache implements ImageLoader.ImageCache
                 file.createNewFile();
                 fileOutputStream = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-            } catch (IOException e)
+            } catch (IOException ignored)
             {
-                e.printStackTrace();
             } finally
             {
                 if (fileOutputStream != null)
@@ -49,9 +48,8 @@ public class DiskCache implements ImageLoader.ImageCache
                     try
                     {
                         fileOutputStream.close();
-                    } catch (IOException e)
+                    } catch (IOException ignored)
                     {
-                        e.printStackTrace();
                     }
                 }
             }

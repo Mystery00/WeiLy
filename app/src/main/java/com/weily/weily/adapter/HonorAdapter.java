@@ -1,56 +1,63 @@
 package com.weily.weily.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.weily.weily.R;
 
 import java.util.List;
 
-public class HonorAdapter extends BaseAdapter
+public class HonorAdapter extends RecyclerView.Adapter<HonorAdapter.ViewHolder>
 {
-    private Context context;
     private List<String> data;
-    private TextView textView;
 
-    public HonorAdapter(Context context, List<String> data)
+    static class ViewHolder extends RecyclerView.ViewHolder
     {
-        this.context = context;
+        View fullView;
+        TextView textView;
+
+        public ViewHolder(View itemView)
+        {
+            super(itemView);
+            fullView = itemView;
+            textView = (TextView) itemView.findViewById(R.id.text);
+        }
+    }
+
+    public HonorAdapter(List<String> data)
+    {
         this.data = data;
     }
 
     @Override
-    public int getCount()
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_honor, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.fullView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position)
+    {
+        String text = data.get(position);
+        holder.textView.setText(text);
+    }
+
+    @Override
+    public int getItemCount()
     {
         return data.size();
-    }
-
-    @Override
-    public Object getItem(int position)
-    {
-        return data.get(position);
-    }
-
-    @Override
-    public long getItemId(int position)
-    {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
-        String honor = data.get(position);
-        if (convertView == null)
-        {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_honor, null);
-            textView = (TextView) convertView.findViewById(R.id.text);
-        }
-        textView.setText(honor);
-        return convertView;
     }
 }

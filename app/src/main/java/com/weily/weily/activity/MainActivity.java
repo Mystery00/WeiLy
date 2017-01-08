@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.weily.weily.activity.setting.SettingActivity;
 import com.weily.weily.fragment.HonorFragment;
 import com.weily.weily.fragment.introduce_fragment.IntroduceFragment;
-import com.weily.weily.fragment.MemberFragment;
+import com.weily.weily.fragment.UserFragment;
 import com.weily.weily.fragment.UsageFragment;
 import com.weily.weily.public_method.CircleImageView;
 import com.weily.weily.public_method.Equal;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private IntroduceFragment introduceFragment;
     private HonorFragment honorFragment;
-    private MemberFragment memberFragment;
+    private UserFragment userFragment;
     private UsageFragment usageFragment;
     private View view;
     private static boolean isBackKeyPressed = false;// 记录是否有首次按键
@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity
         {
             fragmentTransaction.hide(honorFragment);
         }
-        if (memberFragment != null)
+        if (userFragment != null)
         {
-            fragmentTransaction.hide(memberFragment);
+            fragmentTransaction.hide(userFragment);
         }
         if (usageFragment != null)
         {
@@ -210,13 +210,13 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_member:
                 hideFragments(fragmentTransaction);
-                if (memberFragment == null)
+                if (userFragment == null)
                 {
-                    memberFragment = new MemberFragment();
-                    fragmentTransaction.add(R.id.fragment, memberFragment);
+                    userFragment = new UserFragment();
+                    fragmentTransaction.add(R.id.fragment, userFragment);
                 } else
                 {
-                    fragmentTransaction.show(memberFragment);
+                    fragmentTransaction.show(userFragment);
                 }
                 break;
             case R.id.nav_usage:

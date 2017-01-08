@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.weily.weily.adapter.UsageAdapter;
 import com.weily.weily.class_class.Usage;
@@ -25,15 +26,17 @@ public class UsageFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view=inflater.inflate(R.layout.fragment_usage,container,false);
-        ListView listView=(ListView)view.findViewById(R.id.listView);
+        RecyclerView recyclerView=(RecyclerView) view.findViewById(R.id.recyclerView);
         FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
         list.add(new Usage("16-10-24","+200","","500","哈哈哈"));
         list.add(new Usage("16-10-24","","-100","500","哈哈哈"));
         list.add(new Usage("16-10-24","+200","","500","哈哈哈"));
         list.add(new Usage("16-10-24","","-1000","500","哈哈哈"));
         list.add(new Usage("16-10-24","+200","","500","哈哈哈"));
-        UsageAdapter adapter=new UsageAdapter(getActivity(),list);
-        listView.setAdapter(adapter);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        UsageAdapter adapter=new UsageAdapter(list);
+        recyclerView.setAdapter(adapter);
         floatingActionButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

@@ -2,6 +2,8 @@ package com.weily.weily.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,9 @@ public class HonorFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view=inflater.inflate(R.layout.fragment_honor,container,false);
-        ListView listView=(ListView)view.findViewById(R.id.listView);
-        List<String> data=new ArrayList<>();
+        View view = inflater.inflate(R.layout.fragment_honor, container, false);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        List<String> data = new ArrayList<>();
         data.add("sad");
         data.add("sad");
         data.add("sad");
@@ -32,16 +34,10 @@ public class HonorFragment extends Fragment
         data.add("sad");
         data.add("s哈哈哈");
         data.add("s测试123456468");
-        HonorAdapter adapter=new HonorAdapter(getContext(),data);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                
-            }
-        });
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        HonorAdapter adapter = new HonorAdapter(data);
+        recyclerView.setAdapter(adapter);
         return view;
     }
 }
