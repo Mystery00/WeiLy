@@ -9,7 +9,7 @@ autoVersion {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.weily.weily"
         minSdkVersion 17
