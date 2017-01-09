@@ -7,7 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.weily.weily.Activity.Setting.WidgetSettingActivity">
+    tools:context="com.weily.weily.activity.setting.WidgetSettingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

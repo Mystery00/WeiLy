@@ -2,7 +2,7 @@ package com.weily.weily;
 
 import android.app.Application;
 
-import com.weily.weily.PublicMethod.CrashHandler;
+import com.weily.weily.public_method.CrashHandler;
 
 public class App extends Application
 {
