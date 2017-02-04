@@ -27,6 +27,8 @@ import java.util.Set;
 
 public class WidgetUtil
 {
+    private static final int NUMBER = 2;
+
     public static void getText(final Context context)
     {
         new Thread(new Runnable()
@@ -36,20 +38,31 @@ public class WidgetUtil
             {
                 try
                 {
-                    URL url = new URL(context.getString(R.string.url_widget));
-                    HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
-                    httpurlconnection.connect();
-                    InputStream inputstream = httpurlconnection.getInputStream();
-                    InputStreamReader in = new InputStreamReader(inputstream);
-                    BufferedReader br = new BufferedReader(in);
-                    StringBuilder str = new StringBuilder();
-                    String reader;
-                    while ((reader = br.readLine()) != null)
+                    String text = null;
+                    switch ((int) (Math.random() * NUMBER % NUMBER))
                     {
-                        str.append(reader);
+                        case 0://网络更新
+                            URL url = new URL(context.getString(R.string.url_widget));
+                            HttpURLConnection httpurlconnection = (HttpURLConnection) url.openConnection();
+                            httpurlconnection.connect();
+                            InputStream inputstream = httpurlconnection.getInputStream();
+                            InputStreamReader in = new InputStreamReader(inputstream);
+                            BufferedReader br = new BufferedReader(in);
+                            StringBuilder str = new StringBuilder();
+                            String reader;
+                            while ((reader = br.readLine()) != null)
+                            {
+                                str.append(reader);
+                            }
+                            text = str.toString();
+                            break;
+                        case 1://本地数据
+                            text = "本地数据";
+                            break;
                     }
+
                     Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-                    intent.putExtra(context.getString(R.string.intent_widget_text), str.toString());
+                    intent.putExtra(context.getString(R.string.intent_widget_text), text);
                     context.sendBroadcast(intent);
                 } catch (IOException e)
                 {
@@ -71,19 +84,19 @@ public class WidgetUtil
 
     public static int getTextColor(Context context)
     {
-        String color=context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget),Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_color),"#FFFFFF");
+        String color = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_color), "#FFFFFF");
         return Color.parseColor(color);
     }
 
     public static void updateAllAppWidgets(String word, Context context, AppWidgetManager appWidgetManager, Set<Integer> idsSet)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE);
-        if (word==null)
+        if (word == null)
         {
-            word=sharedPreferences.getString(context.getString(R.string.name_widget_text_now),context.getString(R.string.error_widget));
+            word = sharedPreferences.getString(context.getString(R.string.name_widget_text_now), context.getString(R.string.error_widget));
         }
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString(context.getString(R.string.name_widget_text_now),word);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(context.getString(R.string.name_widget_text_now), word);
         editor.apply();
         int appID;
         // 迭代器，用于遍历所有保存的widget的id
@@ -114,13 +127,13 @@ public class WidgetUtil
     public static void updateWidget(Context context)
     {
         Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-        intent.putExtra(context.getString(R.string.intent_widget_text), context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_now),context.getString(R.string.error_widget)));
+        intent.putExtra(context.getString(R.string.intent_widget_text), context.getSharedPreferences(context.getString(R.string.file_sharedPreferences_widget), Context.MODE_PRIVATE).getString(context.getString(R.string.name_widget_text_now), context.getString(R.string.error_widget)));
         context.sendBroadcast(intent);
     }
 
     public static void restartService(Context context)
     {
-        Intent intent=new Intent(context, WidgetService.class);
+        Intent intent = new Intent(context, WidgetService.class);
         context.stopService(intent);
         context.startService(intent);
     }

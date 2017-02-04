@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
         {
             //退出程序
             ExitApplication.getInstance().exit();
+            finish();
         }
     }
 
@@ -256,6 +257,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_exit:
                 ExitApplication.getInstance().exit();
+                finish();
                 break;
         }
         fragmentTransaction.commit();
